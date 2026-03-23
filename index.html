@@ -3,7 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Bava Restaurant | Fresh Taste of Kenya</title>
+    
+    <!-- ========== SEO META TAGS ========== -->
+    <title>Bava Restaurant | Fresh Taste of Kenya | Authentic Kenyan Cuisine</title>
+    <meta name="description" content="Bava Restaurant - Fresh Taste of Kenya. Authentic Kenyan cuisine including Nyama Choma, Kenyan Pilau, Ugali, and more. Order online for delivery in Nairobi, Nakuru, and Bungoma. Best Kenyan restaurant in Kenya.">
+    <meta name="keywords" content="Bava Restaurant, Kenyan food, Nyama Choma, Kenyan Pilau, Ugali, Nairobi restaurant, Nakuru restaurant, Bungoma restaurant, Kenyan cuisine, best restaurant in Kenya, order food online Kenya, Kenyan dishes, local food Kenya">
+    <meta name="author" content="Bava Restaurant">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+    
+    <!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
+    <meta property="og:title" content="Bava Restaurant - Fresh Taste of Kenya">
+    <meta property="og:description" content="Authentic Kenyan cuisine delivered to your doorstep. Order Nyama Choma, Pilau, Ugali, and more! Best restaurant in Nairobi, Nakuru, and Bungoma.">
+    <meta property="og:type" content="restaurant">
+    <meta property="og:url" content="https://bava-restaurant.netlify.app">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1544025162-d76694265947?w=1200&h=630&fit=crop">
+    <meta property="og:site_name" content="Bava Restaurant">
+    <meta property="og:locale" content="en_KE">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bava Restaurant - Fresh Taste of Kenya">
+    <meta name="twitter:description" content="Authentic Kenyan cuisine delivered to your doorstep. Order online now!">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1544025162-d76694265947?w=1200&h=600&fit=crop">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bava-restaurant.netlify.app">
+    
+    <!-- Structured Data (Schema.org) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "name": "Bava Restaurant",
+        "description": "Fresh Taste of Kenya - Authentic Kenyan cuisine with Nyama Choma, Kenyan Pilau, Ugali, and more. Order online for delivery.",
+        "image": "https://images.unsplash.com/photo-1544025162-d76694265947?w=800&h=600&fit=crop",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Kenyatta Avenue",
+            "addressLocality": "Nairobi",
+            "addressRegion": "Nairobi",
+            "addressCountry": "KE",
+            "postalCode": "00100"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "-1.286389",
+            "longitude": "36.817223"
+        },
+        "url": "https://bava-restaurant.netlify.app",
+        "telephone": "+254722287517",
+        "email": "info@bavarestaurant.co.ke",
+        "openingHours": ["Mo-Su 09:00-22:00"],
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+                "opens": "09:00",
+                "closes": "22:00"
+            }
+        ],
+        "priceRange": "KES 50 - KES 850",
+        "servesCuisine": ["Kenyan", "African", "Grill"],
+        "menu": "https://bava-restaurant.netlify.app/menu.html",
+        "hasMenu": "https://bava-restaurant.netlify.app/menu.html",
+        "acceptsReservations": "True",
+        "paymentAccepted": ["Cash", "M-Pesa", "Credit Card", "Debit Card"],
+        "averageRating": {
+            "@type": "Rating",
+            "ratingValue": "4.8",
+            "bestRating": "5",
+            "ratingCount": "500"
+        },
+        "review": {
+            "@type": "Review",
+            "reviewRating": {
+                "@type": "Rating",
+                "ratingValue": "4.9",
+                "bestRating": "5"
+            },
+            "author": {
+                "@type": "Person",
+                "name": "John Kamau"
+            },
+            "reviewBody": "Best Nyama Choma in Nairobi! The food is amazing and delivery is fast."
+        }
+    }
+    </script>
+    
+    <!-- Breadcrumb Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://bava-restaurant.netlify.app"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Menu",
+                "item": "https://bava-restaurant.netlify.app/menu.html"
+            }
+        ]
+    }
+    </script>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍽️</text></svg>">
+    
+    <!-- Google Analytics (add your GA4 ID after creating) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script> -->
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -14,11 +136,8 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
-    <!-- Swiper.js -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    
     <style>
+        /* Your existing CSS styles here */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; background: #ffffff; color: #1a1a1a; overflow-x: hidden; }
         :root { --primary: #0B6E4F; --primary-dark: #08523a; --secondary: #D4AF37; --secondary-dark: #b8921a; --dark: #1a1a1a; --gray: #f5f5f5; }
@@ -38,8 +157,6 @@
         .cart-icon { position: relative; cursor: pointer; font-size: 1.2rem; color: var(--dark); margin-left: 0.5rem; }
         .cart-count { position: absolute; top: -8px; right: -12px; background: var(--secondary); color: var(--primary-dark); font-size: 0.65rem; font-weight: bold; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
         .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--primary); }
-        
-        /* Hero Section */
         .hero { min-height: 85vh; display: flex; align-items: center; background: linear-gradient(135deg, #fef9e6 0%, #ffffff 70%); padding-top: 80px; }
         .hero-badge { display: inline-block; background: rgba(212,175,55,0.12); padding: 0.5rem 1rem; border-radius: 40px; color: var(--secondary-dark); font-weight: 600; font-size: 0.8rem; margin-bottom: 1.5rem; }
         .hero-title { font-family: 'Playfair Display', serif; font-size: 4rem; font-weight: 800; line-height: 1.2; margin-bottom: 1.5rem; }
@@ -49,13 +166,6 @@
         .btn-primary:hover { background: var(--primary-dark); transform: translateY(-3px); }
         .btn-secondary { background: transparent; color: var(--primary); padding: 1rem 2.5rem; border-radius: 50px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 0.8rem; border: 2px solid var(--primary); transition: all 0.3s; }
         .btn-secondary:hover { background: var(--primary); color: white; transform: translateY(-3px); }
-        
-        /* Menu Categories */
-        .menu-categories { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
-        .category-btn { background: var(--gray); border: none; padding: 0.8rem 2rem; border-radius: 50px; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.3s; }
-        .category-btn.active, .category-btn:hover { background: var(--primary); color: white; transform: translateY(-2px); }
-        
-        /* Food Cards */
         .food-card { background: white; border-radius: 24px; overflow: hidden; transition: all 0.4s; box-shadow: 0 8px 25px rgba(0,0,0,0.05); cursor: pointer; }
         .food-card:hover { transform: translateY(-12px); box-shadow: 0 25px 40px rgba(0,0,0,0.12); }
         .food-image { width: 100%; height: 240px; object-fit: cover; transition: transform 0.5s; }
@@ -67,13 +177,9 @@
         .food-desc { color: #7a7a7a; font-size: 0.85rem; line-height: 1.5; margin-bottom: 1.2rem; }
         .add-to-cart-btn { width: 100%; background: var(--secondary); color: var(--primary-dark); border: none; padding: 0.7rem; border-radius: 50px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; transition: all 0.3s; }
         .add-to-cart-btn:hover { background: var(--secondary-dark); transform: scale(1.02); }
-        
-        /* Cart Sidebar */
         .cart-sidebar { position: fixed; top: 0; right: -400px; width: 380px; height: 100vh; background: white; box-shadow: -5px 0 30px rgba(0,0,0,0.1); z-index: 1001; transition: right 0.3s; display: flex; flex-direction: column; }
         .cart-sidebar.open { right: 0; }
         .cart-header { padding: 1.5rem; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
-        .cart-header h3 { font-size: 1.3rem; }
-        .close-cart { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #666; }
         .cart-items { flex: 1; overflow-y: auto; padding: 1rem; }
         .cart-item { display: flex; gap: 1rem; padding: 1rem; border-bottom: 1px solid #eee; }
         .cart-item-img { width: 60px; height: 60px; border-radius: 12px; object-fit: cover; }
@@ -89,13 +195,10 @@
         .checkout-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
         .cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; display: none; }
         .cart-overlay.active { display: block; }
-        
-        /* Delivery Animation */
         .delivery-bike { position: fixed; bottom: 30px; right: -200px; background: linear-gradient(135deg, var(--primary), var(--secondary)); padding: 12px 20px; border-radius: 50px; display: flex; align-items: center; gap: 12px; z-index: 1002; transition: right 0.5s cubic-bezier(0.68,-0.55,0.265,1.55); }
         .delivery-bike.active { right: 20px; }
         .fly-to-cart { position: fixed; width: 45px; height: 45px; background: var(--secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 1003; pointer-events: none; animation: flyToCart 0.5s forwards; }
         @keyframes flyToCart { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(0); opacity: 0; } }
-        
         footer { background: var(--dark); color: white; padding: 4rem 5% 2rem; margin-top: 4rem; }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 3rem; margin-bottom: 3rem; }
         .footer-col h4 { font-size: 1.1rem; margin-bottom: 1.2rem; color: var(--secondary); }
@@ -104,7 +207,6 @@
         .social-icons a { width: 38px; height: 38px; background: rgba(255,255,255,0.08); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: all 0.3s; }
         .social-icons a:hover { background: var(--secondary); transform: translateY(-3px); }
         .copyright { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08); color: #6b7280; font-size: 0.85rem; }
-        
         @media (max-width: 968px) { .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: white; flex-direction: column; padding: 2rem; gap: 1.2rem; } .nav-links.active { display: flex; } .menu-toggle { display: block; } .hero-title { font-size: 2.5rem; } .cart-sidebar { width: 100%; right: -100%; } }
     </style>
 </head>
@@ -140,7 +242,7 @@
                     </div>
                 </div>
                 <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&h=500&fit=crop" alt="Nyama Choma" class="rounded-3xl shadow-2xl w-full h-[450px] object-cover">
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&h=500&fit=crop" alt="Nyama Choma - Bava Restaurant signature dish" class="rounded-3xl shadow-2xl w-full h-[450px] object-cover">
                     <div class="absolute -bottom-5 -left-5 bg-white rounded-2xl p-4 shadow-xl">
                         <div class="flex items-center gap-3">
                             <i class="fas fa-trophy text-[#D4AF37] text-2xl"></i>
@@ -161,12 +263,12 @@
                 <p class="text-gray-500 mt-2">Fresh, delicious, and made with love. From Nyama Choma to Kenyan Pilau, we've got something for everyone.</p>
             </div>
             
-            <div class="menu-categories">
-                <button class="category-btn active" data-category="all">ALL</button>
-                <button class="category-btn" data-category="grills">GRILLS</button>
-                <button class="category-btn" data-category="local">LOCAL DISHES</button>
-                <button class="category-btn" data-category="drinks">DRINKS</button>
-                <button class="category-btn" data-category="desserts">DESSERTS</button>
+            <div class="menu-categories flex justify-center gap-3 flex-wrap mb-12">
+                <button class="category-btn active bg-[#0B6E4F] text-white px-6 py-2 rounded-full" data-category="all">ALL</button>
+                <button class="category-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-full hover:bg-[#0B6E4F] hover:text-white transition" data-category="grills">GRILLS</button>
+                <button class="category-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-full hover:bg-[#0B6E4F] hover:text-white transition" data-category="local">LOCAL DISHES</button>
+                <button class="category-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-full hover:bg-[#0B6E4F] hover:text-white transition" data-category="drinks">DRINKS</button>
+                <button class="category-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-full hover:bg-[#0B6E4F] hover:text-white transition" data-category="desserts">DESSERTS</button>
             </div>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="menuGrid"></div>
@@ -187,27 +289,48 @@
     <!-- Footer -->
     <footer>
         <div class="footer-grid">
-            <div><h4>BAVA RESTAURANT</h4><p>Fresh taste of Kenya, served with love.</p><div class="social-icons"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-tiktok"></i></a></div></div>
-            <div><h4>QUICK LINKS</h4><p><a href="index.html" style="color:#9ca3af;">Home</a></p><p><a href="menu.html" style="color:#9ca3af;">Menu</a></p><p><a href="locations.html" style="color:#9ca3af;">Locations</a></p><p><a href="blog.html" style="color:#9ca3af;">Blog</a></p><p><a href="offers.html" style="color:#9ca3af;">Offers</a></p></div>
-            <div><h4>CONTACT</h4><p><i class="fas fa-phone mr-2"></i> +254 722 287517</p><p><i class="fas fa-envelope mr-2"></i> info@bavarestaurant.co.ke</p><p><i class="fas fa-map-marker-alt mr-2"></i> Nairobi, Nakuru, Bungoma</p></div>
-            <div><h4>HOURS</h4><p>Mon - Fri: 9am - 10pm</p><p>Sat - Sun: 10am - 9pm</p><p>Holidays: 11am - 8pm</p></div>
+            <div class="footer-col">
+                <h4>BAVA RESTAURANT</h4>
+                <p>Fresh taste of Kenya, served with love. Experience authentic Kenyan cuisine at its finest.</p>
+                <div class="social-icons"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-tiktok"></i></a></div>
+            </div>
+            <div class="footer-col">
+                <h4>QUICK LINKS</h4>
+                <p><a href="index.html" style="color:#9ca3af;">Home</a></p>
+                <p><a href="menu.html" style="color:#9ca3af;">Menu</a></p>
+                <p><a href="locations.html" style="color:#9ca3af;">Locations</a></p>
+                <p><a href="blog.html" style="color:#9ca3af;">Blog</a></p>
+                <p><a href="offers.html" style="color:#9ca3af;">Offers</a></p>
+            </div>
+            <div class="footer-col">
+                <h4>CONTACT</h4>
+                <p><i class="fas fa-phone"></i> +254 722 287517</p>
+                <p><i class="fas fa-envelope"></i> info@bavarestaurant.co.ke</p>
+                <p><i class="fas fa-map-marker-alt"></i> Nairobi, Nakuru, Bungoma</p>
+            </div>
+            <div class="footer-col">
+                <h4>HOURS</h4>
+                <p>Mon - Fri: 9am - 10pm</p>
+                <p>Sat - Sun: 10am - 9pm</p>
+                <p>Holidays: 11am - 8pm</p>
+            </div>
         </div>
-        <div class="copyright"><p>&copy; 2024 Bava Restaurant. All rights reserved. | Fresh Taste of Kenya</p></div>
+        <div class="copyright"><p>&copy; 2024 Bava Restaurant. All rights reserved. | Fresh Taste of Kenya | Best Kenyan Restaurant in Nairobi, Nakuru & Bungoma</p></div>
     </footer>
 
     <script>
         // Menu Data
         const menuItems = [
-            { id: 1, name: "Nyama Choma", category: "grills", price: 850, desc: "Grilled meat with kachumbari", image: "https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=300&fit=crop" },
-            { id: 2, name: "Grilled Chicken", category: "grills", price: 650, desc: "Spicy grilled chicken", image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&h=300&fit=crop" },
-            { id: 3, name: "Beef Kebab", category: "grills", price: 550, desc: "Spiced beef skewers", image: "https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&h=300&fit=crop" },
-            { id: 4, name: "Ugali & Sukuma", category: "local", price: 350, desc: "Traditional cornmeal with greens", image: "https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?w=400&h=300&fit=crop" },
-            { id: 5, name: "Kenyan Pilau", category: "local", price: 450, desc: "Spiced rice with beef", image: "https://images.unsplash.com/photo-1551326844-4df70f78d0e9?w=400&h=300&fit=crop" },
-            { id: 6, name: "Githeri", category: "local", price: 300, desc: "Corn and bean stew", image: "https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=400&h=300&fit=crop" },
+            { id: 1, name: "Nyama Choma", category: "grills", price: 850, desc: "Grilled meat with kachumbari - Kenya's favorite", image: "https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=300&fit=crop" },
+            { id: 2, name: "Grilled Chicken", category: "grills", price: 650, desc: "Spicy grilled chicken with kachumbari", image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&h=300&fit=crop" },
+            { id: 3, name: "Beef Kebab", category: "grills", price: 550, desc: "Spiced beef skewers with peppers", image: "https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&h=300&fit=crop" },
+            { id: 4, name: "Ugali & Sukuma", category: "local", price: 350, desc: "Traditional cornmeal with collard greens", image: "https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?w=400&h=300&fit=crop" },
+            { id: 5, name: "Kenyan Pilau", category: "local", price: 450, desc: "Spiced rice with beef, Swahili style", image: "https://images.unsplash.com/photo-1551326844-4df70f78d0e9?w=400&h=300&fit=crop" },
+            { id: 6, name: "Githeri", category: "local", price: 300, desc: "Corn and bean stew, a Kenyan staple", image: "https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=400&h=300&fit=crop" },
             { id: 7, name: "Fresh Mango Juice", category: "drinks", price: 150, desc: "100% pure mango juice", image: "https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=400&h=300&fit=crop" },
-            { id: 8, name: "Dawa Tea", category: "drinks", price: 100, desc: "Kenyan spiced tea", image: "https://images.unsplash.com/photo-1594631252845-29fc4cc8cde9?w=400&h=300&fit=crop" },
-            { id: 9, name: "Mandazi", category: "desserts", price: 50, desc: "Kenyan doughnuts", image: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?w=400&h=300&fit=crop" },
-            { id: 10, name: "Mahamri", category: "desserts", price: 80, desc: "Coconut doughnuts", image: "https://images.unsplash.com/photo-1623428454614-baf816f0b9f7?w=400&h=300&fit=crop" }
+            { id: 8, name: "Dawa Tea", category: "drinks", price: 100, desc: "Kenyan spiced tea with honey", image: "https://images.unsplash.com/photo-1594631252845-29fc4cc8cde9?w=400&h=300&fit=crop" },
+            { id: 9, name: "Mandazi", category: "desserts", price: 50, desc: "Kenyan doughnuts, perfect with chai", image: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?w=400&h=300&fit=crop" },
+            { id: 10, name: "Mahamri", category: "desserts", price: 80, desc: "Coconut doughnuts, Swahili delicacy", image: "https://images.unsplash.com/photo-1623428454614-baf816f0b9f7?w=400&h=300&fit=crop" }
         ];
 
         let cart = JSON.parse(localStorage.getItem('bavaCart') || '[]');
@@ -216,13 +339,13 @@
             const cartCount = document.getElementById('cartCount');
             const cartTotal = document.getElementById('cartTotal');
             const cartItemsDiv = document.getElementById('cartItems');
-            if (cartCount) cartCount.textContent = cart.reduce((sum, i) => sum + i.quantity, 0);
-            if (cartTotal) cartTotal.textContent = `KES ${cart.reduce((sum, i) => sum + (i.price * i.quantity), 0)}`;
+            if (cartCount) cartCount.textContent = cart.reduce((s,i) => s + i.quantity, 0);
+            if (cartTotal) cartTotal.textContent = `KES ${cart.reduce((s,i) => s + (i.price * i.quantity), 0)}`;
             if (cartItemsDiv) {
                 if (cart.length === 0) { cartItemsDiv.innerHTML = '<p style="text-align:center; color:#888;">Your cart is empty</p>'; return; }
                 cartItemsDiv.innerHTML = cart.map(item => `
                     <div class="cart-item">
-                        <img src="${item.image}" class="cart-item-img">
+                        <img src="${item.image}" class="cart-item-img" alt="${item.name}">
                         <div class="cart-item-info">
                             <div class="cart-item-name">${item.name}</div>
                             <div class="cart-item-price">KES ${item.price}</div>
@@ -276,7 +399,7 @@
             const grid = document.getElementById('menuGrid');
             if (grid) grid.innerHTML = filtered.map(item => `
                 <div class="food-card">
-                    <img src="${item.image}" class="food-image">
+                    <img src="${item.image}" class="food-image" alt="${item.name} - Bava Restaurant">
                     <div class="food-info">
                         <div class="food-header"><h3 class="food-name">${item.name}</h3><span class="food-price">KES ${item.price}</span></div>
                         <p class="food-desc">${item.desc}</p>
