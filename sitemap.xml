@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
     
     <url>
         <loc>https://bava-restaurant.netlify.app/</loc>
@@ -11,7 +10,6 @@
         <image:image>
             <image:loc>https://images.unsplash.com/photo-1544025162-d76694265947?w=1200&h=630&fit=crop</image:loc>
             <image:title>Nyama Choma - Bava Restaurant</image:title>
-            <image:caption>Authentic Kenyan Nyama Choma served at Bava Restaurant</image:caption>
         </image:image>
     </url>
     
@@ -20,10 +18,6 @@
         <lastmod>2024-03-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
-        <image:image>
-            <image:loc>https://images.unsplash.com/photo-1551326844-4df70f78d0e9?w=800&h=600&fit=crop</image:loc>
-            <image:title>Kenyan Pilau - Bava Restaurant Menu</image:title>
-        </image:image>
     </url>
     
     <url>
