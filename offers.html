@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Offers | Bava Restaurant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #ffffff; }
+        :root { --primary: #0B6E4F; --secondary: #D4AF37; --dark: #1a1a1a; }
+        .navbar { position: fixed; top: 0; left: 0; width: 100%; background: rgba(255,255,255,0.98); backdrop-filter: blur(10px); z-index: 1000; padding: 1rem 5%; border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 800; color: var(--primary); }
+        .logo span { color: var(--secondary); }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; transition: color 0.3s; position: relative; }
+        .nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--primary); transition: width 0.3s; }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        .order-btn { background: var(--primary); color: white; padding: 0.6rem 1.5rem; border-radius: 40px; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+        .cart-icon { position: relative; cursor: pointer; font-size: 1.2rem; margin-left: 0.5rem; }
+        .cart-count { position: absolute; top: -8px; right: -12px; background: var(--secondary); color: var(--primary); font-size: 0.65rem; font-weight: bold; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--primary); }
+        .offers-container { max-width: 1200px; margin: 0 auto; padding: 120px 20px 60px; }
+        .offer-card { background: white; border-radius: 24px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.08); transition: all 0.3s; margin-bottom: 2rem; display: flex; flex-direction: column; }
+        .offer-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
+        .offer-badge { position: absolute; top: 20px; right: 20px; background: var(--secondary); color: var(--primary); padding: 0.5rem 1rem; border-radius: 50px; font-weight: bold; font-size: 0.8rem; }
+        .offer-image { width: 100%; height: 250px; object-fit: cover; }
+        .offer-content { padding: 2rem; position: relative; }
+        .offer-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .offer-description { color: #666; line-height: 1.6; margin: 1rem 0; }
+        .offer-price { font-size: 1.3rem; font-weight: 800; color: var(--primary); margin: 1rem 0; }
+        .offer-price span { font-size: 1rem; text-decoration: line-through; color: #999; font-weight: normal; }
+        .offer-btn { background: var(--primary); color: white; border: none; padding: 0.8rem 2rem; border-radius: 50px; font-weight: 600; cursor: pointer; transition: all 0.3s; display: inline-flex; align-items: center; gap: 0.5rem; }
+        .offer-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
+        .grid-offers { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
+        footer { background: var(--dark); color: white; padding: 4rem 5% 2rem; margin-top: 4rem; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 3rem; margin-bottom: 3rem; }
+        .footer-col h4 { color: var(--secondary); margin-bottom: 1rem; }
+        .footer-col p { color: #9ca3af; }
+        .copyright { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08); color: #6b7280; }
+        @media (max-width: 968px) { .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: white; flex-direction: column; padding: 2rem; } .nav-links.active { display: flex; } .menu-toggle { display: block; } .grid-offers { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">BAVA <span>RESTAURANT</span></div>
+            <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">HOME</a>
+                <a href="menu.html">MENU</a>
+                <a href="locations.html">LOCATIONS</a>
+                <a href="blog.html">BLOG</a>
+                <a href="offers.html" class="active">OFFERS</a>
+                <a href="order.html" class="order-btn"><i class="fas fa-motorcycle"></i> ORDER NOW</a>
+                <div class="cart-icon" id="cartIcon"><i class="fas fa-shopping-bag"></i><span class="cart-count" id="cartCount">0</span></div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="offers-container">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold font-['Playfair_Display']">Special <span class="text-[#0B6E4F]">Offers</span></h1>
+            <p class="text-gray-500 mt-2">Limited time deals you don't want to miss!</p>
+        </div>
+        
+        <div class="grid-offers">
+            <div class="offer-card relative">
+                <div class="offer-badge">🔥 HOT DEAL</div>
+                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&h=400&fit=crop" class="offer-image">
+                <div class="offer-content">
+                    <h3 class="offer-title">Family Nyama Choma Feast</h3>
+                    <p class="offer-description">Get 2kg of Nyama Choma with kachumbari and ugali. Perfect for family gatherings!</p>
+                    <div class="offer-price">KES 2,500 <span>KES 3,500</span></div>
+                    <button class="offer-btn" onclick="addOfferToCart('Family Nyama Choma Feast', 2500)"><i class="fas fa-shopping-cart"></i> Order Now</button>
+                </div>
+            </div>
+            
+            <div class="offer-card relative">
+                <div class="offer-badge">🎉 WEEKEND SPECIAL</div>
+                <img src="https://images.unsplash.com/photo-1551326844-4df70f78d0e9?w=600&h=400&fit=crop" class="offer-image">
+                <div class="offer-content">
+                    <h3 class="offer-title">Pilau & Kuku Combo</h3>
+                    <p class="offer-description">Enjoy our famous Kenyan Pilau with Grilled Chicken. A match made in heaven!</p>
+                    <div class="offer-price">KES 1,200 <span>KES 1,800</span></div>
+                    <button class="offer-btn" onclick="addOfferToCart('Pilau & Kuku Combo', 1200)"><i class="fas fa-shopping-cart"></i> Order Now</button>
+                </div>
+            </div>
+            
+            <div class="offer-card relative">
+                <div class="offer-badge">🍹 HAPPY HOUR</div>
+                <img src="https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=600&h=400&fit=crop" class="offer-image">
+                <div class="offer-content">
+                    <h3 class="offer-title">Buy 1 Get 1 Free - Fresh Juices</h3>
+                    <p class="offer-description">All fresh fruit juices. Valid Monday-Friday 3pm-6pm. Limited time!</p>
+                    <div class="offer-price">KES 150 <span>KES 300</span></div>
+                    <button class="offer-btn" onclick="addOfferToCart('Fresh Mango Juice (BOGO)', 150)"><i class="fas fa-shopping-cart"></i> Order Now</button>
+                </div>
+            </div>
+            
+            <div class="offer-card relative">
+                <div class="offer-badge">⭐ NEW!</div>
+                <img src="https://images.unsplash.com/photo-1589118949245-7d38baf380d6?w=600&h=400&fit=crop" class="offer-image">
+                <div class="offer-content">
+                    <h3 class="offer-title">Mandazi Bucket</h3>
+                    <p class="offer-description">20 pieces of fresh, fluffy Mandazi. Perfect for sharing!</p>
+                    <div class="offer-price">KES 800 <span>KES 1,200</span></div>
+                    <button class="offer-btn" onclick="addOfferToCart('Mandazi Bucket (20pcs)', 800)"><i class="fas fa-shopping-cart"></i> Order Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div><h4>BAVA RESTAURANT</h4><p>Fresh taste of Kenya, served with love.</p></div>
+            <div><h4>QUICK LINKS</h4><p><a href="index.html" style="color:#9ca3af;">Home</a></p><p><a href="menu.html" style="color:#9ca3af;">Menu</a></p><p><a href="locations.html" style="color:#9ca3af;">Locations</a></p></div>
+            <div><h4>CONTACT</h4><p>+254 722 287517</p><p>info@bavarestaurant.co.ke</p></div>
+            <div><h4>HOURS</h4><p>Mon - Fri: 9am - 10pm</p><p>Sat - Sun: 10am - 9pm</p></div>
+        </div>
+        <div class="copyright"><p>&copy; 2024 Bava Restaurant. All rights reserved.</p></div>
+    </footer>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('bavaCart') || '[]');
+        function updateCart() { document.getElementById('cartCount').innerText = cart.reduce((s,i)=>s+i.quantity,0); }
+        function showDelivery() { document.getElementById('deliveryBike').classList.add('active'); setTimeout(()=>document.getElementById('deliveryBike').classList.remove('active'),1500); }
+        function addOfferToCart(name, price) {
+            let existing = cart.find(i => i.name === name);
+            if(existing) existing.quantity++;
+            else cart.push({ id: Date.now(), name, price, quantity: 1, image: "https://images.unsplash.com/photo-1544025162-d76694265947?w=60&h=60&fit=crop" });
+            localStorage.setItem('bavaCart', JSON.stringify(cart));
+            updateCart();
+            showDelivery();
+            alert(`${name} added to cart! Total: KES ${price}`);
+        }
+        updateCart();
+        document.getElementById('menuToggle').addEventListener('click',()=>document.getElementById('navLinks').classList.toggle('active'));
+        window.addOfferToCart = addOfferToCart;
+    </script>
+    <div class="delivery-bike" id="deliveryBike" style="position: fixed; bottom: 30px; right: -200px; background: linear-gradient(135deg, #0B6E4F, #D4AF37); padding: 12px 20px; border-radius: 50px; display: flex; align-items: center; gap: 12px; z-index: 1002; transition: right 0.5s;"><i class="fas fa-motorcycle"></i><span>Added to cart!</span></div>
+</body>
+</html>

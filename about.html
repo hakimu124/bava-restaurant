@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Bava Restaurant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #ffffff; color: #1a1a1a; }
+        :root { --primary: #0B6E4F; --primary-dark: #08523a; --secondary: #D4AF37; --secondary-dark: #b8921a; --light: #fef9e6; --gray-light: #f8f9fa; --gray: #e9ecef; --dark: #212529; }
+        
+        .navbar { position: fixed; top: 0; left: 0; width: 100%; background: rgba(255,255,255,0.98); backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0,0,0,0.05); z-index: 1000; padding: 1rem 5%; transition: all 0.3s; }
+        .navbar-scrolled { padding: 0.75rem 5%; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 800; color: var(--primary); }
+        .logo span { color: var(--secondary); }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; transition: color 0.3s; position: relative; }
+        .nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--primary); transition: width 0.3s; }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary); }
+        .cart-icon { position: relative; cursor: pointer; font-size: 1.3rem; color: var(--dark); }
+        .cart-count { position: absolute; top: -8px; right: -12px; background: var(--secondary); color: var(--primary-dark); font-size: 0.7rem; font-weight: bold; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--primary); }
+        .section-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; text-align: center; margin-bottom: 1rem; color: var(--dark); }
+        .section-title span { color: var(--primary); }
+        footer { background: var(--dark); color: white; padding: 4rem 5% 2rem; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 3rem; margin-bottom: 3rem; }
+        .footer-col h4 { margin-bottom: 1rem; color: var(--secondary); }
+        .footer-col p { color: #adb5bd; line-height: 1.6; }
+        .social-links { display: flex; gap: 1rem; margin-top: 1rem; }
+        .social-links a { color: white; background: rgba(255,255,255,0.1); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+        .social-links a:hover { background: var(--secondary); transform: translateY(-3px); }
+        .copyright { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: #adb5bd; }
+        @media (max-width: 968px) { .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: white; flex-direction: column; padding: 2rem; box-shadow: 0 10px 20px rgba(0,0,0,0.1); gap: 1rem; } .nav-links.active { display: flex; } .menu-toggle { display: block; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">BAVA <span>RESTAURANT</span></div>
+            <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="menu.html">Menu</a>
+                <a href="locations.html">Locations</a>
+                <a href="about.html" class="active">About</a>
+                <div class="cart-icon" id="cartIcon"><i class="fas fa-shopping-bag"></i><span class="cart-count" id="cartCount">0</span></div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-20">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div><div class="inline-block px-4 py-2 bg-[#D4AF37]/10 rounded-full mb-6"><span class="text-[#D4AF37] font-semibold">Our Story</span></div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-6 font-['Playfair_Display']">Fresh Taste of <span class="text-[#0B6E4F]">Kenya</span></h1>
+                <p class="text-gray-600 leading-relaxed mb-4">Bava Restaurant started with a simple mission: to bring the authentic taste of Kenya to every plate. Founded in 2015 by a passionate chef who believed that food should not only nourish but also tell a story.</p>
+                <p class="text-gray-600 leading-relaxed mb-4">We source our ingredients from local farmers, ensuring freshness and supporting our community. Every dish is prepared with love and care, using recipes passed down through generations.</p>
+                <p class="text-gray-600 leading-relaxed mb-6">From our famous Nyama Choma to our aromatic Pilau, every bite is a journey through Kenya's rich culinary heritage. We take pride in serving you meals that feel like home.</p>
+                <p class="text-xl font-bold text-[#0B6E4F]">Karibu Bava Restaurant!</p></div>
+                <div class="grid grid-cols-2 gap-4"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&h=300&fit=crop" class="rounded-2xl w-full h-64 object-cover shadow-lg" alt="Restaurant interior"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&h=300&fit=crop" class="rounded-2xl w-full h-64 object-cover shadow-lg mt-8" alt="Food preparation"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=300&fit=crop" class="rounded-2xl w-full h-64 object-cover shadow-lg" alt="Nyama Choma"><img src="https://images.unsplash.com/photo-1551326844-4df70f78d0e9?w=400&h=300&fit=crop" class="rounded-2xl w-full h-64 object-cover shadow-lg mt-8" alt="Kenyan Pilau"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 mt-20">
+                <div class="text-center p-6 bg-gray-50 rounded-2xl"><div class="w-16 h-16 bg-[#0B6E4F]/10 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-hand-holding-heart text-2xl text-[#0B6E4F]"></i></div><h3 class="text-xl font-bold mb-2">Quality Ingredients</h3><p class="text-gray-600">We use only the freshest, locally sourced ingredients</p></div>
+                <div class="text-center p-6 bg-gray-50 rounded-2xl"><div class="w-16 h-16 bg-[#0B6E4F]/10 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-users text-2xl text-[#0B6E4F]"></i></div><h3 class="text-xl font-bold mb-2">Community Focus</h3><p class="text-gray-600">Supporting local farmers and the Kenyan community</p></div>
+                <div class="text-center p-6 bg-gray-50 rounded-2xl"><div class="w-16 h-16 bg-[#0B6E4F]/10 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-star text-2xl text-[#0B6E4F]"></i></div><h3 class="text-xl font-bold mb-2">Authentic Flavors</h3><p class="text-gray-600">Traditional Kenyan recipes passed down generations</p></div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col"><h4>Bava Restaurant</h4><p>Fresh taste of Kenya, served with love. Experience authentic Kenyan cuisine at its finest.</p><div class="social-links"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-tiktok"></i></a></div></div>
+            <div class="footer-col"><h4>Quick Links</h4><p><a href="index.html" style="color:#adb5bd; text-decoration:none;">Home</a></p><p><a href="menu.html" style="color:#adb5bd; text-decoration:none;">Menu</a></p><p><a href="locations.html" style="color:#adb5bd; text-decoration:none;">Locations</a></p><p><a href="about.html" style="color:#adb5bd; text-decoration:none;">About</a></p></div>
+            <div class="footer-col"><h4>Contact Info</h4><p><i class="fas fa-phone"></i> +254 722 287517</p><p><i class="fas fa-envelope"></i> info@bavarestaurant.co.ke</p><p><i class="fas fa-map-marker-alt"></i> Nairobi, Nakuru, Bungoma</p></div>
+            <div class="footer-col"><h4>Hours</h4><p>Mon - Fri: 9am - 10pm</p><p>Sat - Sun: 10am - 9pm</p><p>Holidays: 11am - 8pm</p></div>
+        </div>
+        <div class="copyright"><p>&copy; 2024 Bava Restaurant. All rights reserved. | Fresh Taste of Kenya</p></div>
+    </footer>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('bavaCart') || '[]');
+        function updateCartDisplay() { const cartCount = document.getElementById('cartCount'); if (cartCount) cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0); }
+        updateCartDisplay();
+        
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        menuToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
+        
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) navbar.classList.add('navbar-scrolled');
+            else navbar.classList.remove('navbar-scrolled');
+        });
+    </script>
+</body>
+</html>
