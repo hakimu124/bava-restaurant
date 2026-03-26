@@ -9,26 +9,70 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: #ffffff; color: #1a1a1a; }
+        body { font-family: 'Inter', sans-serif; background: #ffffff; }
         :root { --primary: #0B6E4F; --secondary: #D4AF37; --dark: #1a1a1a; --gray: #f5f5f5; }
-        .navbar { position: fixed; top: 0; left: 0; width: 100%; background: rgba(255,255,255,0.98); backdrop-filter: blur(10px); z-index: 1000; padding: 1rem 5%; border-bottom: 1px solid rgba(0,0,0,0.05); }
-        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 800; color: var(--primary); }
-        .logo span { color: var(--secondary); }
-        .nav-links { display: flex; gap: 2rem; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; transition: color 0.3s; position: relative; }
-        .nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--primary); transition: width 0.3s; }
-        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
-        .order-btn { background: var(--primary); color: white; padding: 0.6rem 1.5rem; border-radius: 40px; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; }
-        .cart-icon { position: relative; cursor: pointer; font-size: 1.2rem; margin-left: 0.5rem; }
-        .cart-count { position: absolute; top: -8px; right: -12px; background: var(--secondary); color: var(--primary); font-size: 0.65rem; font-weight: bold; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--primary); }
+        
+        /* Hamburger Menu Styles */
+        .hamburger-menu {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            cursor: pointer;
+            background: var(--primary);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+        
+        .hamburger-menu:hover {
+            transform: scale(1.05);
+            background: var(--primary-dark);
+        }
+        
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 350px;
+            height: 100vh;
+            background: white;
+            z-index: 1002;
+            transition: right 0.3s ease;
+            box-shadow: -5px 0 30px rgba(0,0,0,0.1);
+            padding: 80px 30px 30px;
+        }
+        
+        .menu-overlay.active { right: 0; }
+        
+        .menu-overlay a {
+            display: block;
+            padding: 15px 0;
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.2rem;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s;
+        }
+        
+        .menu-overlay a:hover { color: var(--primary); padding-left: 10px; }
+        .close-menu { position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+        
         .menu-categories { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin: 2rem 0 3rem; }
         .category-btn { background: var(--gray); border: none; padding: 0.8rem 2rem; border-radius: 50px; font-weight: 600; cursor: pointer; transition: all 0.3s; }
         .category-btn.active, .category-btn:hover { background: var(--primary); color: white; }
+        
         .food-card { background: white; border-radius: 24px; overflow: hidden; transition: all 0.4s; box-shadow: 0 8px 25px rgba(0,0,0,0.05); cursor: pointer; }
-        .food-card:hover { transform: translateY(-10px); box-shadow: 0 25px 40px rgba(0,0,0,0.12); }
-        .food-image { width: 100%; height: 220px; object-fit: cover; }
+        .food-card:hover { transform: translateY(-12px); box-shadow: 0 25px 40px rgba(0,0,0,0.12); }
+        .food-image { width: 100%; height: 220px; object-fit: cover; transition: transform 0.5s; }
+        .food-card:hover .food-image { transform: scale(1.05); }
         .food-info { padding: 1.5rem; }
         .food-header { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
         .food-name { font-size: 1.2rem; font-weight: 700; }
@@ -36,6 +80,7 @@
         .food-desc { color: #7a7a7a; font-size: 0.85rem; margin-bottom: 1rem; }
         .add-to-cart-btn { width: 100%; background: var(--secondary); color: var(--primary); border: none; padding: 0.7rem; border-radius: 50px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; transition: all 0.3s; }
         .add-to-cart-btn:hover { background: #b8921a; transform: scale(1.02); }
+        
         .cart-sidebar { position: fixed; top: 0; right: -380px; width: 380px; height: 100vh; background: white; box-shadow: -5px 0 30px rgba(0,0,0,0.1); z-index: 1001; transition: right 0.3s; display: flex; flex-direction: column; }
         .cart-sidebar.open { right: 0; }
         .cart-header { padding: 1.5rem; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; }
@@ -57,30 +102,31 @@
         .delivery-bike.active { right: 20px; }
         .fly-to-cart { position: fixed; width: 45px; height: 45px; background: var(--secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 1003; pointer-events: none; animation: fly 0.5s forwards; }
         @keyframes fly { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(0); opacity: 0; } }
+        
         footer { background: var(--dark); color: white; padding: 4rem 5% 2rem; margin-top: 4rem; }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 3rem; margin-bottom: 3rem; }
         .footer-col h4 { color: var(--secondary); margin-bottom: 1rem; }
         .footer-col p { color: #9ca3af; }
         .copyright { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08); color: #6b7280; }
-        @media (max-width: 968px) { .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: white; flex-direction: column; padding: 2rem; } .nav-links.active { display: flex; } .menu-toggle { display: block; } .cart-sidebar { width: 100%; right: -100%; } }
+        
+        @media (max-width: 768px) { .menu-categories { gap: 0.5rem; } .category-btn { padding: 0.5rem 1rem; font-size: 0.8rem; } .cart-sidebar { width: 100%; right: -100%; } }
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">BAVA <span>RESTAURANT</span></div>
-            <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
-            <div class="nav-links" id="navLinks">
-                <a href="index.html">HOME</a>
-                <a href="menu.html" class="active">MENU</a>
-                <a href="locations.html">LOCATIONS</a>
-                <a href="blog.html">BLOG</a>
-                <a href="offers.html">OFFERS</a>
-                <a href="order.html" class="order-btn"><i class="fas fa-motorcycle"></i> ORDER NOW</a>
-                <div class="cart-icon" id="cartIcon"><i class="fas fa-shopping-bag"></i><span class="cart-count" id="cartCount">0</span></div>
-            </div>
-        </div>
-    </nav>
+    <!-- Hamburger Menu -->
+    <div class="hamburger-menu" id="hamburgerMenu">
+        <i class="fas fa-bars"></i>
+    </div>
+    
+    <div class="menu-overlay" id="menuOverlay">
+        <button class="close-menu" id="closeMenu"><i class="fas fa-times"></i></button>
+        <a href="index.html"><i class="fas fa-home mr-2"></i> Home</a>
+        <a href="menu.html"><i class="fas fa-utensils mr-2"></i> Menu</a>
+        <a href="locations.html"><i class="fas fa-map-marker-alt mr-2"></i> Locations</a>
+        <a href="blog.html"><i class="fas fa-newspaper mr-2"></i> Blog</a>
+        <a href="offers.html"><i class="fas fa-tag mr-2"></i> Offers</a>
+        <a href="order.html"><i class="fas fa-motorcycle mr-2"></i> Order Now</a>
+    </div>
 
     <section class="pt-32 pb-20">
         <div class="container mx-auto px-4">
@@ -104,14 +150,14 @@
     <div class="cart-overlay" id="cartOverlay"></div>
     <div class="cart-sidebar" id="cartSidebar">
         <div class="cart-header"><h3><i class="fas fa-shopping-bag mr-2"></i> Your Order</h3><button class="close-cart" id="closeCart"><i class="fas fa-times"></i></button></div>
-        <div class="cart-items" id="cartItems"><p style="text-align:center;">Your cart is empty</p></div>
+        <div class="cart-items" id="cartItems"></div>
         <div class="cart-footer"><div class="cart-total"><span>Total:</span><span id="cartTotal">KES 0</span></div><button class="checkout-btn" id="checkoutBtn"><i class="fas fa-credit-card mr-2"></i> Checkout</button></div>
     </div>
     <div class="delivery-bike" id="deliveryBike"><i class="fas fa-motorcycle"></i><span>Added to cart!</span></div>
 
     <footer>
         <div class="footer-grid">
-            <div class="footer-col"><h4>BAVA RESTAURANT</h4><p>Fresh taste of Kenya, served with love.</p><div class="social-icons flex gap-4 mt-4"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a></div></div>
+            <div class="footer-col"><h4>BAVA RESTAURANT</h4><p>Fresh taste of Kenya, served with love.</p></div>
             <div class="footer-col"><h4>QUICK LINKS</h4><p><a href="index.html" style="color:#9ca3af;">Home</a></p><p><a href="menu.html" style="color:#9ca3af;">Menu</a></p><p><a href="locations.html" style="color:#9ca3af;">Locations</a></p></div>
             <div class="footer-col"><h4>CONTACT</h4><p>+254 722 287517</p><p>info@bavarestaurant.co.ke</p></div>
             <div class="footer-col"><h4>HOURS</h4><p>Mon - Fri: 9am - 10pm</p><p>Sat - Sun: 10am - 9pm</p></div>
@@ -120,20 +166,27 @@
     </footer>
 
     <script>
+        // Menu Items with Bicycle image for Mandazi
         const menuItems = [
-            { id:1, name:"Nyama Choma", category:"grills", price:850, desc:"Grilled meat with kachumbari", image:"https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=300&fit=crop" },
-            { id:2, name:"Grilled Chicken", category:"grills", price:650, desc:"Spicy grilled chicken", image:"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&h=300&fit=crop" },
-            { id:3, name:"Beef Kebab", category:"grills", price:550, desc:"Spiced beef skewers", image:"https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&h=300&fit=crop" },
-            { id:4, name:"Ugali & Sukuma", category:"local", price:350, desc:"Traditional cornmeal with greens", image:"https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?w=400&h=300&fit=crop" },
-            { id:5, name:"Kenyan Pilau", category:"local", price:450, desc:"Spiced rice with beef", image:"https://images.unsplash.com/photo-1551326844-4df70f78d0e9?w=400&h=300&fit=crop" },
-            { id:6, name:"Githeri", category:"local", price:300, desc:"Corn and bean stew", image:"https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=400&h=300&fit=crop" },
-            { id:7, name:"Fresh Mango Juice", category:"drinks", price:150, desc:"100% pure mango juice", image:"https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=400&h=300&fit=crop" },
-            { id:8, name:"Dawa Tea", category:"drinks", price:100, desc:"Kenyan spiced tea", image:"https://images.unsplash.com/photo-1594631252845-29fc4cc8cde9?w=400&h=300&fit=crop" },
-            { id:9, name:"Mandazi", category:"desserts", price:50, desc:"Kenyan doughnuts", image:"https://images.unsplash.com/photo-1589118949245-7d38baf380d6?w=400&h=300&fit=crop" },
-            { id:10, name:"Mahamri", category:"desserts", price:80, desc:"Coconut doughnuts", image:"https://images.unsplash.com/photo-1623428454614-baf816f0b9f7?w=400&h=300&fit=crop" }
+            { id: 1, name: "Nyama Choma", category: "grills", price: 850, desc: "Grilled meat with kachumbari", image: "https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=300&fit=crop" },
+            { id: 2, name: "Grilled Chicken", category: "grills", price: 650, desc: "Spicy grilled chicken", image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&h=300&fit=crop" },
+            { id: 3, name: "Beef Kebab", category: "grills", price: 550, desc: "Spiced beef skewers", image: "https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&h=300&fit=crop" },
+            { id: 4, name: "Ugali & Sukuma", category: "local", price: 350, desc: "Traditional cornmeal with greens", image: "https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?w=400&h=300&fit=crop" },
+            { id: 5, name: "Kenyan Pilau", category: "local", price: 450, desc: "Spiced rice with beef", image: "https://images.unsplash.com/photo-1551326844-4df70f78d0e9?w=400&h=300&fit=crop" },
+            { id: 6, name: "Githeri", category: "local", price: 300, desc: "Corn and bean stew", image: "https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=400&h=300&fit=crop" },
+            { id: 7, name: "Fresh Mango Juice", category: "drinks", price: 150, desc: "100% pure mango juice", image: "https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=400&h=300&fit=crop" },
+            { id: 8, name: "Dawa Tea", category: "drinks", price: 100, desc: "Kenyan spiced tea", image: "https://images.unsplash.com/photo-1594631252845-29fc4cc8cde9?w=400&h=300&fit=crop" },
+            { id: 9, name: "Mandazi", category: "desserts", price: 50, desc: "Kenyan doughnuts with delivery bicycle", image: "https://cdn-icons-png.flaticon.com/512/3106/3106775.png" },
+            { id: 10, name: "Mahamri", category: "desserts", price: 80, desc: "Coconut doughnuts", image: "https://images.unsplash.com/photo-1623428454614-baf816f0b9f7?w=400&h=300&fit=crop" }
         ];
+
         let cart = JSON.parse(localStorage.getItem('bavaCart') || '[]');
-        function updateCart() { document.getElementById('cartCount').innerText = cart.reduce((s,i)=>s+i.quantity,0); document.getElementById('cartTotal').innerText = `KES ${cart.reduce((s,i)=>s+i.price*i.quantity,0)}`; let html=''; if(cart.length===0) html='<p style="text-align:center;">Your cart is empty</p>'; else html=cart.map(i=>`<div class="cart-item"><img src="${i.image}" class="cart-item-img"><div><div class="cart-item-name">${i.name}</div><div class="cart-item-price">KES ${i.price}</div><div class="cart-item-quantity"><button onclick="updateQ(${i.id},${i.quantity-1})">-</button><span>${i.quantity}</span><button onclick="updateQ(${i.id},${i.quantity+1})">+</button></div></div><button class="cart-item-remove" onclick="removeFromCart(${i.id})"><i class="fas fa-trash"></i></button></div>`).join(''); document.getElementById('cartItems').innerHTML=html; }
+        function updateCart() { 
+            document.getElementById('cartCount').innerText = cart.reduce((s,i)=>s+i.quantity,0); 
+            document.getElementById('cartTotal').innerText = `KES ${cart.reduce((s,i)=>s+i.price*i.quantity,0)}`; 
+            let html=''; if(cart.length===0) html='<p style="text-align:center;">Your cart is empty</p>'; else html=cart.map(i=>`<div class="cart-item"><img src="${i.image}" class="cart-item-img"><div><div class="cart-item-name">${i.name}</div><div class="cart-item-price">KES ${i.price}</div><div class="cart-item-quantity"><button onclick="updateQ(${i.id},${i.quantity-1})">-</button><span>${i.quantity}</span><button onclick="updateQ(${i.id},${i.quantity+1})">+</button></div></div><button class="cart-item-remove" onclick="removeFromCart(${i.id})"><i class="fas fa-trash"></i></button></div>`).join(''); 
+            document.getElementById('cartItems').innerHTML=html; 
+        }
         function updateQ(id,q){ if(q<=0) removeFromCart(id); else{ let i=cart.find(x=>x.id===id); if(i) i.quantity=q; localStorage.setItem('bavaCart',JSON.stringify(cart)); updateCart(); } }
         function removeFromCart(id){ cart=cart.filter(i=>i.id!==id); localStorage.setItem('bavaCart',JSON.stringify(cart)); updateCart(); if(cart.length===0) closeCart(); }
         function showDelivery(){ document.getElementById('deliveryBike').classList.add('active'); setTimeout(()=>document.getElementById('deliveryBike').classList.remove('active'),1500); }
@@ -144,7 +197,13 @@
         function renderMenu(cat='all'){ let filtered=cat==='all'?menuItems:menuItems.filter(i=>i.category===cat); document.getElementById('menuGrid').innerHTML=filtered.map(i=>`<div class="food-card"><img src="${i.image}" class="food-image"><div class="food-info"><div class="food-header"><h3 class="food-name">${i.name}</h3><span class="food-price">KES ${i.price}</span></div><p class="food-desc">${i.desc}</p><button class="add-to-cart-btn" onclick="addToCart(${i.id})"><i class="fas fa-plus"></i> Add to Cart</button></div></div>`).join(''); }
         document.querySelectorAll('.category-btn').forEach(btn=>{ btn.addEventListener('click',()=>{ document.querySelectorAll('.category-btn').forEach(b=>b.classList.remove('active','bg-[#0B6E4F]','text-white')); btn.classList.add('active','bg-[#0B6E4F]','text-white'); renderMenu(btn.dataset.category); }); });
         renderMenu(); updateCart(); document.getElementById('cartIcon').addEventListener('click',openCart); document.getElementById('closeCart').addEventListener('click',closeCart); document.getElementById('cartOverlay').addEventListener('click',closeCart); document.getElementById('checkoutBtn').addEventListener('click',()=>alert('Checkout total: KES '+cart.reduce((s,i)=>s+i.price*i.quantity,0)));
-        document.getElementById('menuToggle').addEventListener('click',()=>document.getElementById('navLinks').classList.toggle('active'));
+        
+        // Hamburger Menu
+        const hamburger = document.getElementById('hamburgerMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const closeMenu = document.getElementById('closeMenu');
+        hamburger.addEventListener('click', () => menuOverlay.classList.add('active'));
+        closeMenu.addEventListener('click', () => menuOverlay.classList.remove('active'));
     </script>
 </body>
 </html>
