@@ -1,41 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google Search Console Verification -->
-    <meta name="google-site-verification" content="MgW0wD4r1kWQ1dkE2ZJyUR4p8iRqT4Z3pt5fQdO-Cyw" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    
-    <!-- ========== SEO META TAGS ========== -->
-    <title>Bava Restaurant | Fresh Taste of Kenya | Authentic Kenyan Cuisine</title>
-    <meta name="description" content="Bava Restaurant - Fresh Taste of Kenya. Authentic Kenyan cuisine including Nyama Choma, Kenyan Pilau, Ugali, and more. Order online for delivery in Nairobi, Nakuru, and Bungoma. Best Kenyan restaurant in Kenya.">
-    <meta name="keywords" content="Bava Restaurant, Kenyan food, Nyama Choma, Kenyan Pilau, Ugali, Nairobi restaurant, Nakuru restaurant, Bungoma restaurant, Kenyan cuisine, best restaurant in Kenya, order food online Kenya, Kenyan dishes, local food Kenya">
-    <meta name="author" content="Bava Restaurant">
-    <meta name="robots" content="index, follow">
-    <meta name="googlebot" content="index, follow">
-    <meta name="language" content="English">
-    <meta name="revisit-after" content="7 days">
-    
-    <!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
-    <meta property="og:title" content="Bava Restaurant - Fresh Taste of Kenya">
-    <meta property="og:description" content="Authentic Kenyan cuisine delivered to your doorstep. Order Nyama Choma, Pilau, Ugali, and more! Best restaurant in Nairobi, Nakuru, and Bungoma.">
-    <meta property="og:type" content="restaurant">
-    <meta property="og:url" content="https://bava-restaurant.netlify.app">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1544025162-d76694265947?w=1200&h=630&fit=crop">
-    <meta property="og:site_name" content="Bava Restaurant">
-    <meta property="og:locale" content="en_KE">
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Bava Restaurant - Fresh Taste of Kenya">
-    <meta name="twitter:description" content="Authentic Kenyan cuisine delivered to your doorstep. Order online now!">
-    <meta name="twitter:image" content="https://images.unsplash.com/photo-1544025162-d76694265947?w=1200&h=600&fit=crop">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://bava-restaurant.netlify.app">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍽️</text></svg>">
+    <title>Bava Restaurant | Fresh Taste of Kenya</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -47,96 +15,570 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
-        /* Your existing CSS styles here */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: #ffffff; color: #1a1a1a; overflow-x: hidden; }
-        :root { --primary: #0B6E4F; --primary-dark: #08523a; --secondary: #D4AF37; --secondary-dark: #b8921a; --dark: #1a1a1a; --gray: #f5f5f5; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         
-        .navbar { position: fixed; top: 0; left: 0; width: 100%; background: rgba(255,255,255,0.98); backdrop-filter: blur(10px); z-index: 1000; padding: 1rem 5%; transition: all 0.3s; border-bottom: 1px solid rgba(0,0,0,0.05); }
-        .navbar-scrolled { padding: 0.75rem 5%; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
-        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 800; color: var(--primary); }
-        .logo span { color: var(--secondary); }
-        .nav-links { display: flex; gap: 2rem; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; font-size: 0.95rem; transition: color 0.3s; position: relative; }
-        .nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--primary); transition: width 0.3s; }
-        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
-        .nav-links a:hover, .nav-links a.active { color: var(--primary); }
-        .order-btn { background: var(--primary); color: white; padding: 0.6rem 1.5rem; border-radius: 40px; font-weight: 600; font-size: 0.9rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s; box-shadow: 0 2px 8px rgba(11,110,79,0.2); }
-        .order-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
-        .cart-icon { position: relative; cursor: pointer; font-size: 1.2rem; color: var(--dark); margin-left: 0.5rem; }
-        .cart-count { position: absolute; top: -8px; right: -12px; background: var(--secondary); color: var(--primary-dark); font-size: 0.65rem; font-weight: bold; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--primary); }
-        .hero { min-height: 85vh; display: flex; align-items: center; background: linear-gradient(135deg, #fef9e6 0%, #ffffff 70%); padding-top: 80px; }
-        .hero-badge { display: inline-block; background: rgba(212,175,55,0.12); padding: 0.5rem 1rem; border-radius: 40px; color: var(--secondary-dark); font-weight: 600; font-size: 0.8rem; margin-bottom: 1.5rem; }
-        .hero-title { font-family: 'Playfair Display', serif; font-size: 4rem; font-weight: 800; line-height: 1.2; margin-bottom: 1.5rem; }
-        .hero-title span { color: var(--primary); }
-        .hero-description { color: #5a5a5a; font-size: 1.1rem; line-height: 1.6; margin-bottom: 2rem; max-width: 500px; }
-        .btn-primary { background: var(--primary); color: white; padding: 1rem 2.5rem; border-radius: 50px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 0.8rem; transition: all 0.3s; box-shadow: 0 4px 12px rgba(11,110,79,0.25); }
-        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-3px); }
-        .btn-secondary { background: transparent; color: var(--primary); padding: 1rem 2.5rem; border-radius: 50px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 0.8rem; border: 2px solid var(--primary); transition: all 0.3s; }
-        .btn-secondary:hover { background: var(--primary); color: white; transform: translateY(-3px); }
-        .food-card { background: white; border-radius: 24px; overflow: hidden; transition: all 0.4s; box-shadow: 0 8px 25px rgba(0,0,0,0.05); cursor: pointer; }
-        .food-card:hover { transform: translateY(-12px); box-shadow: 0 25px 40px rgba(0,0,0,0.12); }
-        .food-image { width: 100%; height: 240px; object-fit: cover; transition: transform 0.5s; }
-        .food-card:hover .food-image { transform: scale(1.05); }
-        .food-info { padding: 1.5rem; }
-        .food-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
-        .food-name { font-size: 1.2rem; font-weight: 700; }
-        .food-price { color: var(--primary); font-weight: 800; font-size: 1.2rem; }
-        .food-desc { color: #7a7a7a; font-size: 0.85rem; line-height: 1.5; margin-bottom: 1.2rem; }
-        .add-to-cart-btn { width: 100%; background: var(--secondary); color: var(--primary-dark); border: none; padding: 0.7rem; border-radius: 50px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; transition: all 0.3s; }
-        .add-to-cart-btn:hover { background: var(--secondary-dark); transform: scale(1.02); }
-        .cart-sidebar { position: fixed; top: 0; right: -400px; width: 380px; height: 100vh; background: white; box-shadow: -5px 0 30px rgba(0,0,0,0.1); z-index: 1001; transition: right 0.3s; display: flex; flex-direction: column; }
-        .cart-sidebar.open { right: 0; }
-        .cart-header { padding: 1.5rem; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
-        .cart-items { flex: 1; overflow-y: auto; padding: 1rem; }
-        .cart-item { display: flex; gap: 1rem; padding: 1rem; border-bottom: 1px solid #eee; }
-        .cart-item-img { width: 60px; height: 60px; border-radius: 12px; object-fit: cover; }
-        .cart-item-info { flex: 1; }
-        .cart-item-name { font-weight: 600; margin-bottom: 0.25rem; }
-        .cart-item-price { color: var(--primary); font-weight: 600; }
-        .cart-item-quantity { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem; }
-        .cart-item-quantity button { width: 25px; height: 25px; background: var(--gray); border: none; border-radius: 50%; cursor: pointer; }
-        .cart-item-remove { color: #dc2626; cursor: pointer; background: none; border: none; }
-        .cart-footer { padding: 1.5rem; border-top: 1px solid #eee; }
-        .cart-total { display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; }
-        .checkout-btn { background: var(--primary); color: white; width: 100%; padding: 1rem; border: none; border-radius: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s; }
-        .checkout-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
-        .cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; display: none; }
-        .cart-overlay.active { display: block; }
-        .delivery-bike { position: fixed; bottom: 30px; right: -200px; background: linear-gradient(135deg, var(--primary), var(--secondary)); padding: 12px 20px; border-radius: 50px; display: flex; align-items: center; gap: 12px; z-index: 1002; transition: right 0.5s cubic-bezier(0.68,-0.55,0.265,1.55); }
-        .delivery-bike.active { right: 20px; }
-        .fly-to-cart { position: fixed; width: 45px; height: 45px; background: var(--secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 1003; pointer-events: none; animation: flyToCart 0.5s forwards; }
-        @keyframes flyToCart { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(0); opacity: 0; } }
-        footer { background: var(--dark); color: white; padding: 4rem 5% 2rem; margin-top: 4rem; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 3rem; margin-bottom: 3rem; }
-        .footer-col h4 { font-size: 1.1rem; margin-bottom: 1.2rem; color: var(--secondary); }
-        .footer-col p { color: #9ca3af; line-height: 1.6; font-size: 0.9rem; }
-        .social-icons { display: flex; gap: 1rem; margin-top: 1.5rem; }
-        .social-icons a { width: 38px; height: 38px; background: rgba(255,255,255,0.08); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: all 0.3s; }
-        .social-icons a:hover { background: var(--secondary); transform: translateY(-3px); }
-        .copyright { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08); color: #6b7280; font-size: 0.85rem; }
-        @media (max-width: 968px) { .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: white; flex-direction: column; padding: 2rem; gap: 1.2rem; } .nav-links.active { display: flex; } .menu-toggle { display: block; } .hero-title { font-size: 2.5rem; } .cart-sidebar { width: 100%; right: -100%; } }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            overflow-x: hidden;
+        }
+        
+        :root {
+            --primary: #0B6E4F;
+            --primary-dark: #08523a;
+            --secondary: #D4AF37;
+            --secondary-dark: #b8921a;
+            --dark: #1a1a1a;
+            --gray: #f5f5f5;
+        }
+        
+        /* Hamburger Menu Styles */
+        .hamburger-menu {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            z-index: 1001;
+            cursor: pointer;
+            background: var(--primary);
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        
+        .hamburger-menu:hover {
+            transform: scale(1.1);
+            background: var(--primary-dark);
+            box-shadow: 0 8px 25px rgba(11,110,79,0.4);
+        }
+        
+        .hamburger-menu i {
+            color: white;
+            font-size: 1.8rem;
+            transition: transform 0.3s;
+        }
+        
+        .hamburger-menu:hover i {
+            transform: rotate(90deg);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 5px 20px rgba(11,110,79,0.3); }
+            50% { box-shadow: 0 5px 30px rgba(212,175,55,0.5); }
+        }
+        
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 380px;
+            height: 100vh;
+            background: white;
+            z-index: 1002;
+            transition: right 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            box-shadow: -5px 0 40px rgba(0,0,0,0.15);
+            padding: 100px 30px 30px;
+        }
+        
+        .menu-overlay.active {
+            right: 0;
+        }
+        
+        .menu-overlay a {
+            display: block;
+            padding: 18px 0;
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s;
+            opacity: 0;
+            transform: translateX(30px);
+            animation: slideIn 0.3s forwards;
+            animation-delay: calc(var(--i, 0) * 0.05s);
+        }
+        
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .menu-overlay a:hover {
+            color: var(--primary);
+            padding-left: 15px;
+            border-bottom-color: var(--secondary);
+        }
+        
+        .close-menu {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--dark);
+            transition: transform 0.3s;
+        }
+        
+        .close-menu:hover {
+            transform: rotate(90deg);
+            color: var(--primary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #fef9e6 0%, #ffffff 70%);
+            padding-top: 20px;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: rgba(212,175,55,0.12);
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            color: var(--secondary-dark);
+            font-weight: 600;
+            font-size: 0.8rem;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.6s ease-out 0.1s both;
+        }
+        
+        .hero-title span {
+            color: var(--primary);
+        }
+        
+        .hero-description {
+            color: #5a5a5a;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            max-width: 500px;
+            animation: fadeInUp 0.6s ease-out 0.2s both;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(11,110,79,0.25);
+            animation: fadeInUp 0.6s ease-out 0.3s both;
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(11,110,79,0.35);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            border: 2px solid var(--primary);
+            transition: all 0.3s;
+            animation: fadeInUp 0.6s ease-out 0.4s both;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Food Grid */
+        .food-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        .food-card:nth-child(1) { animation-delay: 0.1s; }
+        .food-card:nth-child(2) { animation-delay: 0.2s; }
+        .food-card:nth-child(3) { animation-delay: 0.3s; }
+        .food-card:nth-child(4) { animation-delay: 0.4s; }
+        .food-card:nth-child(5) { animation-delay: 0.5s; }
+        .food-card:nth-child(6) { animation-delay: 0.6s; }
+        
+        .food-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 40px rgba(0,0,0,0.12);
+        }
+        
+        .food-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .food-card:hover .food-image {
+            transform: scale(1.05);
+        }
+        
+        .food-info {
+            padding: 1.5rem;
+        }
+        
+        .food-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .food-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        
+        .food-price {
+            color: var(--primary);
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
+        
+        .food-desc {
+            color: #7a7a7a;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin-bottom: 1.2rem;
+        }
+        
+        .add-to-cart-btn {
+            width: 100%;
+            background: var(--secondary);
+            color: var(--primary-dark);
+            border: none;
+            padding: 0.7rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+        }
+        
+        .add-to-cart-btn:hover {
+            background: var(--secondary-dark);
+            transform: scale(1.02);
+        }
+        
+        /* AI Chatbot - Floating Button with Animation */
+        .chatbot-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            animation: float 3s ease-in-out infinite, pulseGlow 2s infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 5px 25px rgba(11,110,79,0.3); }
+            50% { box-shadow: 0 8px 35px rgba(212,175,55,0.5); }
+        }
+        
+        .chatbot-btn:hover {
+            transform: scale(1.1) translateY(-5px);
+        }
+        
+        .chatbot-btn i {
+            font-size: 2rem;
+            color: white;
+            animation: robotWave 2s infinite;
+        }
+        
+        @keyframes robotWave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(10deg); }
+            75% { transform: rotate(-10deg); }
+        }
+        
+        .chatbot-window {
+            position: fixed;
+            bottom: 110px;
+            right: 30px;
+            width: 380px;
+            height: 550px;
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            z-index: 1001;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            animation: slideUp 0.3s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .chatbot-window.active {
+            display: flex;
+        }
+        
+        .chatbot-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chatbot-header span {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .chatbot-header i {
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+        
+        .chatbot-header i:hover {
+            transform: rotate(90deg);
+        }
+        
+        .chatbot-questions {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: #f9fafb;
+        }
+        
+        .question-btn {
+            width: 100%;
+            background: white;
+            border: 1px solid #e5e7eb;
+            padding: 14px;
+            margin-bottom: 12px;
+            border-radius: 16px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .question-btn:hover {
+            background: var(--secondary);
+            color: var(--primary-dark);
+            transform: translateX(8px);
+            border-color: var(--secondary);
+        }
+        
+        .question-btn i {
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+        
+        .question-btn:hover i {
+            color: var(--primary-dark);
+        }
+        
+        .chatbot-answer {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 15px;
+            border-radius: 16px;
+            margin-top: 15px;
+            display: none;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            animation: fadeInAnswer 0.3s ease;
+        }
+        
+        @keyframes fadeInAnswer {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .chatbot-answer.show {
+            display: block;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 5% 2rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-col h4 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .footer-col p {
+            color: #9ca3af;
+            line-height: 1.6;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-icons a {
+            width: 38px;
+            height: 38px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            color: #6b7280;
+            font-size: 0.85rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .chatbot-window {
+                width: calc(100% - 40px);
+                right: 20px;
+                left: 20px;
+                bottom: 100px;
+            }
+            .menu-overlay {
+                max-width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <div class="logo">BAVA <span>RESTAURANT</span></div>
-            <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
-            <div class="nav-links" id="navLinks">
-                <a href="index.html" class="active">HOME</a>
-                <a href="menu.html">MENU</a>
-                <a href="locations.html">LOCATIONS</a>
-                <a href="blog.html">BLOG</a>
-                <a href="offers.html">OFFERS</a>
-                <a href="order.html" class="order-btn"><i class="fas fa-motorcycle"></i> ORDER NOW</a>
-                <div class="cart-icon" id="cartIcon"><i class="fas fa-shopping-bag"></i><span class="cart-count" id="cartCount">0</span></div>
-            </div>
-        </div>
-    </nav>
+    <!-- Hamburger Menu -->
+    <div class="hamburger-menu" id="hamburgerMenu">
+        <i class="fas fa-bars"></i>
+    </div>
+    
+    <div class="menu-overlay" id="menuOverlay">
+        <button class="close-menu" id="closeMenu"><i class="fas fa-times"></i></button>
+        <a href="index.html" style="--i:1"><i class="fas fa-home mr-3"></i> HOME</a>
+        <a href="menu.html" style="--i:2"><i class="fas fa-utensils mr-3"></i> MENU</a>
+        <a href="locations.html" style="--i:3"><i class="fas fa-map-marker-alt mr-3"></i> LOCATIONS</a>
+        <a href="blog.html" style="--i:4"><i class="fas fa-newspaper mr-3"></i> BLOG</a>
+        <a href="offers.html" style="--i:5"><i class="fas fa-tag mr-3"></i> OFFERS</a>
+        <a href="order.html" style="--i:6"><i class="fas fa-motorcycle mr-3"></i> ORDER NOW</a>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -152,7 +594,7 @@
                     </div>
                 </div>
                 <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&h=500&fit=crop" alt="Nyama Choma - Bava Restaurant signature dish" class="rounded-3xl shadow-2xl w-full h-[450px] object-cover">
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&h=500&fit=crop" alt="Nyama Choma" class="rounded-3xl shadow-2xl w-full h-[450px] object-cover">
                     <div class="absolute -bottom-5 -left-5 bg-white rounded-2xl p-4 shadow-xl">
                         <div class="flex items-center gap-3">
                             <i class="fas fa-trophy text-[#D4AF37] text-2xl"></i>
@@ -164,37 +606,74 @@
         </div>
     </section>
 
-    <!-- Menu Preview -->
+    <!-- Menu Preview Section -->
     <section class="py-20">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
-                <div class="hero-badge inline-block mb-4"><i class="fas fa-utensils mr-1"></i> OUR MENU</div>
-                <h2 class="text-3xl md:text-4xl font-bold font-['Playfair_Display']">What's <span class="text-[#0B6E4F]">Cookin'</span></h2>
-                <p class="text-gray-500 mt-2">Fresh, delicious, and made with love. From Nyama Choma to Kenyan Pilau, we've got something for everyone.</p>
-            </div>
-            
-            <div class="menu-categories flex justify-center gap-3 flex-wrap mb-12">
-                <button class="category-btn active bg-[#0B6E4F] text-white px-6 py-2 rounded-full" data-category="all">ALL</button>
-                <button class="category-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-full hover:bg-[#0B6E4F] hover:text-white transition" data-category="grills">GRILLS</button>
-                <button class="category-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-full hover:bg-[#0B6E4F] hover:text-white transition" data-category="local">LOCAL DISHES</button>
-                <button class="category-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-full hover:bg-[#0B6E4F] hover:text-white transition" data-category="drinks">DRINKS</button>
-                <button class="category-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-full hover:bg-[#0B6E4F] hover:text-white transition" data-category="desserts">DESSERTS</button>
+                <h2 class="text-3xl md:text-4xl font-bold font-['Playfair_Display']">Our <span class="text-[#0B6E4F]">Signature Dishes</span></h2>
+                <p class="text-gray-500 mt-2">Fresh, delicious, and made with love</p>
             </div>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="menuGrid"></div>
         </div>
     </section>
 
-    <!-- Cart Sidebar -->
-    <div class="cart-overlay" id="cartOverlay"></div>
-    <div class="cart-sidebar" id="cartSidebar">
-        <div class="cart-header"><h3><i class="fas fa-shopping-bag mr-2"></i> Your Order</h3><button class="close-cart" id="closeCart"><i class="fas fa-times"></i></button></div>
-        <div class="cart-items" id="cartItems"><p style="text-align:center; color:#888;">Your cart is empty</p></div>
-        <div class="cart-footer"><div class="cart-total"><span>Total:</span><span id="cartTotal">KES 0</span></div><button class="checkout-btn" id="checkoutBtn"><i class="fas fa-credit-card mr-2"></i> Checkout</button></div>
-    </div>
+    <!-- Stats Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 grid-cols-2 gap-8 text-center">
+                <div>
+                    <div class="text-4xl font-bold text-[#0B6E4F] mb-2">500+</div>
+                    <div class="text-gray-500">Daily Customers</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold text-[#0B6E4F] mb-2">50+</div>
+                    <div class="text-gray-500">Authentic Dishes</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold text-[#0B6E4F] mb-2">3</div>
+                    <div class="text-gray-500">Locations</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold text-[#0B6E4F] mb-2">10+</div>
+                    <div class="text-gray-500">Years of Excellence</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Delivery Animation -->
-    <div class="delivery-bike" id="deliveryBike"><i class="fas fa-motorcycle"></i><span class="text-white text-sm font-semibold">Adding to cart!</span></div>
+    <!-- AI Chatbot -->
+    <div class="chatbot-btn" id="chatbotBtn">
+        <i class="fas fa-robot"></i>
+    </div>
+    
+    <div class="chatbot-window" id="chatbotWindow">
+        <div class="chatbot-header">
+            <span><i class="fas fa-robot mr-2"></i> Bava AI Assistant</span>
+            <i class="fas fa-times" id="closeChatbot"></i>
+        </div>
+        <div class="chatbot-questions">
+            <button class="question-btn" onclick="showAnswer('hours')">
+                <i class="fas fa-clock"></i> What are your opening hours?
+            </button>
+            <button class="question-btn" onclick="showAnswer('delivery')">
+                <i class="fas fa-motorcycle"></i> Do you deliver?
+            </button>
+            <button class="question-btn" onclick="showAnswer('payment')">
+                <i class="fas fa-credit-card"></i> What payment methods do you accept?
+            </button>
+            <button class="question-btn" onclick="showAnswer('locations')">
+                <i class="fas fa-map-marker-alt"></i> Where are your locations?
+            </button>
+            <button class="question-btn" onclick="showAnswer('special')">
+                <i class="fas fa-star"></i> What's your special dish?
+            </button>
+            <button class="question-btn" onclick="showAnswer('reservation')">
+                <i class="fas fa-phone"></i> How do I make a reservation?
+            </button>
+            <div id="answerContainer" class="chatbot-answer"></div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -202,21 +681,18 @@
             <div class="footer-col">
                 <h4>BAVA RESTAURANT</h4>
                 <p>Fresh taste of Kenya, served with love. Experience authentic Kenyan cuisine at its finest.</p>
-                <div class="social-icons"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-tiktok"></i></a></div>
-            </div>
-            <div class="footer-col">
-                <h4>QUICK LINKS</h4>
-                <p><a href="index.html" style="color:#9ca3af;">Home</a></p>
-                <p><a href="menu.html" style="color:#9ca3af;">Menu</a></p>
-                <p><a href="locations.html" style="color:#9ca3af;">Locations</a></p>
-                <p><a href="blog.html" style="color:#9ca3af;">Blog</a></p>
-                <p><a href="offers.html" style="color:#9ca3af;">Offers</a></p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
             </div>
             <div class="footer-col">
                 <h4>CONTACT</h4>
-                <p><i class="fas fa-phone"></i> +254 743 462086</p>
-                <p><i class="fas fa-envelope"></i> info@bavarestaurant.co.ke</p>
-                <p><i class="fas fa-map-marker-alt"></i> Nairobi, Nakuru, Bungoma</p>
+                <p><i class="fas fa-phone mr-2"></i> +254 743 462086</p>
+                <p><i class="fas fa-envelope mr-2"></i> info@bavarestaurant.co.ke</p>
+                <p><i class="fas fa-map-marker-alt mr-2"></i> Thika, Nakuru, Bungoma</p>
             </div>
             <div class="footer-col">
                 <h4>HOURS</h4>
@@ -224,118 +700,129 @@
                 <p>Sat - Sun: 10am - 9pm</p>
                 <p>Holidays: 11am - 8pm</p>
             </div>
+            <div class="footer-col">
+                <h4>ORDER</h4>
+                <p><i class="fas fa-motorcycle mr-2"></i> Free Delivery</p>
+                <p><i class="fas fa-clock mr-2"></i> 30-45 min delivery</p>
+                <p><i class="fas fa-check-circle mr-2"></i> Order online</p>
+            </div>
         </div>
-        <div class="copyright"><p>&copy; 2026 Bava Restaurant. All rights reserved. | Fresh Taste of Kenya | Best Kenyan Restaurant in Nairobi, Nakuru & Bungoma</p></div>
+        <div class="copyright">
+            <p>&copy; 2024 Bava Restaurant. All rights reserved. | Fresh Taste of Kenya</p>
+        </div>
     </footer>
 
     <script>
-        // Menu Data
+        // Menu Data - Updated with correct images
         const menuItems = [
-            { id: 1, name: "Nyama Choma", category: "grills", price: 850, desc: "Grilled meat with kachumbari - Kenya's favorite", image: "https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=300&fit=crop" },
-            { id: 2, name: "Grilled Chicken", category: "grills", price: 650, desc: "Spicy grilled chicken with kachumbari", image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&h=300&fit=crop" },
-            { id: 3, name: "Beef Kebab", category: "grills", price: 550, desc: "Spiced beef skewers with peppers", image: "https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&h=300&fit=crop" },
-            { id: 4, name: "Ugali & Sukuma", category: "local", price: 350, desc: "Traditional cornmeal with collard greens", image: "https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?w=400&h=300&fit=crop" },
-            { id: 5, name: "Kenyan Pilau", category: "local", price: 450, desc: "Spiced rice with beef, Swahili style", image: "https://images.unsplash.com/photo-1551326844-4df70f78d0e9?w=400&h=300&fit=crop" },
-            { id: 6, name: "Githeri", category: "local", price: 300, desc: "Corn and bean stew, a Kenyan staple", image: "https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=400&h=300&fit=crop" },
-            { id: 7, name: "Fresh Mango Juice", category: "drinks", price: 150, desc: "100% pure mango juice", image: "https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=400&h=300&fit=crop" },
-            { id: 8, name: "Dawa Tea", category: "drinks", price: 100, desc: "Kenyan spiced tea with honey", image: "https://images.unsplash.com/photo-1594631252845-29fc4cc8cde9?w=400&h=300&fit=crop" },
-            { id: 9, name: "Mandazi", category: "desserts", price: 50, desc: "Kenyan doughnuts, perfect with chai", image: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?w=400&h=300&fit=crop" },
-            { id: 10, name: "Mahamri", category: "desserts", price: 80, desc: "Coconut doughnuts, Swahili delicacy", image: "https://images.unsplash.com/photo-1623428454614-baf816f0b9f7?w=400&h=300&fit=crop" }
+            { id: 1, name: "Nyama Choma", price: 850, desc: "Grilled meat with kachumbari - Kenya's favorite", image: "https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=300&fit=crop" },
+            { id: 2, name: "Grilled Chicken", price: 650, desc: "Spicy grilled chicken with kachumbari", image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&h=300&fit=crop" },
+            { id: 3, name: "Ugali & Sukuma", price: 350, desc: "Traditional cornmeal with collard greens", image: "https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?w=400&h=300&fit=crop" },
+            { id: 4, name: "Kenyan Pilau", price: 450, desc: "Spiced rice with beef, Swahili style", image: "https://images.unsplash.com/photo-1551326844-4df70f78d0e9?w=400&h=300&fit=crop" },
+            { id: 5, name: "Mandazi", price: 50, desc: "Kenyan doughnuts, perfect with chai", image: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?w=400&h=300&fit=crop" },
+            { id: 6, name: "Mahamri", price: 80, desc: "Coconut doughnuts, Swahili delicacy", image: "https://images.unsplash.com/photo-1623428454614-baf816f0b9f7?w=400&h=300&fit=crop" }
         ];
 
-        let cart = JSON.parse(localStorage.getItem('bavaCart') || '[]');
-        
-        function updateCartDisplay() {
-            const cartCount = document.getElementById('cartCount');
-            const cartTotal = document.getElementById('cartTotal');
-            const cartItemsDiv = document.getElementById('cartItems');
-            if (cartCount) cartCount.textContent = cart.reduce((s,i) => s + i.quantity, 0);
-            if (cartTotal) cartTotal.textContent = `KES ${cart.reduce((s,i) => s + (i.price * i.quantity), 0)}`;
-            if (cartItemsDiv) {
-                if (cart.length === 0) { cartItemsDiv.innerHTML = '<p style="text-align:center; color:#888;">Your cart is empty</p>'; return; }
-                cartItemsDiv.innerHTML = cart.map(item => `
-                    <div class="cart-item">
-                        <img src="${item.image}" class="cart-item-img" alt="${item.name}">
-                        <div class="cart-item-info">
-                            <div class="cart-item-name">${item.name}</div>
-                            <div class="cart-item-price">KES ${item.price}</div>
-                            <div class="cart-item-quantity">
-                                <button onclick="updateQuantity(${item.id}, ${item.quantity - 1})">-</button>
-                                <span>${item.quantity}</span>
-                                <button onclick="updateQuantity(${item.id}, ${item.quantity + 1})">+</button>
+        function renderMenu() {
+            const grid = document.getElementById('menuGrid');
+            if (grid) {
+                grid.innerHTML = menuItems.map(item => `
+                    <div class="food-card">
+                        <img src="${item.image}" class="food-image" alt="${item.name}">
+                        <div class="food-info">
+                            <div class="food-header">
+                                <h3 class="food-name">${item.name}</h3>
+                                <span class="food-price">KES ${item.price}</span>
                             </div>
+                            <p class="food-desc">${item.desc}</p>
+                            <button class="add-to-cart-btn" onclick="addToCart('${item.name}', ${item.price})">
+                                <i class="fas fa-plus"></i> Add to Cart
+                            </button>
                         </div>
-                        <button class="cart-item-remove" onclick="removeFromCart(${item.id})"><i class="fas fa-trash"></i></button>
                     </div>
                 `).join('');
             }
         }
         
-        function updateQuantity(id, newQty) {
-            if (newQty <= 0) { removeFromCart(id); return; }
-            const item = cart.find(i => i.id === id);
-            if (item) item.quantity = newQty;
+        renderMenu();
+
+        // Cart functionality
+        let cart = JSON.parse(localStorage.getItem('bavaCart') || '[]');
+        
+        function addToCart(name, price) {
+            const existing = cart.find(i => i.name === name);
+            if (existing) {
+                existing.quantity++;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
             localStorage.setItem('bavaCart', JSON.stringify(cart));
-            updateCartDisplay();
+            alert(`${name} added to cart!`);
         }
         
-        function removeFromCart(id) { cart = cart.filter(i => i.id !== id); localStorage.setItem('bavaCart', JSON.stringify(cart)); updateCartDisplay(); if (cart.length === 0) closeCart(); }
+        // Hamburger Menu
+        const hamburger = document.getElementById('hamburgerMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const closeMenu = document.getElementById('closeMenu');
         
-        function showDelivery() { const bike = document.getElementById('deliveryBike'); bike.classList.add('active'); setTimeout(() => bike.classList.remove('active'), 1500); }
-        
-        function createFlyAnimation(btn) {
-            const rect = btn.getBoundingClientRect();
-            const fly = document.createElement('div'); fly.className = 'fly-to-cart'; fly.innerHTML = '<i class="fas fa-drumstick-bite"></i>';
-            fly.style.left = (rect.left + rect.width/2) + 'px'; fly.style.top = (rect.top + rect.height/2) + 'px';
-            document.body.appendChild(fly); setTimeout(() => fly.remove(), 500);
-        }
-        
-        function addToCart(id) {
-            const item = menuItems.find(i => i.id === id);
-            const existing = cart.find(i => i.id === id);
-            if (existing) existing.quantity++;
-            else cart.push({ ...item, quantity: 1 });
-            localStorage.setItem('bavaCart', JSON.stringify(cart));
-            updateCartDisplay();
-            const btn = event.target.closest('button'); if (btn) createFlyAnimation(btn);
-            showDelivery(); openCart();
-        }
-        
-        function openCart() { document.getElementById('cartSidebar').classList.add('open'); document.getElementById('cartOverlay').classList.add('active'); }
-        function closeCart() { document.getElementById('cartSidebar').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('active'); }
-        
-        function renderMenu(category = 'all') {
-            const filtered = category === 'all' ? menuItems : menuItems.filter(i => i.category === category);
-            const grid = document.getElementById('menuGrid');
-            if (grid) grid.innerHTML = filtered.map(item => `
-                <div class="food-card">
-                    <img src="${item.image}" class="food-image" alt="${item.name} - Bava Restaurant">
-                    <div class="food-info">
-                        <div class="food-header"><h3 class="food-name">${item.name}</h3><span class="food-price">KES ${item.price}</span></div>
-                        <p class="food-desc">${item.desc}</p>
-                        <button class="add-to-cart-btn" onclick="addToCart(${item.id})"><i class="fas fa-plus"></i> Add to Cart</button>
-                    </div>
-                </div>
-            `).join('');
-        }
-        
-        document.querySelectorAll('.category-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active', 'bg-[#0B6E4F]', 'text-white'));
-                btn.classList.add('active', 'bg-[#0B6E4F]', 'text-white');
-                renderMenu(btn.dataset.category);
-            });
+        hamburger.addEventListener('click', () => {
+            menuOverlay.classList.add('active');
         });
         
-        renderMenu(); updateCartDisplay();
-        document.getElementById('cartIcon').addEventListener('click', openCart);
-        document.getElementById('closeCart').addEventListener('click', closeCart);
-        document.getElementById('cartOverlay').addEventListener('click', closeCart);
-        document.getElementById('checkoutBtn').addEventListener('click', () => { alert('Proceed to checkout! Total: KES ' + cart.reduce((s,i) => s + i.price * i.quantity, 0)); });
+        closeMenu.addEventListener('click', () => {
+            menuOverlay.classList.remove('active');
+        });
         
-        const menuToggle = document.getElementById('menuToggle'), navLinks = document.getElementById('navLinks');
-        menuToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
-        window.addEventListener('scroll', () => { const navbar = document.getElementById('navbar'); if (window.scrollY > 50) navbar.classList.add('navbar-scrolled'); else navbar.classList.remove('navbar-scrolled'); });
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (menuOverlay.classList.contains('active') && 
+                !menuOverlay.contains(e.target) && 
+                !hamburger.contains(e.target)) {
+                menuOverlay.classList.remove('active');
+            }
+        });
+        
+        // AI Chatbot
+        const chatbotBtn = document.getElementById('chatbotBtn');
+        const chatbotWindow = document.getElementById('chatbotWindow');
+        const closeChatbot = document.getElementById('closeChatbot');
+        
+        chatbotBtn.addEventListener('click', () => {
+            chatbotWindow.classList.toggle('active');
+        });
+        
+        closeChatbot.addEventListener('click', () => {
+            chatbotWindow.classList.remove('active');
+        });
+        
+        function showAnswer(type) {
+            const answerDiv = document.getElementById('answerContainer');
+            const answers = {
+                hours: "🕐 Bava Restaurant is open daily:\n\n📅 Monday - Friday: 9:00 AM - 10:00 PM\n📅 Saturday - Sunday: 10:00 AM - 9:00 PM\n📅 Holidays: 11:00 AM - 8:00 PM",
+                delivery: "🚚 Yes! We offer free delivery within 5km of our branches.\n\n⏱️ Delivery time: 30-45 minutes\n📞 Call us to place delivery orders: +254 743 462086",
+                payment: "💰 We accept:\n✅ Cash\n✅ M-Pesa (Paybill: 123456)\n✅ Credit/Debit Cards\n✅ Visa/Mastercard\n✅ Online payments coming soon!",
+                locations: "📍 We have 3 locations:\n\n1️⃣ Thika - Kenyatta Highway\n2️⃣ Nakuru - Kenyatta Avenue\n3️⃣ Bungoma - Moi Avenue\n\nClick on Locations page to see maps!",
+                special: "⭐ Our signature dish is Nyama Choma!\n\n🔥 Grilled to perfection with our secret spices\n🥗 Served with fresh kachumbari\n🍚 Comes with ugali or rice",
+                reservation: "📞 To make a reservation:\n\n📱 Call us: +254 743 462086\n📧 Email: reservations@bavarestaurant.co.ke\n🏃 Or visit any of our branches directly!\n\n💡 Walk-ins welcome!"
+            };
+            
+            answerDiv.innerHTML = answers[type] || "Sorry, I couldn't find an answer. Please call us at +254 743 462086 for assistance.";
+            answerDiv.classList.add('show');
+            
+            setTimeout(() => {
+                answerDiv.classList.remove('show');
+            }, 8000);
+        }
+        
+        // Close chatbot when clicking outside
+        document.addEventListener('click', (e) => {
+            if (chatbotWindow.classList.contains('active') && 
+                !chatbotWindow.contains(e.target) && 
+                !chatbotBtn.contains(e.target)) {
+                chatbotWindow.classList.remove('active');
+            }
+        });
+        
         window.addToCart = addToCart;
     </script>
 </body>
