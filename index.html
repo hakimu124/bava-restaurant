@@ -12,7 +12,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Swiper.js for Carousel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     
     <style>
         * {
@@ -37,239 +41,336 @@
             --gray: #f5f5f5;
         }
         
-        /* Hamburger Menu Styles */
-        .hamburger-menu {
+        /* Navbar - Shake Shack Style */
+        .navbar {
             position: fixed;
-            top: 25px;
-            right: 25px;
-            z-index: 1001;
-            cursor: pointer;
-            background: var(--primary);
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 5%;
+            transition: all 0.3s;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .navbar-scrolled {
+            padding: 0.75rem 5%;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-            animation: pulse 2s infinite;
         }
         
-        .hamburger-menu:hover {
-            transform: scale(1.1);
-            background: var(--primary-dark);
-            box-shadow: 0 8px 25px rgba(11,110,79,0.4);
-        }
-        
-        .hamburger-menu i {
+        .logo-icon i {
+            font-size: 1.5rem;
             color: white;
-            font-size: 1.8rem;
-            transition: transform 0.3s;
         }
         
-        .hamburger-menu:hover i {
-            transform: rotate(90deg);
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.5px;
         }
         
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 5px 20px rgba(11,110,79,0.3); }
-            50% { box-shadow: 0 5px 30px rgba(212,175,55,0.5); }
+        .logo-text span {
+            color: var(--secondary);
         }
         
-        .menu-overlay {
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.3px;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+        
+        .order-btn {
+            background: var(--primary);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(11,110,79,0.2);
+        }
+        
+        .order-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(11,110,79,0.3);
+        }
+        
+        .signin-btn {
+            background: transparent;
+            color: var(--primary);
+            padding: 0.6rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid var(--primary);
+            transition: all 0.3s;
+        }
+        
+        .signin-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .hamburger-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
             position: fixed;
             top: 0;
             right: -100%;
-            width: 100%;
-            max-width: 380px;
+            width: 80%;
+            max-width: 350px;
             height: 100vh;
             background: white;
             z-index: 1002;
-            transition: right 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            box-shadow: -5px 0 40px rgba(0,0,0,0.15);
-            padding: 100px 30px 30px;
+            transition: right 0.3s;
+            box-shadow: -5px 0 30px rgba(0,0,0,0.1);
+            padding: 80px 30px 30px;
         }
         
-        .menu-overlay.active {
+        .mobile-menu.active {
             right: 0;
         }
         
-        .menu-overlay a {
+        .mobile-menu a {
             display: block;
-            padding: 18px 0;
+            padding: 15px 0;
             color: var(--dark);
             text-decoration: none;
-            font-weight: 600;
-            font-size: 1.2rem;
+            font-weight: 500;
             border-bottom: 1px solid #eee;
-            transition: all 0.3s;
-            opacity: 0;
-            transform: translateX(30px);
-            animation: slideIn 0.3s forwards;
-            animation-delay: calc(var(--i, 0) * 0.05s);
         }
         
-        @keyframes slideIn {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        .menu-overlay a:hover {
+        .mobile-menu a:hover {
             color: var(--primary);
-            padding-left: 15px;
-            border-bottom-color: var(--secondary);
         }
         
-        .close-menu {
+        .close-mobile {
             position: absolute;
-            top: 25px;
-            right: 25px;
-            background: none;
-            border: none;
-            font-size: 1.8rem;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
             cursor: pointer;
-            color: var(--dark);
-            transition: transform 0.3s;
         }
         
-        .close-menu:hover {
-            transform: rotate(90deg);
-            color: var(--primary);
+        /* Hero Carousel */
+        .hero-carousel {
+            margin-top: 80px;
+            position: relative;
         }
         
-        /* Hero Section */
-        .hero {
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, #fef9e6 0%, #ffffff 70%);
-            padding-top: 20px;
+        .swiper {
+            width: 100%;
+            height: 80vh;
+            min-height: 500px;
         }
         
-        .hero-badge {
-            display: inline-block;
-            background: rgba(212,175,55,0.12);
-            padding: 0.5rem 1rem;
-            border-radius: 40px;
-            color: var(--secondary-dark);
-            font-weight: 600;
-            font-size: 0.8rem;
-            margin-bottom: 1.5rem;
-            animation: fadeInUp 0.6s ease-out;
+        .swiper-slide {
+            position: relative;
+            background-size: cover;
+            background-position: center;
         }
         
-        .hero-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 4rem;
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-            animation: fadeInUp 0.6s ease-out 0.1s both;
+        .slide-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0,0,0,0.3), rgba(0,0,0,0.1));
         }
         
-        .hero-title span {
-            color: var(--primary);
-        }
-        
-        .hero-description {
-            color: #5a5a5a;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 2rem;
+        .slide-content {
+            position: absolute;
+            bottom: 20%;
+            left: 5%;
             max-width: 500px;
-            animation: fadeInUp 0.6s ease-out 0.2s both;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
         
-        .btn-primary {
+        .slide-badge {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--primary-dark);
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .slide-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        
+        .slide-desc {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+        
+        .slide-btn {
             background: var(--primary);
             color: white;
-            padding: 1rem 2.5rem;
+            padding: 0.8rem 2rem;
             border-radius: 50px;
-            font-weight: 700;
             text-decoration: none;
+            font-weight: 600;
             display: inline-flex;
             align-items: center;
-            gap: 0.8rem;
+            gap: 0.5rem;
             transition: all 0.3s;
-            box-shadow: 0 4px 12px rgba(11,110,79,0.25);
-            animation: fadeInUp 0.6s ease-out 0.3s both;
         }
         
-        .btn-primary:hover {
+        .slide-btn:hover {
             background: var(--primary-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(11,110,79,0.35);
+            transform: translateY(-2px);
         }
         
-        .btn-secondary {
-            background: transparent;
-            color: var(--primary);
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            font-weight: 700;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-            border: 2px solid var(--primary);
-            transition: all 0.3s;
-            animation: fadeInUp 0.6s ease-out 0.4s both;
-        }
-        
-        .btn-secondary:hover {
-            background: var(--primary);
+        .swiper-button-next,
+        .swiper-button-prev {
             color: white;
-            transform: translateY(-3px);
+            background: rgba(0,0,0,0.3);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
         }
         
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .swiper-button-next:after,
+        .swiper-button-prev:after {
+            font-size: 1.2rem;
+        }
+        
+        .swiper-pagination-bullet {
+            background: white;
+            opacity: 0.5;
+        }
+        
+        .swiper-pagination-bullet-active {
+            background: var(--secondary);
+            opacity: 1;
         }
         
         /* Food Grid */
-        .food-card {
-            background: white;
-            border-radius: 24px;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
-            cursor: pointer;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.6s ease-out forwards;
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
         }
         
-        .food-card:nth-child(1) { animation-delay: 0.1s; }
-        .food-card:nth-child(2) { animation-delay: 0.2s; }
-        .food-card:nth-child(3) { animation-delay: 0.3s; }
-        .food-card:nth-child(4) { animation-delay: 0.4s; }
-        .food-card:nth-child(5) { animation-delay: 0.5s; }
-        .food-card:nth-child(6) { animation-delay: 0.6s; }
+        .section-title span {
+            color: var(--primary);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 3rem;
+        }
+        
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 0 5%;
+        }
+        
+        .food-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            cursor: pointer;
+        }
         
         .food-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 25px 40px rgba(0,0,0,0.12);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
         
         .food-image {
             width: 100%;
             height: 220px;
             object-fit: cover;
-            transition: transform 0.5s;
-        }
-        
-        .food-card:hover .food-image {
-            transform: scale(1.05);
         }
         
         .food-info {
@@ -291,17 +392,16 @@
         .food-price {
             color: var(--primary);
             font-weight: 800;
-            font-size: 1.2rem;
         }
         
         .food-desc {
-            color: #7a7a7a;
+            color: #666;
             font-size: 0.85rem;
+            margin-bottom: 1rem;
             line-height: 1.5;
-            margin-bottom: 1.2rem;
         }
         
-        .add-to-cart-btn {
+        .add-btn {
             width: 100%;
             background: var(--secondary);
             color: var(--primary-dark);
@@ -310,25 +410,55 @@
             border-radius: 50px;
             font-weight: 600;
             cursor: pointer;
+            transition: all 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
-            transition: all 0.3s;
         }
         
-        .add-to-cart-btn:hover {
+        .add-btn:hover {
             background: var(--secondary-dark);
             transform: scale(1.02);
         }
         
-        /* AI Chatbot - Floating Button with Animation */
+        /* Limited Time Banner */
+        .limited-banner {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 0.8rem;
+            text-align: center;
+            color: white;
+            font-weight: 600;
+            margin-top: 2rem;
+        }
+        
+        /* Stats Section */
+        .stats {
+            background: var(--gray);
+            padding: 4rem 5%;
+            margin-top: 4rem;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        
+        /* AI Chatbot */
         .chatbot-btn {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            width: 65px;
-            height: 65px;
+            width: 60px;
+            height: 60px;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             border-radius: 50%;
             display: flex;
@@ -336,62 +466,38 @@
             justify-content: center;
             cursor: pointer;
             z-index: 1000;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-            animation: float 3s ease-in-out infinite, pulseGlow 2s infinite;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            animation: pulse 2s infinite;
         }
         
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 5px 25px rgba(11,110,79,0.3); }
-            50% { box-shadow: 0 8px 35px rgba(212,175,55,0.5); }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 5px 20px rgba(11,110,79,0.3); }
+            50% { box-shadow: 0 5px 30px rgba(212,175,55,0.5); }
         }
         
         .chatbot-btn:hover {
-            transform: scale(1.1) translateY(-5px);
+            transform: scale(1.1);
         }
         
         .chatbot-btn i {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: white;
-            animation: robotWave 2s infinite;
-        }
-        
-        @keyframes robotWave {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(10deg); }
-            75% { transform: rotate(-10deg); }
         }
         
         .chatbot-window {
             position: fixed;
-            bottom: 110px;
+            bottom: 100px;
             right: 30px;
-            width: 380px;
-            height: 550px;
+            width: 350px;
+            height: 500px;
             background: white;
-            border-radius: 25px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
             z-index: 1001;
             display: none;
             flex-direction: column;
             overflow: hidden;
-            animation: slideUp 0.3s ease-out;
-        }
-        
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
         
         .chatbot-window.active {
@@ -401,88 +507,44 @@
         .chatbot-header {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 18px;
+            padding: 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         
-        .chatbot-header span {
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-        
-        .chatbot-header i {
-            cursor: pointer;
-            font-size: 1.2rem;
-            transition: transform 0.3s;
-        }
-        
-        .chatbot-header i:hover {
-            transform: rotate(90deg);
-        }
-        
         .chatbot-questions {
             flex: 1;
             overflow-y: auto;
-            padding: 20px;
-            background: #f9fafb;
+            padding: 15px;
         }
         
         .question-btn {
             width: 100%;
-            background: white;
-            border: 1px solid #e5e7eb;
-            padding: 14px;
-            margin-bottom: 12px;
-            border-radius: 16px;
+            background: #f5f5f5;
+            border: none;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 12px;
             text-align: left;
             cursor: pointer;
             transition: all 0.3s;
             font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
         
         .question-btn:hover {
             background: var(--secondary);
             color: var(--primary-dark);
-            transform: translateX(8px);
-            border-color: var(--secondary);
-        }
-        
-        .question-btn i {
-            font-size: 1.2rem;
-            color: var(--primary);
-        }
-        
-        .question-btn:hover i {
-            color: var(--primary-dark);
+            transform: translateX(5px);
         }
         
         .chatbot-answer {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            background: var(--primary);
             color: white;
-            padding: 15px;
-            border-radius: 16px;
-            margin-top: 15px;
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 10px;
             display: none;
-            font-size: 0.9rem;
-            line-height: 1.5;
-            animation: fadeInAnswer 0.3s ease;
-        }
-        
-        @keyframes fadeInAnswer {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
         
         .chatbot-answer.show {
@@ -494,7 +556,6 @@
             background: var(--dark);
             color: white;
             padding: 4rem 5% 2rem;
-            margin-top: 4rem;
         }
         
         .footer-grid {
@@ -507,14 +568,11 @@
         .footer-col h4 {
             color: var(--secondary);
             margin-bottom: 1rem;
-            font-size: 1.1rem;
         }
         
         .footer-col p {
             color: #9ca3af;
             line-height: 1.6;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
         }
         
         .social-icons {
@@ -548,96 +606,166 @@
             font-size: 0.85rem;
         }
         
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
+        @media (max-width: 968px) {
+            .nav-links {
+                display: none;
             }
-            .chatbot-window {
-                width: calc(100% - 40px);
-                right: 20px;
-                left: 20px;
-                bottom: 100px;
+            .hamburger-menu {
+                display: block;
             }
-            .menu-overlay {
-                max-width: 100%;
+            .slide-title {
+                font-size: 1.8rem;
+            }
+            .slide-content {
+                bottom: 15%;
+                left: 5%;
+                right: 5%;
+            }
+            .swiper {
+                height: 60vh;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Hamburger Menu -->
-    <div class="hamburger-menu" id="hamburgerMenu">
-        <i class="fas fa-bars"></i>
-    </div>
-    
-    <div class="menu-overlay" id="menuOverlay">
-        <button class="close-menu" id="closeMenu"><i class="fas fa-times"></i></button>
-        <a href="index.html" style="--i:1"><i class="fas fa-home mr-3"></i> HOME</a>
-        <a href="menu.html" style="--i:2"><i class="fas fa-utensils mr-3"></i> MENU</a>
-        <a href="locations.html" style="--i:3"><i class="fas fa-map-marker-alt mr-3"></i> LOCATIONS</a>
-        <a href="blog.html" style="--i:4"><i class="fas fa-newspaper mr-3"></i> BLOG</a>
-        <a href="offers.html" style="--i:5"><i class="fas fa-tag mr-3"></i> OFFERS</a>
-        <a href="order.html" style="--i:6"><i class="fas fa-motorcycle mr-3"></i> ORDER NOW</a>
-    </div>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <div class="hero-badge"><i class="fas fa-star mr-1"></i> SINCE 2015</div>
-                    <h1 class="hero-title">Fresh Taste of <span>Kenya</span></h1>
-                    <p class="hero-description">Delicious meals, made fresh every day with authentic Kenyan flavors. Experience the true taste of Kenya at Bava Restaurant.</p>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="order.html" class="btn-primary"><i class="fas fa-shopping-bag"></i> ORDER NOW</a>
-                        <a href="menu.html" class="btn-secondary"><i class="fas fa-book-open"></i> VIEW MENU</a>
-                    </div>
+    <!-- Navbar - Shake Shack Style -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-utensils"></i>
                 </div>
-                <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&h=500&fit=crop" alt="Nyama Choma" class="rounded-3xl shadow-2xl w-full h-[450px] object-cover">
-                    <div class="absolute -bottom-5 -left-5 bg-white rounded-2xl p-4 shadow-xl">
-                        <div class="flex items-center gap-3">
-                            <i class="fas fa-trophy text-[#D4AF37] text-2xl"></i>
-                            <div><div class="font-bold text-lg">Best in Kenya</div><div class="text-sm text-gray-500">Award Winning Cuisine</div></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Menu Preview Section -->
-    <section class="py-20">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold font-['Playfair_Display']">Our <span class="text-[#0B6E4F]">Signature Dishes</span></h2>
-                <p class="text-gray-500 mt-2">Fresh, delicious, and made with love</p>
+                <div class="logo-text">BAVA <span>RESTAURANT</span></div>
             </div>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="menuGrid"></div>
+            <div class="nav-links">
+                <a href="index.html" class="active">MENU</a>
+                <a href="locations.html">LOCATIONS</a>
+                <a href="blog.html">BLOG</a>
+                <a href="offers.html">OFFERS</a>
+                <a href="#">FUNDRAISING</a>
+                <a href="#">CAREERS</a>
+                <a href="#" class="signin-btn"><i class="fas fa-user"></i> Sign In</a>
+                <a href="order.html" class="order-btn"><i class="fas fa-motorcycle"></i> Order Now</a>
+            </div>
+            
+            <div class="hamburger-menu" id="hamburgerMenu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="close-mobile" id="closeMobile"><i class="fas fa-times"></i></div>
+        <a href="index.html">MENU</a>
+        <a href="locations.html">LOCATIONS</a>
+        <a href="blog.html">BLOG</a>
+        <a href="offers.html">OFFERS</a>
+        <a href="#">FUNDRAISING</a>
+        <a href="#">CAREERS</a>
+        <a href="#">Sign In</a>
+        <a href="order.html" style="color: var(--primary);">Order Now</a>
+    </div>
+
+    <!-- Hero Carousel - Rotating Food Images -->
+    <div class="hero-carousel">
+        <div class="swiper heroSwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1544025162-d76694265947?w=1600&h=800&fit=crop');">
+                    <div class="slide-overlay"></div>
+                    <div class="slide-content">
+                        <div class="slide-badge">🔥 SIGNATURE DISH</div>
+                        <h2 class="slide-title">Nyama Choma</h2>
+                        <p class="slide-desc">Grilled to perfection with our secret spices, served with fresh kachumbari</p>
+                        <a href="order.html" class="slide-btn">Order Now <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1551326844-4df70f78d0e9?w=1600&h=800&fit=crop');">
+                    <div class="slide-overlay"></div>
+                    <div class="slide-content">
+                        <div class="slide-badge">🍚 SWAHILI SPECIAL</div>
+                        <h2 class="slide-title">Kenyan Pilau</h2>
+                        <p class="slide-desc">Spiced rice with beef, a Swahili delicacy bursting with flavor</p>
+                        <a href="order.html" class="slide-btn">Order Now <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=1600&h=800&fit=crop');">
+                    <div class="slide-overlay"></div>
+                    <div class="slide-content">
+                        <div class="slide-badge">🍗 CRISPY & JUICY</div>
+                        <h2 class="slide-title">Grilled Chicken</h2>
+                        <p class="slide-desc">Spicy grilled chicken with kachumbari, perfect for any occasion</p>
+                        <a href="order.html" class="slide-btn">Order Now <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=1600&h=800&fit=crop');">
+                    <div class="slide-overlay"></div>
+                    <div class="slide-content">
+                        <div class="slide-badge">🥤 REFRESHING</div>
+                        <h2 class="slide-title">Fresh Mango Juice</h2>
+                        <p class="slide-desc">100% pure mango juice, freshly squeezed daily</p>
+                        <a href="order.html" class="slide-btn">Order Now <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1589118949245-7d38baf380d6?w=1600&h=800&fit=crop');">
+                    <div class="slide-overlay"></div>
+                    <div class="slide-content">
+                        <div class="slide-badge">🍩 SWEET TREAT</div>
+                        <h2 class="slide-title">Mandazi</h2>
+                        <p class="slide-desc">Kenyan doughnuts, fluffy and perfect with chai</p>
+                        <a href="order.html" class="slide-btn">Order Now <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1623428454614-baf816f0b9f7?w=1600&h=800&fit=crop');">
+                    <div class="slide-overlay"></div>
+                    <div class="slide-content">
+                        <div class="slide-badge">🥥 COCONUT DELIGHT</div>
+                        <h2 class="slide-title">Mahamri</h2>
+                        <p class="slide-desc">Coconut doughnuts, a Swahili delicacy</p>
+                        <a href="order.html" class="slide-btn">Order Now <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+
+    <!-- Limited Time Banner -->
+    <div class="limited-banner">
+        <i class="fas fa-fire mr-2"></i> LIMITED TIME ONLY: Try our new Spicy Nyama Choma! <i class="fas fa-arrow-right ml-2"></i>
+    </div>
+
+    <!-- Featured Menu Section -->
+    <section class="py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title">Our <span>Signature Dishes</span></h2>
+            <p class="section-subtitle">Fresh, delicious, and made with love</p>
+            
+            <div class="food-grid" id="foodGrid"></div>
         </div>
     </section>
 
     <!-- Stats Section -->
-    <section class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-4 grid-cols-2 gap-8 text-center">
-                <div>
-                    <div class="text-4xl font-bold text-[#0B6E4F] mb-2">500+</div>
-                    <div class="text-gray-500">Daily Customers</div>
-                </div>
-                <div>
-                    <div class="text-4xl font-bold text-[#0B6E4F] mb-2">50+</div>
-                    <div class="text-gray-500">Authentic Dishes</div>
-                </div>
-                <div>
-                    <div class="text-4xl font-bold text-[#0B6E4F] mb-2">3</div>
-                    <div class="text-gray-500">Locations</div>
-                </div>
-                <div>
-                    <div class="text-4xl font-bold text-[#0B6E4F] mb-2">10+</div>
-                    <div class="text-gray-500">Years of Excellence</div>
-                </div>
+    <section class="stats">
+        <div class="stats-grid">
+            <div>
+                <div class="stat-number">500+</div>
+                <div>Daily Customers</div>
+            </div>
+            <div>
+                <div class="stat-number">50+</div>
+                <div>Authentic Dishes</div>
+            </div>
+            <div>
+                <div class="stat-number">3</div>
+                <div>Locations</div>
+            </div>
+            <div>
+                <div class="stat-number">10+</div>
+                <div>Years of Excellence</div>
             </div>
         </div>
     </section>
@@ -650,27 +778,15 @@
     <div class="chatbot-window" id="chatbotWindow">
         <div class="chatbot-header">
             <span><i class="fas fa-robot mr-2"></i> Bava AI Assistant</span>
-            <i class="fas fa-times" id="closeChatbot"></i>
+            <i class="fas fa-times" id="closeChatbot" style="cursor: pointer;"></i>
         </div>
         <div class="chatbot-questions">
-            <button class="question-btn" onclick="showAnswer('hours')">
-                <i class="fas fa-clock"></i> What are your opening hours?
-            </button>
-            <button class="question-btn" onclick="showAnswer('delivery')">
-                <i class="fas fa-motorcycle"></i> Do you deliver?
-            </button>
-            <button class="question-btn" onclick="showAnswer('payment')">
-                <i class="fas fa-credit-card"></i> What payment methods do you accept?
-            </button>
-            <button class="question-btn" onclick="showAnswer('locations')">
-                <i class="fas fa-map-marker-alt"></i> Where are your locations?
-            </button>
-            <button class="question-btn" onclick="showAnswer('special')">
-                <i class="fas fa-star"></i> What's your special dish?
-            </button>
-            <button class="question-btn" onclick="showAnswer('reservation')">
-                <i class="fas fa-phone"></i> How do I make a reservation?
-            </button>
+            <button class="question-btn" onclick="showAnswer('hours')">🕐 What are your opening hours?</button>
+            <button class="question-btn" onclick="showAnswer('delivery')">🚚 Do you deliver?</button>
+            <button class="question-btn" onclick="showAnswer('payment')">💰 What payment methods do you accept?</button>
+            <button class="question-btn" onclick="showAnswer('locations')">📍 Where are your locations?</button>
+            <button class="question-btn" onclick="showAnswer('special')">⭐ What's your special dish?</button>
+            <button class="question-btn" onclick="showAnswer('reservation')">📞 How do I make a reservation?</button>
             <div id="answerContainer" class="chatbot-answer"></div>
         </div>
     </div>
@@ -713,18 +829,19 @@
     </footer>
 
     <script>
-        // Menu Data - Updated with correct images
+        // Menu Items with CORRECT images
         const menuItems = [
             { id: 1, name: "Nyama Choma", price: 850, desc: "Grilled meat with kachumbari - Kenya's favorite", image: "https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=300&fit=crop" },
             { id: 2, name: "Grilled Chicken", price: 650, desc: "Spicy grilled chicken with kachumbari", image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&h=300&fit=crop" },
-            { id: 3, name: "Ugali & Sukuma", price: 350, desc: "Traditional cornmeal with collard greens", image: "https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?w=400&h=300&fit=crop" },
-            { id: 4, name: "Kenyan Pilau", price: 450, desc: "Spiced rice with beef, Swahili style", image: "https://images.unsplash.com/photo-1551326844-4df70f78d0e9?w=400&h=300&fit=crop" },
-            { id: 5, name: "Mandazi", price: 50, desc: "Kenyan doughnuts, perfect with chai", image: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?w=400&h=300&fit=crop" },
+            { id: 3, name: "Kenyan Pilau", price: 450, desc: "Spiced rice with beef, Swahili style", image: "https://images.unsplash.com/photo-1551326844-4df70f78d0e9?w=400&h=300&fit=crop" },
+            { id: 4, name: "Ugali & Sukuma", price: 350, desc: "Traditional cornmeal with collard greens", image: "https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?w=400&h=300&fit=crop" },
+            { id: 5, name: "Mandazi", price: 50, desc: "Kenyan doughnuts, fluffy and perfect with chai", image: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?w=400&h=300&fit=crop" },
             { id: 6, name: "Mahamri", price: 80, desc: "Coconut doughnuts, Swahili delicacy", image: "https://images.unsplash.com/photo-1623428454614-baf816f0b9f7?w=400&h=300&fit=crop" }
         ];
 
-        function renderMenu() {
-            const grid = document.getElementById('menuGrid');
+        // Render Food Grid
+        function renderFoodGrid() {
+            const grid = document.getElementById('foodGrid');
             if (grid) {
                 grid.innerHTML = menuItems.map(item => `
                     <div class="food-card">
@@ -735,7 +852,7 @@
                                 <span class="food-price">KES ${item.price}</span>
                             </div>
                             <p class="food-desc">${item.desc}</p>
-                            <button class="add-to-cart-btn" onclick="addToCart('${item.name}', ${item.price})">
+                            <button class="add-btn" onclick="addToCart('${item.name}', ${item.price})">
                                 <i class="fas fa-plus"></i> Add to Cart
                             </button>
                         </div>
@@ -744,7 +861,7 @@
             }
         }
         
-        renderMenu();
+        renderFoodGrid();
 
         // Cart functionality
         let cart = JSON.parse(localStorage.getItem('bavaCart') || '[]');
@@ -760,25 +877,56 @@
             alert(`${name} added to cart!`);
         }
         
-        // Hamburger Menu
+        // Initialize Swiper Carousel
+        const heroSwiper = new Swiper('.heroSwiper', {
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            effect: 'fade',
+            fadeEffect: {
+                crossFade: true
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+        
+        // Mobile Menu
         const hamburger = document.getElementById('hamburgerMenu');
-        const menuOverlay = document.getElementById('menuOverlay');
-        const closeMenu = document.getElementById('closeMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const closeMobile = document.getElementById('closeMobile');
         
         hamburger.addEventListener('click', () => {
-            menuOverlay.classList.add('active');
+            mobileMenu.classList.add('active');
         });
         
-        closeMenu.addEventListener('click', () => {
-            menuOverlay.classList.remove('active');
+        closeMobile.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
         });
         
-        // Close menu when clicking outside
+        // Close mobile menu when clicking outside
         document.addEventListener('click', (e) => {
-            if (menuOverlay.classList.contains('active') && 
-                !menuOverlay.contains(e.target) && 
+            if (mobileMenu.classList.contains('active') && 
+                !mobileMenu.contains(e.target) && 
                 !hamburger.contains(e.target)) {
-                menuOverlay.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
             }
         });
         
@@ -800,13 +948,13 @@
             const answers = {
                 hours: "🕐 Bava Restaurant is open daily:\n\n📅 Monday - Friday: 9:00 AM - 10:00 PM\n📅 Saturday - Sunday: 10:00 AM - 9:00 PM\n📅 Holidays: 11:00 AM - 8:00 PM",
                 delivery: "🚚 Yes! We offer free delivery within 5km of our branches.\n\n⏱️ Delivery time: 30-45 minutes\n📞 Call us to place delivery orders: +254 743 462086",
-                payment: "💰 We accept:\n✅ Cash\n✅ M-Pesa (Paybill: 123456)\n✅ Credit/Debit Cards\n✅ Visa/Mastercard\n✅ Online payments coming soon!",
+                payment: "💰 We accept:\n✅ Cash\n✅ M-Pesa (Paybill: 123456)\n✅ Credit/Debit Cards\n✅ Visa/Mastercard",
                 locations: "📍 We have 3 locations:\n\n1️⃣ Thika - Kenyatta Highway\n2️⃣ Nakuru - Kenyatta Avenue\n3️⃣ Bungoma - Moi Avenue\n\nClick on Locations page to see maps!",
-                special: "⭐ Our signature dish is Nyama Choma!\n\n🔥 Grilled to perfection with our secret spices\n🥗 Served with fresh kachumbari\n🍚 Comes with ugali or rice",
-                reservation: "📞 To make a reservation:\n\n📱 Call us: +254 743 462086\n📧 Email: reservations@bavarestaurant.co.ke\n🏃 Or visit any of our branches directly!\n\n💡 Walk-ins welcome!"
+                special: "⭐ Our signature dish is Nyama Choma!\n\n🔥 Grilled to perfection with our secret spices\n🥗 Served with fresh kachumbari",
+                reservation: "📞 To make a reservation:\n\n📱 Call us: +254 743 462086\n📧 Email: reservations@bavarestaurant.co.ke\n🏃 Or visit any of our branches directly!"
             };
             
-            answerDiv.innerHTML = answers[type] || "Sorry, I couldn't find an answer. Please call us at +254 743 462086 for assistance.";
+            answerDiv.innerHTML = answers[type] || "Sorry, please call us at +254 743 462086 for assistance.";
             answerDiv.classList.add('show');
             
             setTimeout(() => {
