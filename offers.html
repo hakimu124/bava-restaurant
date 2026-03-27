@@ -2,145 +2,635 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Special Offers | Bava Restaurant</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: #ffffff; }
-        :root { --primary: #0B6E4F; --secondary: #D4AF37; --dark: #1a1a1a; }
-        .navbar { position: fixed; top: 0; left: 0; width: 100%; background: rgba(255,255,255,0.98); backdrop-filter: blur(10px); z-index: 1000; padding: 1rem 5%; border-bottom: 1px solid rgba(0,0,0,0.05); }
-        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 800; color: var(--primary); }
-        .logo span { color: var(--secondary); }
-        .nav-links { display: flex; gap: 2rem; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; transition: color 0.3s; position: relative; }
-        .nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--primary); transition: width 0.3s; }
-        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
-        .order-btn { background: var(--primary); color: white; padding: 0.6rem 1.5rem; border-radius: 40px; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; }
-        .cart-icon { position: relative; cursor: pointer; font-size: 1.2rem; margin-left: 0.5rem; }
-        .cart-count { position: absolute; top: -8px; right: -12px; background: var(--secondary); color: var(--primary); font-size: 0.65rem; font-weight: bold; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--primary); }
-        .offers-container { max-width: 1200px; margin: 0 auto; padding: 120px 20px 60px; }
-        .offer-card { background: white; border-radius: 24px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.08); transition: all 0.3s; margin-bottom: 2rem; display: flex; flex-direction: column; }
-        .offer-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
-        .offer-badge { position: absolute; top: 20px; right: 20px; background: var(--secondary); color: var(--primary); padding: 0.5rem 1rem; border-radius: 50px; font-weight: bold; font-size: 0.8rem; }
-        .offer-image { width: 100%; height: 250px; object-fit: cover; }
-        .offer-content { padding: 2rem; position: relative; }
-        .offer-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
-        .offer-description { color: #666; line-height: 1.6; margin: 1rem 0; }
-        .offer-price { font-size: 1.3rem; font-weight: 800; color: var(--primary); margin: 1rem 0; }
-        .offer-price span { font-size: 1rem; text-decoration: line-through; color: #999; font-weight: normal; }
-        .offer-btn { background: var(--primary); color: white; border: none; padding: 0.8rem 2rem; border-radius: 50px; font-weight: 600; cursor: pointer; transition: all 0.3s; display: inline-flex; align-items: center; gap: 0.5rem; }
-        .offer-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
-        .grid-offers { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
-        footer { background: var(--dark); color: white; padding: 4rem 5% 2rem; margin-top: 4rem; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 3rem; margin-bottom: 3rem; }
-        .footer-col h4 { color: var(--secondary); margin-bottom: 1rem; }
-        .footer-col p { color: #9ca3af; }
-        .copyright { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08); color: #6b7280; }
-        @media (max-width: 968px) { .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: white; flex-direction: column; padding: 2rem; } .nav-links.active { display: flex; } .menu-toggle { display: block; } .grid-offers { grid-template-columns: 1fr; } }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            overflow-x: hidden;
+        }
+        
+        :root {
+            --primary: #0B6E4F;
+            --primary-dark: #08523a;
+            --secondary: #D4AF37;
+            --secondary-dark: #b8921a;
+            --dark: #1a1a1a;
+        }
+        
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 5%;
+            transition: all 0.3s;
+            background: transparent;
+        }
+        
+        .navbar.scrolled {
+            background: white;
+            padding: 12px 5%;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        
+        .navbar.scrolled .logo-text,
+        .navbar.scrolled .nav-link {
+            color: var(--dark);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: white;
+            letter-spacing: -0.5px;
+        }
+        
+        .logo-text span {
+            color: var(--secondary);
+        }
+        
+        .navbar.scrolled .logo-text {
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        
+        .navbar.scrolled .nav-link {
+            color: var(--dark);
+        }
+        
+        .nav-link:hover {
+            color: var(--secondary);
+        }
+        
+        .order-btn {
+            background: var(--primary);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .order-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .hamburger {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: white;
+        }
+        
+        .navbar.scrolled .hamburger {
+            color: var(--primary);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 85%;
+            max-width: 320px;
+            height: 100vh;
+            background: white;
+            z-index: 1002;
+            transition: right 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            padding: 80px 30px 30px;
+            box-shadow: -5px 0 30px rgba(0,0,0,0.1);
+        }
+        
+        .mobile-menu.active {
+            right: 0;
+        }
+        
+        .mobile-menu a {
+            display: block;
+            padding: 15px 0;
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s;
+        }
+        
+        .mobile-menu a:hover {
+            color: var(--primary);
+            padding-left: 10px;
+        }
+        
+        .close-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #999;
+        }
+        
+        /* Hero Section */
+        .offers-hero {
+            height: 50vh;
+            min-height: 400px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-top: 80px;
+        }
+        
+        .offers-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+        }
+        
+        .offers-hero p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+        
+        /* Offers Grid */
+        .offers-section {
+            padding: 4rem 5%;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title span {
+            color: var(--primary);
+        }
+        
+        .offers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .offer-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .offer-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+        
+        .offer-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--secondary);
+            color: var(--primary-dark);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            z-index: 2;
+        }
+        
+        .offer-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+        
+        .offer-info {
+            padding: 1.5rem;
+        }
+        
+        .offer-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .offer-desc {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+        
+        .offer-price {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .offer-price span {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 0.9rem;
+            font-weight: normal;
+            margin-left: 0.5rem;
+        }
+        
+        .offer-btn {
+            width: 100%;
+            background: var(--secondary);
+            color: var(--primary-dark);
+            border: none;
+            padding: 0.8rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .offer-btn:hover {
+            background: var(--secondary-dark);
+            transform: scale(1.02);
+        }
+        
+        /* Limited Time Banner */
+        .limited-banner {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 12px;
+            text-align: center;
+            color: white;
+            font-weight: 600;
+        }
+        
+        /* Contact Bar */
+        .contact-bar {
+            background: #f9fafb;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+            border-radius: 20px;
+        }
+        
+        .contact-bar i {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-right: 0.5rem;
+        }
+        
+        .contact-bar a {
+            color: var(--primary);
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+        
+        .contact-bar a:hover {
+            color: var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 5% 2rem;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-col h4 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-col p {
+            color: #9ca3af;
+            line-height: 1.6;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-icons a {
+            width: 38px;
+            height: 38px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            color: #6b7280;
+            font-size: 0.85rem;
+        }
+        
+        @media (max-width: 968px) {
+            .nav-links {
+                display: none;
+            }
+            .hamburger {
+                display: block;
+            }
+            .offers-hero h1 {
+                font-size: 2rem;
+            }
+            .offers-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
-    <nav class="navbar">
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <div class="logo">BAVA <span>RESTAURANT</span></div>
-            <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
-            <div class="nav-links" id="navLinks">
-                <a href="index.html">HOME</a>
-                <a href="menu.html">MENU</a>
-                <a href="locations.html">LOCATIONS</a>
-                <a href="blog.html">BLOG</a>
-                <a href="offers.html" class="active">OFFERS</a>
+            <div class="logo-text">BAVA <span>RESTAURANT</span></div>
+            
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">HOME</a>
+                <a href="menu.html" class="nav-link">MENU</a>
+                <a href="locations.html" class="nav-link">LOCATIONS</a>
+                <a href="blog.html" class="nav-link">BLOG</a>
+                <a href="offers.html" class="nav-link">OFFERS</a>
                 <a href="order.html" class="order-btn"><i class="fas fa-motorcycle"></i> ORDER NOW</a>
-                <div class="cart-icon" id="cartIcon"><i class="fas fa-shopping-bag"></i><span class="cart-count" id="cartCount">0</span></div>
+            </div>
+            
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
             </div>
         </div>
     </nav>
 
-    <div class="offers-container">
-        <div class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-bold font-['Playfair_Display']">Special <span class="text-[#0B6E4F]">Offers</span></h1>
-            <p class="text-gray-500 mt-2">Limited time deals you don't want to miss!</p>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="close-menu" id="closeMenu"><i class="fas fa-times"></i></div>
+        <a href="index.html">HOME</a>
+        <a href="menu.html">MENU</a>
+        <a href="locations.html">LOCATIONS</a>
+        <a href="blog.html">BLOG</a>
+        <a href="offers.html">OFFERS</a>
+        <a href="order.html" style="color: var(--primary);">ORDER NOW</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="offers-hero">
+        <div>
+            <h1>🔥 Special Offers</h1>
+            <p>Limited time deals you don't want to miss!</p>
         </div>
+    </section>
+
+    <!-- Limited Time Banner -->
+    <div class="limited-banner">
+        <i class="fas fa-fire mr-2"></i> HURRY! These offers end soon! <i class="fas fa-clock ml-2"></i>
+    </div>
+
+    <!-- Offers Section -->
+    <section class="offers-section">
+        <h2 class="section-title">Limited Time <span>Deals</span></h2>
         
-        <div class="grid-offers">
-            <div class="offer-card relative">
+        <div class="offers-grid">
+            <!-- Offer 1 -->
+            <div class="offer-card">
                 <div class="offer-badge">🔥 HOT DEAL</div>
-                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&h=400&fit=crop" class="offer-image">
-                <div class="offer-content">
+                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&h=400&fit=crop" class="offer-image" alt="Family Nyama Choma">
+                <div class="offer-info">
                     <h3 class="offer-title">Family Nyama Choma Feast</h3>
-                    <p class="offer-description">Get 2kg of Nyama Choma with kachumbari and ugali. Perfect for family gatherings!</p>
+                    <p class="offer-desc">Get 2kg of Nyama Choma with kachumbari and ugali. Perfect for family gatherings!</p>
                     <div class="offer-price">KES 2,500 <span>KES 3,500</span></div>
                     <button class="offer-btn" onclick="addOfferToCart('Family Nyama Choma Feast', 2500)"><i class="fas fa-shopping-cart"></i> Order Now</button>
                 </div>
             </div>
             
-            <div class="offer-card relative">
+            <!-- Offer 2 -->
+            <div class="offer-card">
                 <div class="offer-badge">🎉 WEEKEND SPECIAL</div>
-                <img src="https://images.unsplash.com/photo-1551326844-4df70f78d0e9?w=600&h=400&fit=crop" class="offer-image">
-                <div class="offer-content">
+                <img src="https://images.unsplash.com/photo-1551326844-4df70f78d0e9?w=600&h=400&fit=crop" class="offer-image" alt="Pilau & Kuku Combo">
+                <div class="offer-info">
                     <h3 class="offer-title">Pilau & Kuku Combo</h3>
-                    <p class="offer-description">Enjoy our famous Kenyan Pilau with Grilled Chicken. A match made in heaven!</p>
+                    <p class="offer-desc">Enjoy our famous Kenyan Pilau with Grilled Chicken. A match made in heaven!</p>
                     <div class="offer-price">KES 1,200 <span>KES 1,800</span></div>
                     <button class="offer-btn" onclick="addOfferToCart('Pilau & Kuku Combo', 1200)"><i class="fas fa-shopping-cart"></i> Order Now</button>
                 </div>
             </div>
             
-            <div class="offer-card relative">
+            <!-- Offer 3 -->
+            <div class="offer-card">
                 <div class="offer-badge">🍹 HAPPY HOUR</div>
-                <img src="https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=600&h=400&fit=crop" class="offer-image">
-                <div class="offer-content">
+                <img src="https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=600&h=400&fit=crop" class="offer-image" alt="Fresh Juices">
+                <div class="offer-info">
                     <h3 class="offer-title">Buy 1 Get 1 Free - Fresh Juices</h3>
-                    <p class="offer-description">All fresh fruit juices. Valid Monday-Friday 3pm-6pm. Limited time!</p>
+                    <p class="offer-desc">All fresh fruit juices. Valid Monday-Friday 3pm-6pm. Limited time!</p>
                     <div class="offer-price">KES 150 <span>KES 300</span></div>
                     <button class="offer-btn" onclick="addOfferToCart('Fresh Mango Juice (BOGO)', 150)"><i class="fas fa-shopping-cart"></i> Order Now</button>
                 </div>
             </div>
             
-            <div class="offer-card relative">
+            <!-- Offer 4 -->
+            <div class="offer-card">
                 <div class="offer-badge">⭐ NEW!</div>
-                <img src="https://images.unsplash.com/photo-1589118949245-7d38baf380d6?w=600&h=400&fit=crop" class="offer-image">
-                <div class="offer-content">
+                <img src="https://images.unsplash.com/photo-1589118949245-7d38baf380d6?w=600&h=400&fit=crop" class="offer-image" alt="Mandazi Bucket">
+                <div class="offer-info">
                     <h3 class="offer-title">Mandazi Bucket</h3>
-                    <p class="offer-description">20 pieces of fresh, fluffy Mandazi. Perfect for sharing!</p>
+                    <p class="offer-desc">20 pieces of fresh, fluffy Mandazi. Perfect for sharing!</p>
                     <div class="offer-price">KES 800 <span>KES 1,200</span></div>
                     <button class="offer-btn" onclick="addOfferToCart('Mandazi Bucket (20pcs)', 800)"><i class="fas fa-shopping-cart"></i> Order Now</button>
                 </div>
             </div>
         </div>
+    </section>
+
+    <!-- Contact Bar with New Number -->
+    <div class="contact-bar">
+        <i class="fas fa-phone-alt"></i>
+        <span>Call to order or for inquiries: </span>
+        <a href="tel:+254743462086">0743 462086</a>
     </div>
 
+    <!-- Footer -->
     <footer>
         <div class="footer-grid">
-            <div><h4>BAVA RESTAURANT</h4><p>Fresh taste of Kenya, served with love.</p></div>
-            <div><h4>QUICK LINKS</h4><p><a href="index.html" style="color:#9ca3af;">Home</a></p><p><a href="menu.html" style="color:#9ca3af;">Menu</a></p><p><a href="locations.html" style="color:#9ca3af;">Locations</a></p></div>
-            <div><h4>CONTACT</h4><p>+254 722 287517</p><p>info@bavarestaurant.co.ke</p></div>
-            <div><h4>HOURS</h4><p>Mon - Fri: 9am - 10pm</p><p>Sat - Sun: 10am - 9pm</p></div>
+            <div class="footer-col">
+                <h4>BAVA RESTAURANT</h4>
+                <p>Fresh taste of Kenya, served with love. Experience authentic Kenyan cuisine at its finest.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>CONTACT</h4>
+                <p><i class="fas fa-phone mr-2"></i> 0743 462086</p>
+                <p><i class="fas fa-envelope mr-2"></i> info@bavarestaurant.co.ke</p>
+                <p><i class="fas fa-map-marker-alt mr-2"></i> Thika, Nakuru, Bungoma</p>
+            </div>
+            <div class="footer-col">
+                <h4>HOURS</h4>
+                <p>Mon - Fri: 9am - 10pm</p>
+                <p>Sat - Sun: 10am - 9pm</p>
+                <p>Holidays: 11am - 8pm</p>
+            </div>
+            <div class="footer-col">
+                <h4>ORDER</h4>
+                <p><i class="fas fa-motorcycle mr-2"></i> Free Delivery</p>
+                <p><i class="fas fa-clock mr-2"></i> 30-45 min delivery</p>
+                <p><i class="fas fa-check-circle mr-2"></i> Order online</p>
+            </div>
         </div>
-        <div class="copyright"><p>&copy; 2024 Bava Restaurant. All rights reserved.</p></div>
+        <div class="copyright">
+            <p>&copy; 2024 Bava Restaurant. All rights reserved. | Fresh Taste of Kenya</p>
+        </div>
     </footer>
 
     <script>
+        // Cart functionality
         let cart = JSON.parse(localStorage.getItem('bavaCart') || '[]');
-        function updateCart() { document.getElementById('cartCount').innerText = cart.reduce((s,i)=>s+i.quantity,0); }
-        function showDelivery() { document.getElementById('deliveryBike').classList.add('active'); setTimeout(()=>document.getElementById('deliveryBike').classList.remove('active'),1500); }
+        
+        function updateCartDisplay() {
+            const cartCount = document.getElementById('cartCount');
+            if (cartCount) cartCount.textContent = cart.reduce((s,i) => s + i.quantity, 0);
+        }
+        
+        function showDelivery() {
+            const bike = document.getElementById('deliveryBike');
+            if (bike) {
+                bike.classList.add('active');
+                setTimeout(() => bike.classList.remove('active'), 2000);
+            }
+        }
+        
         function addOfferToCart(name, price) {
             let existing = cart.find(i => i.name === name);
-            if(existing) existing.quantity++;
-            else cart.push({ id: Date.now(), name, price, quantity: 1, image: "https://images.unsplash.com/photo-1544025162-d76694265947?w=60&h=60&fit=crop" });
+            if (existing) {
+                existing.quantity++;
+            } else {
+                cart.push({ id: Date.now(), name, price, quantity: 1, image: "https://images.unsplash.com/photo-1544025162-d76694265947?w=60&h=60&fit=crop" });
+            }
             localStorage.setItem('bavaCart', JSON.stringify(cart));
-            updateCart();
+            updateCartDisplay();
             showDelivery();
             alert(`${name} added to cart! Total: KES ${price}`);
         }
-        updateCart();
-        document.getElementById('menuToggle').addEventListener('click',()=>document.getElementById('navLinks').classList.toggle('active'));
+        
+        updateCartDisplay();
+        
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Mobile Menu
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const closeMenu = document.getElementById('closeMenu');
+        
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                mobileMenu.classList.add('active');
+            });
+        }
+        
+        if (closeMenu) {
+            closeMenu.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        }
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (mobileMenu.classList.contains('active') && 
+                !mobileMenu.contains(e.target) && 
+                !hamburger.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+        
         window.addOfferToCart = addOfferToCart;
     </script>
-    <div class="delivery-bike" id="deliveryBike" style="position: fixed; bottom: 30px; right: -200px; background: linear-gradient(135deg, #0B6E4F, #D4AF37); padding: 12px 20px; border-radius: 50px; display: flex; align-items: center; gap: 12px; z-index: 1002; transition: right 0.5s;"><i class="fas fa-motorcycle"></i><span>Added to cart!</span></div>
 </body>
 </html>
