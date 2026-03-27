@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
     
     <!-- Swiper.js for Carousel -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -38,26 +38,33 @@
             --secondary: #D4AF37;
             --secondary-dark: #b8921a;
             --dark: #1a1a1a;
-            --gray: #f5f5f5;
         }
         
-        /* Navbar - Shake Shack Style */
+        /* Navbar - Transparent to Solid */
         .navbar {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
             z-index: 1000;
-            padding: 1rem 5%;
+            padding: 20px 5%;
             transition: all 0.3s;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            background: transparent;
         }
         
-        .navbar-scrolled {
-            padding: 0.75rem 5%;
+        .navbar.scrolled {
+            background: white;
+            padding: 12px 5%;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        
+        .navbar.scrolled .logo-text,
+        .navbar.scrolled .nav-link {
+            color: var(--dark);
+        }
+        
+        .navbar.scrolled .logo-text span {
+            color: var(--primary);
         }
         
         .nav-container {
@@ -68,36 +75,20 @@
             align-items: center;
         }
         
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .logo-icon i {
-            font-size: 1.5rem;
-            color: white;
-        }
-        
         .logo-text {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: white;
             letter-spacing: -0.5px;
         }
         
         .logo-text span {
             color: var(--secondary);
+        }
+        
+        .navbar.scrolled .logo-text {
+            color: var(--primary);
         }
         
         .nav-links {
@@ -106,35 +97,20 @@
             align-items: center;
         }
         
-        .nav-links a {
+        .nav-link {
             text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
+            color: white;
+            font-weight: 600;
             font-size: 0.9rem;
-            letter-spacing: 0.3px;
             transition: color 0.3s;
-            position: relative;
         }
         
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: width 0.3s;
+        .navbar.scrolled .nav-link {
+            color: var(--dark);
         }
         
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 100%;
-        }
-        
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--primary);
+        .nav-link:hover {
+            color: var(--secondary);
         }
         
         .order-btn {
@@ -143,63 +119,44 @@
             padding: 0.6rem 1.5rem;
             border-radius: 40px;
             font-weight: 600;
-            font-size: 0.9rem;
             text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
             transition: all 0.3s;
-            box-shadow: 0 2px 8px rgba(11,110,79,0.2);
         }
         
         .order-btn:hover {
             background: var(--primary-dark);
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(11,110,79,0.3);
         }
         
-        .signin-btn {
-            background: transparent;
-            color: var(--primary);
-            padding: 0.6rem 1.5rem;
-            border-radius: 40px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            border: 1px solid var(--primary);
-            transition: all 0.3s;
-        }
-        
-        .signin-btn:hover {
+        .navbar.scrolled .order-btn {
             background: var(--primary);
             color: white;
-            transform: translateY(-2px);
         }
         
-        .hamburger-menu {
+        /* Hamburger Menu */
+        .hamburger {
             display: none;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             cursor: pointer;
+            color: white;
+        }
+        
+        .navbar.scrolled .hamburger {
             color: var(--primary);
         }
         
-        /* Mobile Menu */
         .mobile-menu {
-            display: none;
             position: fixed;
             top: 0;
             right: -100%;
-            width: 80%;
-            max-width: 350px;
+            width: 85%;
+            max-width: 320px;
             height: 100vh;
             background: white;
             z-index: 1002;
-            transition: right 0.3s;
-            box-shadow: -5px 0 30px rgba(0,0,0,0.1);
+            transition: right 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
             padding: 80px 30px 30px;
+            box-shadow: -5px 0 30px rgba(0,0,0,0.1);
         }
         
         .mobile-menu.active {
@@ -211,59 +168,60 @@
             padding: 15px 0;
             color: var(--dark);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 1.1rem;
             border-bottom: 1px solid #eee;
+            transition: all 0.3s;
         }
         
         .mobile-menu a:hover {
             color: var(--primary);
+            padding-left: 10px;
         }
         
-        .close-mobile {
+        .close-menu {
             position: absolute;
             top: 20px;
             right: 20px;
             font-size: 1.5rem;
             cursor: pointer;
+            color: #999;
         }
         
         /* Hero Carousel */
-        .hero-carousel {
-            margin-top: 80px;
-            position: relative;
-        }
-        
-        .swiper {
+        .hero-slider {
+            height: 100vh;
             width: 100%;
-            height: 80vh;
-            min-height: 500px;
         }
         
         .swiper-slide {
             position: relative;
             background-size: cover;
             background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
         }
         
-        .slide-overlay {
+        .hero-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(0,0,0,0.3), rgba(0,0,0,0.1));
+            background: rgba(0,0,0,0.45);
         }
         
-        .slide-content {
-            position: absolute;
-            bottom: 20%;
-            left: 5%;
-            max-width: 500px;
+        .hero-content {
+            position: relative;
+            z-index: 10;
             color: white;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            max-width: 800px;
+            padding: 0 20px;
         }
         
-        .slide-badge {
+        .hero-badge {
             display: inline-block;
             background: var(--secondary);
             color: var(--primary-dark);
@@ -274,53 +232,49 @@
             margin-bottom: 1rem;
         }
         
-        .slide-title {
-            font-size: 3rem;
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
             font-weight: 800;
             margin-bottom: 1rem;
         }
         
-        .slide-desc {
+        .hero-desc {
             font-size: 1.1rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             opacity: 0.9;
         }
         
-        .slide-btn {
+        .hero-btn {
             background: var(--primary);
             color: white;
-            padding: 0.8rem 2rem;
+            padding: 12px 30px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
+            transition: all 0.3s;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s;
+            gap: 8px;
         }
         
-        .slide-btn:hover {
+        .hero-btn:hover {
             background: var(--primary-dark);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
         }
         
         .swiper-button-next,
         .swiper-button-prev {
             color: white;
             background: rgba(0,0,0,0.3);
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
-        }
-        
-        .swiper-button-next:after,
-        .swiper-button-prev:after {
-            font-size: 1.2rem;
         }
         
         .swiper-pagination-bullet {
             background: white;
-            opacity: 0.5;
+            opacity: 0.6;
         }
         
         .swiper-pagination-bullet-active {
@@ -328,11 +282,21 @@
             opacity: 1;
         }
         
-        /* Food Grid */
+        /* Limited Time Banner */
+        .limited-banner {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 12px;
+            text-align: center;
+            color: white;
+            font-weight: 600;
+        }
+        
+        /* Featured Section */
         .section-title {
             text-align: center;
-            font-size: 2rem;
-            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 800;
             margin-bottom: 0.5rem;
         }
         
@@ -346,7 +310,7 @@
             margin-bottom: 3rem;
         }
         
-        .food-grid {
+        .featured-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
@@ -355,7 +319,7 @@
         
         .food-card {
             background: white;
-            border-radius: 20px;
+            border-radius: 24px;
             overflow: hidden;
             transition: all 0.3s;
             box-shadow: 0 5px 20px rgba(0,0,0,0.05);
@@ -422,26 +386,16 @@
             transform: scale(1.02);
         }
         
-        /* Limited Time Banner */
-        .limited-banner {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            padding: 0.8rem;
-            text-align: center;
-            color: white;
-            font-weight: 600;
-            margin-top: 2rem;
-        }
-        
         /* Stats Section */
-        .stats {
-            background: var(--gray);
+        .stats-section {
+            background: #f9fafb;
             padding: 4rem 5%;
             margin-top: 4rem;
         }
         
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 2rem;
             text-align: center;
         }
@@ -560,7 +514,7 @@
         
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 3rem;
             margin-bottom: 3rem;
         }
@@ -568,6 +522,7 @@
         .footer-col h4 {
             color: var(--secondary);
             margin-bottom: 1rem;
+            font-size: 1.1rem;
         }
         
         .footer-col p {
@@ -610,127 +565,117 @@
             .nav-links {
                 display: none;
             }
-            .hamburger-menu {
+            .hamburger {
                 display: block;
             }
-            .slide-title {
-                font-size: 1.8rem;
+            .hero-title {
+                font-size: 2.5rem;
             }
-            .slide-content {
-                bottom: 15%;
-                left: 5%;
-                right: 5%;
+            .hero-desc {
+                font-size: 1rem;
             }
-            .swiper {
-                height: 60vh;
+            .chatbot-window {
+                width: calc(100% - 40px);
+                right: 20px;
+                left: 20px;
+                bottom: 100px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navbar - Shake Shack Style -->
+    <!-- Navbar -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <div class="logo">
-                <div class="logo-icon">
-                    <i class="fas fa-utensils"></i>
-                </div>
-                <div class="logo-text">BAVA <span>RESTAURANT</span></div>
-            </div>
+            <div class="logo-text">BAVA <span>RESTAURANT</span></div>
             
             <div class="nav-links">
-                <a href="index.html" class="active">MENU</a>
-                <a href="locations.html">LOCATIONS</a>
-                <a href="blog.html">BLOG</a>
-                <a href="offers.html">OFFERS</a>
-                <a href="#">FUNDRAISING</a>
-                <a href="#">CAREERS</a>
-                <a href="#" class="signin-btn"><i class="fas fa-user"></i> Sign In</a>
-                <a href="order.html" class="order-btn"><i class="fas fa-motorcycle"></i> Order Now</a>
+                <a href="index.html" class="nav-link">HOME</a>
+                <a href="menu.html" class="nav-link">MENU</a>
+                <a href="locations.html" class="nav-link">LOCATIONS</a>
+                <a href="blog.html" class="nav-link">BLOG</a>
+                <a href="offers.html" class="nav-link">OFFERS</a>
+                <a href="order.html" class="order-btn"><i class="fas fa-motorcycle"></i> ORDER NOW</a>
             </div>
             
-            <div class="hamburger-menu" id="hamburgerMenu">
+            <div class="hamburger" id="hamburger">
                 <i class="fas fa-bars"></i>
             </div>
         </div>
     </nav>
-    
+
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
-        <div class="close-mobile" id="closeMobile"><i class="fas fa-times"></i></div>
-        <a href="index.html">MENU</a>
+        <div class="close-menu" id="closeMenu"><i class="fas fa-times"></i></div>
+        <a href="index.html">HOME</a>
+        <a href="menu.html">MENU</a>
         <a href="locations.html">LOCATIONS</a>
         <a href="blog.html">BLOG</a>
         <a href="offers.html">OFFERS</a>
-        <a href="#">FUNDRAISING</a>
-        <a href="#">CAREERS</a>
-        <a href="#">Sign In</a>
-        <a href="order.html" style="color: var(--primary);">Order Now</a>
+        <a href="order.html" style="color: var(--primary);">ORDER NOW</a>
     </div>
 
-    <!-- Hero Carousel - Rotating Food Images -->
-    <div class="hero-carousel">
-        <div class="swiper heroSwiper">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1544025162-d76694265947?w=1600&h=800&fit=crop');">
-                    <div class="slide-overlay"></div>
-                    <div class="slide-content">
-                        <div class="slide-badge">🔥 SIGNATURE DISH</div>
-                        <h2 class="slide-title">Nyama Choma</h2>
-                        <p class="slide-desc">Grilled to perfection with our secret spices, served with fresh kachumbari</p>
-                        <a href="order.html" class="slide-btn">Order Now <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1551326844-4df70f78d0e9?w=1600&h=800&fit=crop');">
-                    <div class="slide-overlay"></div>
-                    <div class="slide-content">
-                        <div class="slide-badge">🍚 SWAHILI SPECIAL</div>
-                        <h2 class="slide-title">Kenyan Pilau</h2>
-                        <p class="slide-desc">Spiced rice with beef, a Swahili delicacy bursting with flavor</p>
-                        <a href="order.html" class="slide-btn">Order Now <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=1600&h=800&fit=crop');">
-                    <div class="slide-overlay"></div>
-                    <div class="slide-content">
-                        <div class="slide-badge">🍗 CRISPY & JUICY</div>
-                        <h2 class="slide-title">Grilled Chicken</h2>
-                        <p class="slide-desc">Spicy grilled chicken with kachumbari, perfect for any occasion</p>
-                        <a href="order.html" class="slide-btn">Order Now <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=1600&h=800&fit=crop');">
-                    <div class="slide-overlay"></div>
-                    <div class="slide-content">
-                        <div class="slide-badge">🥤 REFRESHING</div>
-                        <h2 class="slide-title">Fresh Mango Juice</h2>
-                        <p class="slide-desc">100% pure mango juice, freshly squeezed daily</p>
-                        <a href="order.html" class="slide-btn">Order Now <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1589118949245-7d38baf380d6?w=1600&h=800&fit=crop');">
-                    <div class="slide-overlay"></div>
-                    <div class="slide-content">
-                        <div class="slide-badge">🍩 SWEET TREAT</div>
-                        <h2 class="slide-title">Mandazi</h2>
-                        <p class="slide-desc">Kenyan doughnuts, fluffy and perfect with chai</p>
-                        <a href="order.html" class="slide-btn">Order Now <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1623428454614-baf816f0b9f7?w=1600&h=800&fit=crop');">
-                    <div class="slide-overlay"></div>
-                    <div class="slide-content">
-                        <div class="slide-badge">🥥 COCONUT DELIGHT</div>
-                        <h2 class="slide-title">Mahamri</h2>
-                        <p class="slide-desc">Coconut doughnuts, a Swahili delicacy</p>
-                        <a href="order.html" class="slide-btn">Order Now <i class="fas fa-arrow-right"></i></a>
-                    </div>
+    <!-- Hero Carousel -->
+    <div class="swiper hero-slider">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1544025162-d76694265947?w=1600&h=900&fit=crop');">
+                <div class="hero-overlay"></div>
+                <div class="hero-content">
+                    <div class="hero-badge">🔥 SIGNATURE DISH</div>
+                    <h1 class="hero-title">Nyama Choma</h1>
+                    <p class="hero-desc">Grilled to perfection with our secret spices, served with fresh kachumbari</p>
+                    <a href="order.html" class="hero-btn">Order Now <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-pagination"></div>
+            <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1551326844-4df70f78d0e9?w=1600&h=900&fit=crop');">
+                <div class="hero-overlay"></div>
+                <div class="hero-content">
+                    <div class="hero-badge">🍚 SWAHILI SPECIAL</div>
+                    <h1 class="hero-title">Kenyan Pilau</h1>
+                    <p class="hero-desc">Spiced rice with beef, a Swahili delicacy bursting with flavor</p>
+                    <a href="order.html" class="hero-btn">Order Now <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=1600&h=900&fit=crop');">
+                <div class="hero-overlay"></div>
+                <div class="hero-content">
+                    <div class="hero-badge">🍗 CRISPY & JUICY</div>
+                    <h1 class="hero-title">Grilled Chicken</h1>
+                    <p class="hero-desc">Spicy grilled chicken with kachumbari, perfect for any occasion</p>
+                    <a href="order.html" class="hero-btn">Order Now <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=1600&h=900&fit=crop');">
+                <div class="hero-overlay"></div>
+                <div class="hero-content">
+                    <div class="hero-badge">🥤 REFRESHING</div>
+                    <h1 class="hero-title">Fresh Mango Juice</h1>
+                    <p class="hero-desc">100% pure mango juice, freshly squeezed daily</p>
+                    <a href="order.html" class="hero-btn">Order Now <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1589118949245-7d38baf380d6?w=1600&h=900&fit=crop');">
+                <div class="hero-overlay"></div>
+                <div class="hero-content">
+                    <div class="hero-badge">🍩 SWEET TREAT</div>
+                    <h1 class="hero-title">Mandazi</h1>
+                    <p class="hero-desc">Kenyan doughnuts, fluffy and perfect with chai</p>
+                    <a href="order.html" class="hero-btn">Order Now <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1623428454614-baf816f0b9f7?w=1600&h=900&fit=crop');">
+                <div class="hero-overlay"></div>
+                <div class="hero-content">
+                    <div class="hero-badge">🥥 COCONUT DELIGHT</div>
+                    <h1 class="hero-title">Mahamri</h1>
+                    <p class="hero-desc">Coconut doughnuts, a Swahili delicacy</p>
+                    <a href="order.html" class="hero-btn">Order Now <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
         </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
     </div>
 
     <!-- Limited Time Banner -->
@@ -744,28 +689,28 @@
             <h2 class="section-title">Our <span>Signature Dishes</span></h2>
             <p class="section-subtitle">Fresh, delicious, and made with love</p>
             
-            <div class="food-grid" id="foodGrid"></div>
+            <div class="featured-grid" id="foodGrid"></div>
         </div>
     </section>
 
     <!-- Stats Section -->
-    <section class="stats">
+    <section class="stats-section">
         <div class="stats-grid">
             <div>
                 <div class="stat-number">500+</div>
-                <div>Daily Customers</div>
+                <div class="text-gray-500">Daily Customers</div>
             </div>
             <div>
                 <div class="stat-number">50+</div>
-                <div>Authentic Dishes</div>
+                <div class="text-gray-500">Authentic Dishes</div>
             </div>
             <div>
                 <div class="stat-number">3</div>
-                <div>Locations</div>
+                <div class="text-gray-500">Locations</div>
             </div>
             <div>
                 <div class="stat-number">10+</div>
-                <div>Years of Excellence</div>
+                <div class="text-gray-500">Years of Excellence</div>
             </div>
         </div>
     </section>
@@ -878,7 +823,7 @@
         }
         
         // Initialize Swiper Carousel
-        const heroSwiper = new Swiper('.heroSwiper', {
+        const heroSwiper = new Swiper('.hero-slider', {
             loop: true,
             autoplay: {
                 delay: 5000,
@@ -898,16 +843,26 @@
             },
         });
         
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
         // Mobile Menu
-        const hamburger = document.getElementById('hamburgerMenu');
+        const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobileMenu');
-        const closeMobile = document.getElementById('closeMobile');
+        const closeMenu = document.getElementById('closeMenu');
         
         hamburger.addEventListener('click', () => {
             mobileMenu.classList.add('active');
         });
         
-        closeMobile.addEventListener('click', () => {
+        closeMenu.addEventListener('click', () => {
             mobileMenu.classList.remove('active');
         });
         
@@ -917,16 +872,6 @@
                 !mobileMenu.contains(e.target) && 
                 !hamburger.contains(e.target)) {
                 mobileMenu.classList.remove('active');
-            }
-        });
-        
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('navbar-scrolled');
-            } else {
-                navbar.classList.remove('navbar-scrolled');
             }
         });
         
