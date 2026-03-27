@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="SjTvVDsy9ye1aNay9tveLBIvOqosZdFAaWcgyzswb6M" />
+    
     <title>Bava Restaurant | Fresh Taste of Kenya</title>
     
     <!-- Tailwind CSS -->
@@ -40,7 +44,7 @@
             --dark: #1a1a1a;
         }
         
-        /* Navbar - Transparent to Solid */
+        /* Navbar */
         .navbar {
             position: fixed;
             top: 0;
@@ -128,12 +132,6 @@
             transform: translateY(-2px);
         }
         
-        .navbar.scrolled .order-btn {
-            background: var(--primary);
-            color: white;
-        }
-        
-        /* Hamburger Menu */
         .hamburger {
             display: none;
             font-size: 1.8rem;
@@ -145,6 +143,7 @@
             color: var(--primary);
         }
         
+        /* Mobile Menu */
         .mobile-menu {
             position: fixed;
             top: 0;
@@ -751,7 +750,7 @@
             </div>
             <div class="footer-col">
                 <h4>CONTACT</h4>
-                <p><i class="fas fa-phone mr-2"></i> +254 743 462086</p>
+                <p><i class="fas fa-phone mr-2"></i> 0743 462086</p>
                 <p><i class="fas fa-envelope mr-2"></i> info@bavarestaurant.co.ke</p>
                 <p><i class="fas fa-map-marker-alt mr-2"></i> Thika, Nakuru, Bungoma</p>
             </div>
@@ -769,7 +768,7 @@
             </div>
         </div>
         <div class="copyright">
-            <p>&copy; 2024 Bava Restaurant. All rights reserved. | Fresh Taste of Kenya</p>
+            <p>&copy; 2026 Bava Restaurant. All rights reserved. | Fresh Taste of Kenya</p>
         </div>
     </footer>
 
@@ -892,14 +891,14 @@
             const answerDiv = document.getElementById('answerContainer');
             const answers = {
                 hours: "🕐 Bava Restaurant is open daily:\n\n📅 Monday - Friday: 9:00 AM - 10:00 PM\n📅 Saturday - Sunday: 10:00 AM - 9:00 PM\n📅 Holidays: 11:00 AM - 8:00 PM",
-                delivery: "🚚 Yes! We offer free delivery within 5km of our branches.\n\n⏱️ Delivery time: 30-45 minutes\n📞 Call us to place delivery orders: +254 743 462086",
+                delivery: "🚚 Yes! We offer free delivery within 5km of our branches.\n\n⏱️ Delivery time: 30-45 minutes\n📞 Call us to place delivery orders: 0743 462086",
                 payment: "💰 We accept:\n✅ Cash\n✅ M-Pesa (Paybill: 123456)\n✅ Credit/Debit Cards\n✅ Visa/Mastercard",
                 locations: "📍 We have 3 locations:\n\n1️⃣ Thika - Kenyatta Highway\n2️⃣ Nakuru - Kenyatta Avenue\n3️⃣ Bungoma - Moi Avenue\n\nClick on Locations page to see maps!",
                 special: "⭐ Our signature dish is Nyama Choma!\n\n🔥 Grilled to perfection with our secret spices\n🥗 Served with fresh kachumbari",
-                reservation: "📞 To make a reservation:\n\n📱 Call us: +254 743 462086\n📧 Email: reservations@bavarestaurant.co.ke\n🏃 Or visit any of our branches directly!"
+                reservation: "📞 To make a reservation:\n\n📱 Call us: 0743 462086\n📧 Email: reservations@bavarestaurant.co.ke\n🏃 Or visit any of our branches directly!"
             };
             
-            answerDiv.innerHTML = answers[type] || "Sorry, please call us at +254 743 462086 for assistance.";
+            answerDiv.innerHTML = answers[type] || "Sorry, please call us at 0743 462086 for assistance.";
             answerDiv.classList.add('show');
             
             setTimeout(() => {
