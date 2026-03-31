@@ -3,74 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    
-    <!-- Google Search Console Verification -->
     <meta name="google-site-verification" content="SjTvVDsy9ye1aNay9tveLBIvOqosZdFAaWcgyzswb6M" />
-    
-    <title>Bava Restaurant | Fresh Taste of Kenya</title>
-    
+    <title>Bava Restaurant | Premium East African Cuisine - Kenya, Somalia, Ethiopia</title>
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
-    
-    <!-- Swiper.js for Carousel -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    <!-- Swiper.js -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             background: #ffffff;
             color: #1a1a1a;
             overflow-x: hidden;
         }
-        
+
         :root {
             --primary: #0B6E4F;
             --primary-dark: #08523a;
+            --primary-light: #2a9d8f;
             --secondary: #D4AF37;
             --secondary-dark: #b8921a;
-            --dark: #1a1a1a;
+            --accent: #E76F51;
+            --dark: #0f1923;
+            --gray-light: #f8f9fa;
+            --cream: #fdfaf4;
         }
-        
-        /* Navbar */
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
+
+        /* ===== NAVBAR ===== */
         .navbar {
             position: fixed;
-            top: 0;
-            left: 0;
+            top: 0; left: 0;
             width: 100%;
             z-index: 1000;
-            padding: 20px 5%;
-            transition: all 0.3s;
+            padding: 22px 5%;
+            transition: all 0.4s ease;
             background: transparent;
         }
-        
         .navbar.scrolled {
-            background: white;
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(12px);
             padding: 12px 5%;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
         }
-        
-        .navbar.scrolled .logo-text,
-        .navbar.scrolled .nav-link {
-            color: var(--dark);
-        }
-        
-        .navbar.scrolled .logo-text span {
-            color: var(--primary);
-        }
-        
+        .navbar.scrolled .logo-text { color: var(--primary); }
+        .navbar.scrolled .logo-text span { color: var(--secondary); }
+        .navbar.scrolled .nav-link { color: var(--dark); }
+        .navbar.scrolled .hamburger { color: var(--primary); }
+
         .nav-container {
             max-width: 1400px;
             margin: 0 auto;
@@ -78,121 +70,97 @@
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .logo-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 900;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 800;
             color: white;
-            letter-spacing: -0.5px;
+            letter-spacing: 1px;
         }
-        
-        .logo-text span {
-            color: var(--secondary);
-        }
-        
-        .navbar.scrolled .logo-text {
-            color: var(--primary);
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-        
+        .logo-text span { color: var(--secondary); }
+
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+
         .nav-link {
             text-decoration: none;
-            color: white;
+            color: rgba(255,255,255,0.92);
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
             transition: color 0.3s;
+            position: relative;
         }
-        
-        .navbar.scrolled .nav-link {
-            color: var(--dark);
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 0; height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s;
         }
-        
-        .nav-link:hover {
-            color: var(--secondary);
-        }
-        
+        .nav-link:hover { color: var(--secondary); }
+        .nav-link:hover::after { width: 100%; }
+
         .order-btn {
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
             color: white;
-            padding: 0.6rem 1.5rem;
+            padding: 0.65rem 1.6rem;
             border-radius: 40px;
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
             text-decoration: none;
             transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(11,110,79,0.35);
         }
-        
         .order-btn:hover {
-            background: var(--primary-dark);
             transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(11,110,79,0.45);
         }
-        
+
         .hamburger {
             display: none;
             font-size: 1.8rem;
             cursor: pointer;
             color: white;
         }
-        
-        .navbar.scrolled .hamburger {
-            color: var(--primary);
-        }
-        
-        /* Mobile Menu */
+
+        /* ===== MOBILE MENU ===== */
         .mobile-menu {
             position: fixed;
-            top: 0;
-            right: -100%;
-            width: 85%;
-            max-width: 320px;
+            top: 0; right: -100%;
+            width: 85%; max-width: 320px;
             height: 100vh;
             background: white;
             z-index: 1002;
-            transition: right 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            transition: right 0.4s cubic-bezier(0.2,0.9,0.4,1.1);
             padding: 80px 30px 30px;
-            box-shadow: -5px 0 30px rgba(0,0,0,0.1);
+            box-shadow: -5px 0 30px rgba(0,0,0,0.12);
         }
-        
-        .mobile-menu.active {
-            right: 0;
-        }
-        
+        .mobile-menu.active { right: 0; }
         .mobile-menu a {
             display: block;
             padding: 15px 0;
             color: var(--dark);
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.1rem;
-            border-bottom: 1px solid #eee;
+            font-size: 1.05rem;
+            border-bottom: 1px solid #f0f0f0;
             transition: all 0.3s;
         }
-        
-        .mobile-menu a:hover {
-            color: var(--primary);
-            padding-left: 10px;
-        }
-        
+        .mobile-menu a:hover { color: var(--primary); padding-left: 10px; }
         .close-menu {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 20px; right: 20px;
             font-size: 1.5rem;
             cursor: pointer;
             color: #999;
         }
-        
-        /* Hero Carousel */
-        .hero-slider {
-            height: 100vh;
-            width: 100%;
-        }
-        
+
+        /* ===== HERO CAROUSEL ===== */
+        .hero-slider { height: 100vh; width: 100%; }
+
         .swiper-slide {
             position: relative;
             background-size: cover;
@@ -202,216 +170,683 @@
             justify-content: center;
             text-align: center;
         }
-        
+
         .hero-overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.45);
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(160deg, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.35) 100%);
         }
-        
+
         .hero-content {
             position: relative;
             z-index: 10;
             color: white;
-            max-width: 800px;
-            padding: 0 20px;
+            max-width: 820px;
+            padding: 0 24px;
         }
-        
+
         .hero-badge {
             display: inline-block;
             background: var(--secondary);
             color: var(--primary-dark);
-            padding: 0.3rem 1rem;
+            padding: 0.35rem 1.1rem;
             border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 1.2rem;
         }
-        
+
         .hero-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 4rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 5rem;
             font-weight: 800;
             margin-bottom: 1rem;
+            line-height: 1.05;
+            animation: fadeInUp 0.8s ease;
         }
-        
+
         .hero-desc {
             font-size: 1.1rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
+            margin-bottom: 2.2rem;
+            opacity: 0.88;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
-        
+
+        .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
         .hero-btn {
             background: var(--primary);
             color: white;
-            padding: 12px 30px;
+            padding: 14px 32px;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 8px 25px rgba(11,110,79,0.4);
+        }
+        .hero-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+        }
+
+        .hero-btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.7);
+            padding: 14px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
             transition: all 0.3s;
             display: inline-flex;
             align-items: center;
             gap: 8px;
         }
-        
-        .hero-btn:hover {
-            background: var(--primary-dark);
+        .hero-btn-outline:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: white;
             transform: translateY(-3px);
         }
-        
-        .swiper-button-next,
-        .swiper-button-prev {
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .swiper-button-next, .swiper-button-prev {
             color: white;
-            background: rgba(0,0,0,0.3);
-            width: 45px;
-            height: 45px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(8px);
+            width: 48px; height: 48px;
             border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.3s;
         }
-        
-        .swiper-pagination-bullet {
-            background: white;
-            opacity: 0.6;
-        }
-        
-        .swiper-pagination-bullet-active {
-            background: var(--secondary);
-            opacity: 1;
-        }
-        
-        /* Limited Time Banner */
+        .swiper-button-next:hover, .swiper-button-prev:hover { background: var(--primary); }
+        .swiper-button-next::after, .swiper-button-prev::after { font-size: 1.1rem; font-weight: 900; }
+
+        .swiper-pagination-bullet { background: white; opacity: 0.5; }
+        .swiper-pagination-bullet-active { background: var(--secondary); opacity: 1; width: 24px; border-radius: 3px; }
+
+        /* ===== LIMITED TIME BANNER ===== */
         .limited-banner {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            padding: 12px;
+            background: linear-gradient(90deg, var(--primary-dark), var(--primary), var(--secondary-dark));
+            padding: 13px;
             text-align: center;
             color: white;
             font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.3px;
+            cursor: pointer;
         }
-        
-        /* Featured Section */
-        .section-title {
-            text-align: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-        }
-        
-        .section-title span {
+
+        /* ===== SECTION HEADERS ===== */
+        .section-tag {
+            display: inline-block;
+            background: rgba(11,110,79,0.1);
             color: var(--primary);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
         }
-        
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.6rem;
+            line-height: 1.1;
+        }
+        .section-title span { color: var(--primary); }
+
         .section-subtitle {
-            text-align: center;
-            color: #666;
+            color: #64748b;
             margin-bottom: 3rem;
+            max-width: 580px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
         }
-        
+
+        /* ===== MENU FILTER TABS ===== */
+        .filter-tabs {
+            display: flex;
+            gap: 0.7rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+        }
+
+        .filter-tab {
+            background: #f1f5f9;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #475569;
+        }
+        .filter-tab.active, .filter-tab:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(11,110,79,0.25);
+        }
+
+        /* ===== FOOD CARDS ===== */
         .featured-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
             gap: 2rem;
             padding: 0 5%;
         }
-        
+
         .food-card {
             background: white;
             border-radius: 24px;
             overflow: hidden;
-            transition: all 0.3s;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            cursor: pointer;
+            transition: all 0.45s cubic-bezier(0.2,0.9,0.4,1.1);
+            box-shadow: 0 4px 24px -8px rgba(0,0,0,0.1);
+            border: 1px solid rgba(0,0,0,0.04);
         }
-        
         .food-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transform: translateY(-14px);
+            box-shadow: 0 28px 50px -15px rgba(0,0,0,0.18);
         }
-        
+
+        .card-img-container {
+            position: relative;
+            overflow: hidden;
+            height: 240px;
+            background: #e2e8f0;
+        }
+
         .food-image {
             width: 100%;
-            height: 220px;
+            height: 100%;
             object-fit: cover;
+            transition: transform 0.65s cubic-bezier(0.25,0.45,0.45,0.95);
+            display: block;
         }
-        
-        .food-info {
-            padding: 1.5rem;
+        .food-card:hover .food-image { transform: scale(1.12); }
+
+        .skeleton-loader {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, #e2e8f0 25%, #f8fafc 50%, #e2e8f0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.4s infinite;
+            z-index: 2;
         }
-        
-        .food-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.5rem;
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
         }
-        
-        .food-name {
-            font-size: 1.2rem;
-            font-weight: 700;
-        }
-        
-        .food-price {
-            color: var(--primary);
+
+        .card-badge {
+            position: absolute;
+            top: 14px; left: 14px;
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            color: white;
+            font-size: 0.68rem;
             font-weight: 800;
+            padding: 5px 13px;
+            border-radius: 40px;
+            z-index: 5;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+            letter-spacing: 0.5px;
         }
-        
-        .food-desc {
-            color: #666;
-            font-size: 0.85rem;
-            margin-bottom: 1rem;
-            line-height: 1.5;
-        }
-        
-        .add-btn {
-            width: 100%;
-            background: var(--secondary);
-            color: var(--primary-dark);
-            border: none;
-            padding: 0.7rem;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
+        .card-badge.bestseller { background: linear-gradient(135deg, #0B6E4F, #2a9d8f); }
+        .card-badge.signature { background: linear-gradient(135deg, #E76F51, #f4a261); }
+        .card-badge.drink { background: linear-gradient(135deg, #3b82f6, #06b6d4); }
+        .card-badge.favorite { background: linear-gradient(135deg, #8b5cf6, #ec4899); }
+
+        .card-fav-btn {
+            position: absolute;
+            top: 14px; right: 14px;
+            width: 36px; height: 36px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
+            cursor: pointer;
+            z-index: 5;
+            transition: all 0.3s;
+            border: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
-        
-        .add-btn:hover {
-            background: var(--secondary-dark);
+        .card-fav-btn:hover { transform: scale(1.15); background: white; }
+        .card-fav-btn.liked i { color: #ef4444; }
+        .card-fav-btn i { color: #94a3b8; font-size: 0.9rem; transition: color 0.3s; }
+
+        .rating-wrapper {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: #fef9e6;
+            padding: 4px 11px;
+            border-radius: 40px;
+            font-size: 0.73rem;
+            font-weight: 700;
+            border: 1px solid rgba(212,175,55,0.2);
+        }
+
+        .food-info { padding: 1.4rem 1.3rem 1.5rem; }
+
+        .food-name {
+            font-size: 1.15rem;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            color: #0f172a;
+        }
+
+        .food-price {
+            color: var(--primary);
+            font-weight: 800;
+            font-size: 1.1rem;
+            background: rgba(11,110,79,0.08);
+            padding: 4px 13px;
+            border-radius: 30px;
+        }
+
+        .food-desc {
+            color: #64748b;
+            font-size: 0.84rem;
+            line-height: 1.55;
+            margin: 10px 0 14px;
+        }
+
+        .add-btn-premium {
+            background: linear-gradient(95deg, var(--primary), var(--primary-light));
+            border: none;
+            padding: 12px 0;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 0.88rem;
+            color: white;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            width: 100%;
+            box-shadow: 0 5px 14px rgba(11,110,79,0.22);
+            letter-spacing: 0.3px;
+        }
+        .add-btn-premium:hover {
             transform: scale(1.02);
+            background: linear-gradient(95deg, var(--primary-dark), var(--primary));
+            box-shadow: 0 8px 22px rgba(11,110,79,0.38);
         }
-        
-        /* Stats Section */
+        .add-btn-premium:active { transform: scale(0.97); }
+
+        /* ===== STATS SECTION ===== */
         .stats-section {
-            background: #f9fafb;
-            padding: 4rem 5%;
-            margin-top: 4rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: 5rem 5%;
+            position: relative;
+            overflow: hidden;
         }
-        
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -10%;
+            width: 400px; height: 400px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 50%;
+        }
+        .stats-section::after {
+            content: '';
+            position: absolute;
+            bottom: -30%; right: -5%;
+            width: 300px; height: 300px;
+            background: rgba(212,175,55,0.08);
+            border-radius: 50%;
+        }
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2.5rem;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .stat-item { color: white; }
+        .stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--secondary);
+            line-height: 1;
+        }
+        .stat-label { color: rgba(255,255,255,0.75); font-size: 0.9rem; margin-top: 6px; }
+        .stat-icon { font-size: 1.8rem; margin-bottom: 0.5rem; color: rgba(255,255,255,0.5); }
+
+        /* ===== PREMIUM EXPERIENCE SECTION ===== */
+        .experience-section {
+            padding: 6rem 5%;
+            background: var(--cream);
+        }
+        .experience-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .experience-img-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .exp-img {
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        .exp-img img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .exp-img:hover img { transform: scale(1.07); }
+        .exp-img:first-child {
+            grid-column: 1 / -1;
+        }
+        .exp-img:first-child img { height: 260px; }
+        .experience-features { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem; }
+        .exp-feature {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+        .exp-icon {
+            width: 48px; height: 48px;
+            background: rgba(11,110,79,0.1);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .exp-icon i { color: var(--primary); font-size: 1.1rem; }
+        .exp-feature h4 { font-weight: 700; margin-bottom: 4px; font-size: 0.95rem; }
+        .exp-feature p { color: #64748b; font-size: 0.84rem; line-height: 1.5; }
+
+        /* ===== SPECIAL OFFERS ===== */
+        .offers-section { padding: 6rem 5%; background: white; }
+        .offers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .offer-card {
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+            min-height: 280px;
+            display: flex;
+            align-items: flex-end;
+            cursor: pointer;
+            transition: transform 0.4s ease;
+        }
+        .offer-card:hover { transform: scale(1.02); }
+        .offer-card img {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+        .offer-overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 60%);
+        }
+        .offer-content {
+            position: relative;
+            z-index: 2;
+            padding: 1.8rem;
+            color: white;
+            width: 100%;
+        }
+        .offer-tag {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--primary-dark);
+            padding: 4px 14px;
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 0.6rem;
+        }
+        .offer-title { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 800; line-height: 1.1; margin-bottom: 0.4rem; }
+        .offer-desc { font-size: 0.82rem; opacity: 0.85; margin-bottom: 1rem; }
+        .offer-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: white;
+            color: var(--primary);
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.82rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .offer-btn:hover { background: var(--primary); color: white; }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials-section {
+            padding: 6rem 5%;
+            background: var(--cream);
+            overflow: hidden;
+        }
+        .testimonials-slider { max-width: 1100px; margin: 0 auto; }
+        .testimonial-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 30px -10px rgba(0,0,0,0.1);
+            margin: 10px 5px;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+        .testimonial-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.2rem; }
+        .testimonial-avatar {
+            width: 56px; height: 56px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--secondary);
+        }
+        .testimonial-name { font-weight: 700; font-size: 1rem; }
+        .testimonial-location { color: #94a3b8; font-size: 0.8rem; }
+        .testimonial-stars { color: #f59e0b; font-size: 0.85rem; margin-bottom: 0.8rem; }
+        .testimonial-text { color: #475569; font-size: 0.9rem; line-height: 1.65; font-style: italic; }
+        .testimonial-quote { font-size: 2.5rem; color: var(--secondary); opacity: 0.4; line-height: 1; margin-bottom: 0.5rem; font-family: Georgia, serif; }
+
+        /* ===== GALLERY ===== */
+        .gallery-section { padding: 6rem 5%; background: white; }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 240px);
+            gap: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .gallery-item {
+            border-radius: 18px;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+        }
+        .gallery-item img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .gallery-item:hover img { transform: scale(1.08); }
+        .gallery-item .gallery-hover {
+            position: absolute;
+            inset: 0;
+            background: rgba(11,110,79,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .gallery-item:hover .gallery-hover { opacity: 1; }
+        .gallery-hover i { color: white; font-size: 1.8rem; }
+        .gallery-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1; }
+        .gallery-item:nth-child(4) { grid-column: 3 / 5; grid-row: 2; }
+
+        /* ===== RESERVATION SECTION ===== */
+        .reservation-section {
+            padding: 6rem 5%;
+            background: linear-gradient(135deg, var(--dark) 0%, #1a2a3a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .reservation-section::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 50%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop') center/cover;
+            opacity: 0.12;
+        }
+        .reservation-inner {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        .reservation-inner .section-tag { background: rgba(212,175,55,0.15); color: var(--secondary); }
+        .reservation-inner .section-title { color: white; }
+        .reservation-inner .section-subtitle { color: rgba(255,255,255,0.6); margin-bottom: 2.5rem; }
+        .res-form {
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 2.5rem;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+        .form-group { display: flex; flex-direction: column; gap: 6px; text-align: left; }
+        .form-group label { color: rgba(255,255,255,0.7); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.5px; }
+        .form-group input, .form-group select {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 12px;
+            padding: 12px 16px;
+            color: white;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            outline: none;
+        }
+        .form-group input:focus, .form-group select:focus {
+            border-color: var(--secondary);
+            background: rgba(255,255,255,0.12);
+        }
+        .form-group select option { background: var(--dark); color: white; }
+        .form-group input::placeholder { color: rgba(255,255,255,0.35); }
+        .res-submit {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 6px 20px rgba(11,110,79,0.4);
+            margin-top: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+        .res-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(11,110,79,0.5); }
+
+        /* ===== NEWSLETTER ===== */
+        .newsletter-section {
+            padding: 5rem 5%;
+            background: var(--primary);
+        }
+        .newsletter-inner {
+            max-width: 600px;
+            margin: 0 auto;
             text-align: center;
         }
-        
-        .stat-number {
-            font-size: 2.5rem;
+        .newsletter-inner h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.4rem;
             font-weight: 800;
-            color: var(--primary);
+            color: white;
+            margin-bottom: 0.8rem;
         }
-        
-        /* AI Chatbot */
+        .newsletter-inner p { color: rgba(255,255,255,0.75); margin-bottom: 2rem; }
+        .newsletter-form { display: flex; gap: 0.8rem; }
+        .newsletter-input {
+            flex: 1;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50px;
+            padding: 13px 22px;
+            color: white;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .newsletter-input::placeholder { color: rgba(255,255,255,0.5); }
+        .newsletter-input:focus { border-color: var(--secondary); }
+        .newsletter-btn {
+            background: var(--secondary);
+            color: var(--primary-dark);
+            border: none;
+            padding: 13px 28px;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        .newsletter-btn:hover { background: white; transform: translateY(-2px); }
+
+        /* ===== AI CHATBOT ===== */
         .chatbot-btn {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
+            bottom: 30px; right: 30px;
+            width: 62px; height: 62px;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             border-radius: 50%;
             display: flex;
@@ -419,256 +854,389 @@
             justify-content: center;
             cursor: pointer;
             z-index: 1000;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 6px 24px rgba(0,0,0,0.2);
             transition: all 0.3s;
-            animation: pulse 2s infinite;
+            animation: chatPulse 2.5s infinite;
         }
-        
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 5px 20px rgba(11,110,79,0.3); }
-            50% { box-shadow: 0 5px 30px rgba(212,175,55,0.5); }
+        @keyframes chatPulse {
+            0%, 100% { box-shadow: 0 6px 24px rgba(11,110,79,0.35); }
+            50% { box-shadow: 0 6px 35px rgba(212,175,55,0.55); }
         }
-        
-        .chatbot-btn:hover {
-            transform: scale(1.1);
-        }
-        
-        .chatbot-btn i {
-            font-size: 1.8rem;
-            color: white;
-        }
-        
+        .chatbot-btn:hover { transform: scale(1.12); }
+        .chatbot-btn i { font-size: 1.8rem; color: white; }
+
         .chatbot-window {
             position: fixed;
-            bottom: 100px;
-            right: 30px;
-            width: 350px;
-            height: 500px;
+            bottom: 108px; right: 30px;
+            width: 360px;
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            border-radius: 22px;
+            box-shadow: 0 12px 50px rgba(0,0,0,0.2);
             z-index: 1001;
             display: none;
             flex-direction: column;
             overflow: hidden;
+            max-height: 520px;
         }
-        
-        .chatbot-window.active {
-            display: flex;
-        }
-        
+        .chatbot-window.active { display: flex; }
+
         .chatbot-header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
             color: white;
-            padding: 15px;
+            padding: 16px 18px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
+        .chatbot-header-info { display: flex; align-items: center; gap: 10px; }
+        .chatbot-avatar {
+            width: 36px; height: 36px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .chatbot-header h4 { font-weight: 700; font-size: 0.95rem; }
+        .chatbot-header p { font-size: 0.72rem; opacity: 0.8; }
+        .chatbot-status { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; animation: blink 1.5s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
         .chatbot-questions {
             flex: 1;
             overflow-y: auto;
-            padding: 15px;
+            padding: 16px;
         }
-        
+
+        .chat-welcome {
+            background: linear-gradient(135deg, rgba(11,110,79,0.08), rgba(42,157,143,0.05));
+            border-radius: 14px;
+            padding: 14px;
+            margin-bottom: 14px;
+            font-size: 0.85rem;
+            color: #475569;
+            border-left: 3px solid var(--primary);
+        }
+
         .question-btn {
             width: 100%;
-            background: #f5f5f5;
-            border: none;
-            padding: 12px;
-            margin-bottom: 10px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 11px 14px;
+            margin-bottom: 8px;
             border-radius: 12px;
             text-align: left;
             cursor: pointer;
             transition: all 0.3s;
             font-weight: 500;
+            font-size: 0.85rem;
+            font-family: 'DM Sans', sans-serif;
+            color: #334155;
         }
-        
         .question-btn:hover {
-            background: var(--secondary);
-            color: var(--primary-dark);
-            transform: translateX(5px);
-        }
-        
-        .chatbot-answer {
             background: var(--primary);
             color: white;
-            padding: 12px;
-            border-radius: 12px;
-            margin-bottom: 10px;
+            border-color: var(--primary);
+            transform: translateX(4px);
+        }
+
+        .chatbot-answer {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 14px 16px;
+            border-radius: 14px;
+            margin-top: 8px;
+            font-size: 0.85rem;
+            line-height: 1.6;
             display: none;
+            white-space: pre-line;
         }
-        
-        .chatbot-answer.show {
-            display: block;
-        }
-        
-        /* Footer */
+        .chatbot-answer.show { display: block; }
+
+        /* ===== FOOTER ===== */
         footer {
             background: var(--dark);
             color: white;
-            padding: 4rem 5% 2rem;
+            padding: 5rem 5% 2rem;
         }
-        
-        .footer-grid {
+
+        .footer-top {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
             gap: 3rem;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
+            padding-bottom: 4rem;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
         }
-        
+
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1rem;
+        }
+        .footer-logo span { color: var(--secondary); }
+
         .footer-col h4 {
             color: var(--secondary);
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
-        
-        .footer-col p {
+        .footer-col p, .footer-col a {
             color: #9ca3af;
-            line-height: 1.6;
+            line-height: 1.8;
+            font-size: 0.88rem;
+            text-decoration: none;
+            display: block;
+            transition: color 0.3s;
         }
-        
-        .social-icons {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-        
+        .footer-col a:hover { color: var(--secondary); }
+
+        .footer-desc { color: #9ca3af; font-size: 0.88rem; line-height: 1.7; margin-bottom: 1.5rem; }
+
+        .social-icons { display: flex; gap: 0.8rem; }
         .social-icons a {
-            width: 38px;
-            height: 38px;
-            background: rgba(255,255,255,0.08);
+            width: 40px; height: 40px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .social-icons a:hover {
+            background: var(--secondary);
+            color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .copyright { color: #4b5563; font-size: 0.82rem; }
+        .footer-links { display: flex; gap: 1.5rem; }
+        .footer-links a { color: #4b5563; font-size: 0.82rem; text-decoration: none; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--secondary); }
+
+        /* ===== LIGHTBOX ===== */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.92);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 85vh;
+            border-radius: 16px;
+            object-fit: contain;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px; right: 24px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            background: rgba(255,255,255,0.1);
+            width: 48px; height: 48px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: background 0.3s;
+        }
+        .lightbox-close:hover { background: rgba(255,255,255,0.2); }
+
+        /* ===== FLOATING CART ===== */
+        .cart-float {
+            position: fixed;
+            top: 90px; right: 20px;
+            background: white;
+            border-radius: 16px;
+            padding: 12px 16px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            z-index: 999;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            border: 1px solid rgba(0,0,0,0.06);
+        }
+        .cart-float.visible { display: flex; }
+        .cart-float:hover { transform: scale(1.05); }
+        .cart-count {
+            background: var(--primary);
             color: white;
-            transition: all 0.3s;
+            width: 24px; height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
         }
-        
-        .social-icons a:hover {
-            background: var(--secondary);
-            transform: translateY(-3px);
+        .cart-float span { font-weight: 600; font-size: 0.85rem; color: var(--dark); }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .experience-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .footer-top { grid-template-columns: 1fr 1fr; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(3, 220px); }
+            .gallery-item:nth-child(1) { grid-column: 1; grid-row: 1; }
+            .gallery-item:nth-child(4) { grid-column: 2; grid-row: 3; }
         }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.08);
-            color: #6b7280;
-            font-size: 0.85rem;
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: block; }
+            .hero-title { font-size: 2.8rem; }
+            .hero-desc { font-size: 0.95rem; }
+            .section-title { font-size: 2.2rem; }
+            .chatbot-window { width: calc(100% - 40px); right: 20px; left: 20px; }
+            .featured-grid { grid-template-columns: 1fr; padding: 0 1rem; }
+            .form-row { grid-template-columns: 1fr; }
+            .newsletter-form { flex-direction: column; }
+            .experience-img-grid { grid-template-columns: 1fr; }
+            .exp-img:first-child { grid-column: 1; }
+            .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(4, 160px); }
+            .gallery-item:nth-child(1) { grid-column: 1 / -1; }
+            .gallery-item:nth-child(4) { grid-column: 1 / -1; }
+            .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .res-form { padding: 1.5rem; }
         }
-        
-        @media (max-width: 968px) {
-            .nav-links {
-                display: none;
-            }
-            .hamburger {
-                display: block;
-            }
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            .hero-desc {
-                font-size: 1rem;
-            }
-            .chatbot-window {
-                width: calc(100% - 40px);
-                right: 20px;
-                left: 20px;
-                bottom: 100px;
-            }
+
+        @media (max-width: 480px) {
+            .hero-title { font-size: 2.2rem; }
+            .hero-btns { flex-direction: column; align-items: center; }
+            .offers-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ===== TOAST ===== */
+        .toast {
+            position: fixed;
+            bottom: 105px; right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            z-index: 9999;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+            animation: slideInRight 0.3s ease;
+        }
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* ===== SCROLL REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.7s ease;
+        }
+        .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
+
+    <!-- ===== NAVBAR ===== -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="logo-text">BAVA <span>RESTAURANT</span></div>
-            
             <div class="nav-links">
-                <a href="index.html" class="nav-link">HOME</a>
-                <a href="menu.html" class="nav-link">MENU</a>
-                <a href="locations.html" class="nav-link">LOCATIONS</a>
-                <a href="blog.html" class="nav-link">BLOG</a>
-                <a href="offers.html" class="nav-link">OFFERS</a>
-                <a href="order.html" class="order-btn"><i class="fas fa-motorcycle"></i> ORDER NOW</a>
+                <a href="#" class="nav-link">HOME</a>
+                <a href="#menu" class="nav-link">MENU</a>
+                <a href="#experience" class="nav-link">ABOUT</a>
+                <a href="#gallery" class="nav-link">GALLERY</a>
+                <a href="#reservation" class="nav-link">RESERVE</a>
+                <a href="#" class="order-btn"><i class="fas fa-motorcycle"></i> &nbsp;ORDER NOW</a>
             </div>
-            
-            <div class="hamburger" id="hamburger">
-                <i class="fas fa-bars"></i>
-            </div>
+            <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
         </div>
     </nav>
 
-    <!-- Mobile Menu -->
+    <!-- ===== MOBILE MENU ===== -->
     <div class="mobile-menu" id="mobileMenu">
         <div class="close-menu" id="closeMenu"><i class="fas fa-times"></i></div>
-        <a href="index.html">HOME</a>
-        <a href="menu.html">MENU</a>
-        <a href="locations.html">LOCATIONS</a>
-        <a href="blog.html">BLOG</a>
-        <a href="offers.html">OFFERS</a>
-        <a href="order.html" style="color: var(--primary);">ORDER NOW</a>
+        <a href="#">HOME</a>
+        <a href="#menu">MENU</a>
+        <a href="#experience">ABOUT</a>
+        <a href="#gallery">GALLERY</a>
+        <a href="#reservation">RESERVE A TABLE</a>
+        <a href="#" style="color: var(--primary);">ORDER NOW</a>
     </div>
 
-    <!-- Hero Carousel -->
+    <!-- ===== HERO CAROUSEL ===== -->
     <div class="swiper hero-slider">
         <div class="swiper-wrapper">
-            <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1544025162-d76694265947?w=1600&h=900&fit=crop');">
+            <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1544025162-d76694265947?w=1800&h=900&fit=crop&q=85');">
                 <div class="hero-overlay"></div>
                 <div class="hero-content">
                     <div class="hero-badge">🔥 SIGNATURE DISH</div>
                     <h1 class="hero-title">Nyama Choma</h1>
-                    <p class="hero-desc">Grilled to perfection with our secret spices, served with fresh kachumbari</p>
-                    <a href="order.html" class="hero-btn">Order Now <i class="fas fa-arrow-right"></i></a>
+                    <p class="hero-desc">Grilled to perfection with our secret spices, served with fresh kachumbari and ugali</p>
+                    <div class="hero-btns">
+                        <a href="#menu" class="hero-btn"><i class="fas fa-utensils"></i> View Menu</a>
+                        <a href="#reservation" class="hero-btn-outline"><i class="fas fa-calendar-check"></i> Reserve Table</a>
+                    </div>
                 </div>
             </div>
-            <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1551326844-4df70f78d0e9?w=1600&h=900&fit=crop');">
+            <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?w=1800&h=900&fit=crop&q=85');">
                 <div class="hero-overlay"></div>
                 <div class="hero-content">
                     <div class="hero-badge">🍚 SWAHILI SPECIAL</div>
                     <h1 class="hero-title">Kenyan Pilau</h1>
-                    <p class="hero-desc">Spiced rice with beef, a Swahili delicacy bursting with flavor</p>
-                    <a href="order.html" class="hero-btn">Order Now <i class="fas fa-arrow-right"></i></a>
+                    <p class="hero-desc">Spiced rice with beef, a Swahili coastal delicacy bursting with authentic flavor</p>
+                    <div class="hero-btns">
+                        <a href="#menu" class="hero-btn"><i class="fas fa-utensils"></i> View Menu</a>
+                        <a href="#reservation" class="hero-btn-outline"><i class="fas fa-calendar-check"></i> Reserve Table</a>
+                    </div>
                 </div>
             </div>
-            <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=1600&h=900&fit=crop');">
+            <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?w=1800&h=900&fit=crop&q=85');">
                 <div class="hero-overlay"></div>
                 <div class="hero-content">
                     <div class="hero-badge">🍗 CRISPY & JUICY</div>
                     <h1 class="hero-title">Grilled Chicken</h1>
-                    <p class="hero-desc">Spicy grilled chicken with kachumbari, perfect for any occasion</p>
-                    <a href="order.html" class="hero-btn">Order Now <i class="fas fa-arrow-right"></i></a>
+                    <p class="hero-desc">Perfectly marinated spicy grilled chicken with kachumbari, ideal for every occasion</p>
+                    <div class="hero-btns">
+                        <a href="#menu" class="hero-btn"><i class="fas fa-utensils"></i> View Menu</a>
+                        <a href="#reservation" class="hero-btn-outline"><i class="fas fa-calendar-check"></i> Reserve Table</a>
+                    </div>
                 </div>
             </div>
-            <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=1600&h=900&fit=crop');">
+            <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1567364816519-cbc8c5b64c12?w=1800&h=900&fit=crop&q=85');">
                 <div class="hero-overlay"></div>
                 <div class="hero-content">
-                    <div class="hero-badge">🥤 REFRESHING</div>
-                    <h1 class="hero-title">Fresh Mango Juice</h1>
-                    <p class="hero-desc">100% pure mango juice, freshly squeezed daily</p>
-                    <a href="order.html" class="hero-btn">Order Now <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-            <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1589118949245-7d38baf380d6?w=1600&h=900&fit=crop');">
-                <div class="hero-overlay"></div>
-                <div class="hero-content">
-                    <div class="hero-badge">🍩 SWEET TREAT</div>
-                    <h1 class="hero-title">Mandazi</h1>
-                    <p class="hero-desc">Kenyan doughnuts, fluffy and perfect with chai</p>
-                    <a href="order.html" class="hero-btn">Order Now <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-            <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1623428454614-baf816f0b9f7?w=1600&h=900&fit=crop');">
-                <div class="hero-overlay"></div>
-                <div class="hero-content">
-                    <div class="hero-badge">🥥 COCONUT DELIGHT</div>
-                    <h1 class="hero-title">Mahamri</h1>
-                    <p class="hero-desc">Coconut doughnuts, a Swahili delicacy</p>
-                    <a href="order.html" class="hero-btn">Order Now <i class="fas fa-arrow-right"></i></a>
+                    <div class="hero-badge">👑 ETHIOPIAN CLASSIC</div>
+                    <h1 class="hero-title">Doro Wat</h1>
+                    <p class="hero-desc">Rich chicken stew with berbere spice blend, served on traditional injera flatbread</p>
+                    <div class="hero-btns">
+                        <a href="#menu" class="hero-btn"><i class="fas fa-utensils"></i> View Menu</a>
+                        <a href="#reservation" class="hero-btn-outline"><i class="fas fa-calendar-check"></i> Reserve Table</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -677,139 +1245,607 @@
         <div class="swiper-pagination"></div>
     </div>
 
-    <!-- Limited Time Banner -->
+    <!-- ===== LIMITED BANNER ===== -->
     <div class="limited-banner">
-        <i class="fas fa-fire mr-2"></i> LIMITED TIME ONLY: Try our new Spicy Nyama Choma! <i class="fas fa-arrow-right ml-2"></i>
+        <i class="fas fa-fire"></i>&nbsp; LIMITED TIME: Somali Suqaar &amp; Ethiopian Doro Wat NOW AVAILABLE! &nbsp;|&nbsp; Free Chai with orders over KES 1,000 &nbsp;<i class="fas fa-arrow-right"></i>
     </div>
 
-    <!-- Featured Menu Section -->
-    <section class="py-20">
-        <div class="container mx-auto px-4">
-            <h2 class="section-title">Our <span>Signature Dishes</span></h2>
-            <p class="section-subtitle">Fresh, delicious, and made with love</p>
-            
+    <!-- ===== FLOATING CART ===== -->
+    <div class="cart-float" id="cartFloat" onclick="openCart()">
+        <i class="fas fa-shopping-bag" style="color: var(--primary);"></i>
+        <div class="cart-count" id="cartCount">0</div>
+        <span id="cartTotal">KES 0</span>
+    </div>
+
+    <!-- ===== MENU SECTION ===== -->
+    <section class="py-20" id="menu">
+        <div class="container mx-auto px-4 text-center">
+            <div class="section-tag">OUR CUISINE</div>
+            <h2 class="section-title">Signature &amp; <span>Pan-African</span> Dishes</h2>
+            <p class="section-subtitle">Authentic flavors from Kenya, Somalia &amp; Ethiopia — Fresh, delicious, and made with love every day</p>
+
+            <!-- Filter Tabs -->
+            <div class="filter-tabs">
+                <button class="filter-tab active" data-filter="all">🍽️ All Items</button>
+                <button class="filter-tab" data-filter="mains">🥩 Main Dishes</button>
+                <button class="filter-tab" data-filter="sides">🍞 Sides & Breads</button>
+                <button class="filter-tab" data-filter="drinks">☕ Drinks</button>
+            </div>
+
             <div class="featured-grid" id="foodGrid"></div>
         </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="stats-section">
+    <!-- ===== STATS SECTION ===== -->
+    <section class="stats-section reveal">
         <div class="stats-grid">
-            <div>
-                <div class="stat-number">500+</div>
-                <div class="text-gray-500">Daily Customers</div>
+            <div class="stat-item">
+                <div class="stat-icon"><i class="fas fa-users"></i></div>
+                <div class="stat-number" data-target="500">0</div>
+                <div class="stat-label">Daily Customers</div>
             </div>
-            <div>
-                <div class="stat-number">50+</div>
-                <div class="text-gray-500">Authentic Dishes</div>
+            <div class="stat-item">
+                <div class="stat-icon"><i class="fas fa-utensils"></i></div>
+                <div class="stat-number" data-target="50">0</div>
+                <div class="stat-label">Authentic Dishes</div>
             </div>
-            <div>
-                <div class="stat-number">3</div>
-                <div class="text-gray-500">Locations</div>
+            <div class="stat-item">
+                <div class="stat-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <div class="stat-number" data-target="3">0</div>
+                <div class="stat-label">Locations</div>
             </div>
-            <div>
-                <div class="stat-number">10+</div>
-                <div class="text-gray-500">Years of Excellence</div>
+            <div class="stat-item">
+                <div class="stat-icon"><i class="fas fa-award"></i></div>
+                <div class="stat-number" data-target="10">0</div>
+                <div class="stat-label">Years of Excellence</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon"><i class="fas fa-star"></i></div>
+                <div class="stat-number" data-target="4.9">0</div>
+                <div class="stat-label">Average Rating</div>
             </div>
         </div>
     </section>
 
-    <!-- AI Chatbot -->
+    <!-- ===== EXPERIENCE SECTION ===== -->
+    <section class="experience-section" id="experience">
+        <div class="experience-grid">
+            <div class="experience-img-grid reveal">
+                <div class="exp-img">
+                    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=400&fit=crop&q=85" alt="Restaurant ambiance" loading="lazy">
+                </div>
+                <div class="exp-img">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&h=260&fit=crop&q=85" alt="Chef cooking" loading="lazy">
+                </div>
+                <div class="exp-img">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=260&fit=crop&q=85" alt="Food presentation" loading="lazy">
+                </div>
+            </div>
+            <div class="reveal" style="transition-delay: 0.2s;">
+                <div class="section-tag">WHY CHOOSE US</div>
+                <h2 class="section-title">A Culinary Journey <span>Like No Other</span></h2>
+                <p style="color: #64748b; line-height: 1.7; margin-bottom: 0.5rem;">We bring the rich, diverse flavors of East Africa together under one roof. From Kenya's iconic Nyama Choma to Ethiopia's aromatic Doro Wat and Somalia's flavorful Suqaar.</p>
+                <div class="experience-features">
+                    <div class="exp-feature">
+                        <div class="exp-icon"><i class="fas fa-leaf"></i></div>
+                        <div>
+                            <h4>Farm-Fresh Ingredients</h4>
+                            <p>We source directly from local Kenyan farms to ensure maximum freshness and authentic taste in every dish.</p>
+                        </div>
+                    </div>
+                    <div class="exp-feature">
+                        <div class="exp-icon"><i class="fas fa-fire-alt"></i></div>
+                        <div>
+                            <h4>Traditional Cooking Methods</h4>
+                            <p>Our chefs use time-honored techniques passed down through generations, preserving authentic East African flavors.</p>
+                        </div>
+                    </div>
+                    <div class="exp-feature">
+                        <div class="exp-icon"><i class="fas fa-heart"></i></div>
+                        <div>
+                            <h4>Made with Love, Always</h4>
+                            <p>Every plate is crafted with care and passion, because food is more than nourishment — it's culture and community.</p>
+                        </div>
+                    </div>
+                    <div class="exp-feature">
+                        <div class="exp-icon"><i class="fas fa-motorcycle"></i></div>
+                        <div>
+                            <h4>Fast &amp; Free Delivery</h4>
+                            <p>Hot, fresh food delivered to your door in 30–45 minutes. Free delivery within 5km of all our branches.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SPECIAL OFFERS ===== -->
+    <section class="offers-section">
+        <div class="text-center mb-12 reveal">
+            <div class="section-tag">DEALS & OFFERS</div>
+            <h2 class="section-title">Exclusive <span>Daily Deals</span></h2>
+            <p class="section-subtitle">Enjoy special discounts and value combos crafted just for you</p>
+        </div>
+        <div class="offers-grid reveal">
+            <div class="offer-card">
+                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&h=400&fit=crop&q=80" alt="Family Feast" loading="lazy">
+                <div class="offer-overlay"></div>
+                <div class="offer-content">
+                    <div class="offer-tag">🔥 WEEKEND SPECIAL</div>
+                    <div class="offer-title">Family Nyama Choma Feast</div>
+                    <div class="offer-desc">Full 2kg platter for 4 people + 4 Chai — Save KES 400</div>
+                    <a href="#menu" class="offer-btn"><i class="fas fa-arrow-right"></i> Order Now</a>
+                </div>
+            </div>
+            <div class="offer-card">
+                <img src="https://images.unsplash.com/photo-1567364816519-cbc8c5b64c12?w=600&h=400&fit=crop&q=80" alt="Lunch Combo" loading="lazy">
+                <div class="offer-overlay"></div>
+                <div class="offer-content">
+                    <div class="offer-tag">☀️ LUNCH DEAL</div>
+                    <div class="offer-title">East African Lunch Combo</div>
+                    <div class="offer-desc">Pilau + Suqaar + Fresh Juice — Only KES 850</div>
+                    <a href="#menu" class="offer-btn"><i class="fas fa-arrow-right"></i> Order Now</a>
+                </div>
+            </div>
+            <div class="offer-card">
+                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&h=400&fit=crop&q=80" alt="Coffee & Snacks" loading="lazy">
+                <div class="offer-overlay"></div>
+                <div class="offer-content">
+                    <div class="offer-tag">☕ MORNING TREAT</div>
+                    <div class="offer-title">Chai &amp; Mandazi Morning</div>
+                    <div class="offer-desc">Masala Chai + 4 Mandazi — Only KES 180</div>
+                    <a href="#menu" class="offer-btn"><i class="fas fa-arrow-right"></i> Order Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== GALLERY ===== -->
+    <section class="gallery-section" id="gallery">
+        <div class="text-center mb-12 reveal">
+            <div class="section-tag">OUR MOMENTS</div>
+            <h2 class="section-title">A Taste of <span>Bava Life</span></h2>
+            <p class="section-subtitle">A visual journey through our kitchen, dining rooms, and the vibrant East African flavors we serve</p>
+        </div>
+        <div class="gallery-grid reveal">
+            <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1544025162-d76694265947?w=1200&h=800&fit=crop')">
+                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=700&h=400&fit=crop&q=80" alt="Nyama Choma" loading="lazy">
+                <div class="gallery-hover"><i class="fas fa-search-plus"></i></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1200&h=800&fit=crop')">
+                <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&h=280&fit=crop&q=80" alt="Restaurant" loading="lazy">
+                <div class="gallery-hover"><i class="fas fa-search-plus"></i></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?w=1200&h=800&fit=crop')">
+                <img src="https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?w=400&h=280&fit=crop&q=80" alt="Rice dish" loading="lazy">
+                <div class="gallery-hover"><i class="fas fa-search-plus"></i></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&h=800&fit=crop')">
+                <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&h=360&fit=crop&q=80" alt="Dining experience" loading="lazy">
+                <div class="gallery-hover"><i class="fas fa-search-plus"></i></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200&h=800&fit=crop')">
+                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&h=280&fit=crop&q=80" alt="Ethiopian coffee" loading="lazy">
+                <div class="gallery-hover"><i class="fas fa-search-plus"></i></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200&h=800&fit=crop')">
+                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=280&fit=crop&q=80" alt="Food spread" loading="lazy">
+                <div class="gallery-hover"><i class="fas fa-search-plus"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TESTIMONIALS ===== -->
+    <section class="testimonials-section">
+        <div class="text-center mb-12 reveal">
+            <div class="section-tag">WHAT CUSTOMERS SAY</div>
+            <h2 class="section-title">Loved by <span>Thousands</span></h2>
+            <p class="section-subtitle">Real stories from our happy customers across Thika, Nakuru, and Bungoma</p>
+        </div>
+        <div class="swiper testimonials-slider reveal">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">"</div>
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">The Nyama Choma at Bava is absolutely legendary. I've tried many places across Thika but nothing compares to their secret marinade. The kachumbari is so fresh and the portion sizes are very generous!</p>
+                        <div class="testimonial-header" style="margin-top: 1.2rem; margin-bottom: 0;">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&q=80" class="testimonial-avatar" alt="Customer" loading="lazy">
+                            <div>
+                                <div class="testimonial-name">James Mwangi</div>
+                                <div class="testimonial-location">📍 Thika, Kenya</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">"</div>
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">I ordered the Ethiopian Doro Wat for the first time and I was blown away! The injera was soft, the berbere sauce was perfectly spiced. Bava truly captures authentic East African cuisine with every dish.</p>
+                        <div class="testimonial-header" style="margin-top: 1.2rem; margin-bottom: 0;">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&q=80" class="testimonial-avatar" alt="Customer" loading="lazy">
+                            <div>
+                                <div class="testimonial-name">Amina Hassan</div>
+                                <div class="testimonial-location">📍 Nakuru, Kenya</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">"</div>
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">The Masala Chai and Mandazi combo is my morning ritual now! So fresh, so affordable. The delivery was on time and the food arrived hot. Best restaurant in Bungoma — hands down, nothing else comes close.</p>
+                        <div class="testimonial-header" style="margin-top: 1.2rem; margin-bottom: 0;">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&q=80" class="testimonial-avatar" alt="Customer" loading="lazy">
+                            <div>
+                                <div class="testimonial-name">Brian Ochieng</div>
+                                <div class="testimonial-location">📍 Bungoma, Kenya</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">"</div>
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">Brought my whole family for Sunday lunch — we ordered Pilau, Suqaar, and Doro Wat. Everyone was so happy. The staff are warm and welcoming, and the restaurant feels like home. We will definitely be back!</p>
+                        <div class="testimonial-header" style="margin-top: 1.2rem; margin-bottom: 0;">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&q=80" class="testimonial-avatar" alt="Customer" loading="lazy">
+                            <div>
+                                <div class="testimonial-name">Fatuma Abdi</div>
+                                <div class="testimonial-location">📍 Nakuru, Kenya</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination" style="position: relative; margin-top: 2rem;"></div>
+        </div>
+    </section>
+
+    <!-- ===== RESERVATION SECTION ===== -->
+    <section class="reservation-section" id="reservation">
+        <div class="reservation-inner">
+            <div class="section-tag">BOOK A TABLE</div>
+            <h2 class="section-title">Reserve Your <span style="color: var(--secondary);">Spot</span></h2>
+            <p class="section-subtitle">Book a table and enjoy a premium East African dining experience. We'll take care of the rest.</p>
+            <div class="res-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" placeholder="Your full name" id="resName">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" placeholder="0712 345 678" id="resPhone">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" id="resDate">
+                    </div>
+                    <div class="form-group">
+                        <label>Time</label>
+                        <input type="time" id="resTime">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Branch</label>
+                        <select id="resBranch">
+                            <option value="">Select Branch</option>
+                            <option value="thika">Thika — Kenyatta Highway</option>
+                            <option value="nakuru">Nakuru — Kenyatta Avenue</option>
+                            <option value="bungoma">Bungoma — Moi Avenue</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Guests</label>
+                        <select id="resGuests">
+                            <option value="1">1 Person</option>
+                            <option value="2">2 People</option>
+                            <option value="3-4">3–4 People</option>
+                            <option value="5-8">5–8 People</option>
+                            <option value="9+">9+ (Group)</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="res-submit" onclick="submitReservation()">
+                    <i class="fas fa-calendar-check"></i> &nbsp;Confirm Reservation
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== NEWSLETTER ===== -->
+    <section class="newsletter-section">
+        <div class="newsletter-inner reveal">
+            <h3>Get Exclusive Offers &amp; Updates</h3>
+            <p>Subscribe to our newsletter and be the first to know about new dishes, weekly deals, and events at Bava Restaurant.</p>
+            <div class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Enter your email address..." id="newsletterEmail">
+                <button class="newsletter-btn" onclick="subscribeNewsletter()">
+                    <i class="fas fa-paper-plane"></i> Subscribe
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== AI CHATBOT ===== -->
     <div class="chatbot-btn" id="chatbotBtn">
         <i class="fas fa-robot"></i>
     </div>
-    
+
     <div class="chatbot-window" id="chatbotWindow">
         <div class="chatbot-header">
-            <span><i class="fas fa-robot mr-2"></i> Bava AI Assistant</span>
-            <i class="fas fa-times" id="closeChatbot" style="cursor: pointer;"></i>
+            <div class="chatbot-header-info">
+                <div class="chatbot-avatar"><i class="fas fa-robot" style="color: white; font-size: 1rem;"></i></div>
+                <div>
+                    <h4>Bava AI Assistant</h4>
+                    <p style="display: flex; align-items: center; gap: 5px;"><span class="chatbot-status"></span> Online &amp; ready to help</p>
+                </div>
+            </div>
+            <i class="fas fa-times" id="closeChatbot" style="cursor: pointer; opacity: 0.7;"></i>
         </div>
         <div class="chatbot-questions">
+            <div class="chat-welcome">
+                👋 Hello! I'm Bava's AI assistant. Ask me anything about our restaurant!
+            </div>
             <button class="question-btn" onclick="showAnswer('hours')">🕐 What are your opening hours?</button>
-            <button class="question-btn" onclick="showAnswer('delivery')">🚚 Do you deliver?</button>
-            <button class="question-btn" onclick="showAnswer('payment')">💰 What payment methods do you accept?</button>
-            <button class="question-btn" onclick="showAnswer('locations')">📍 Where are your locations?</button>
-            <button class="question-btn" onclick="showAnswer('special')">⭐ What's your special dish?</button>
+            <button class="question-btn" onclick="showAnswer('delivery')">🚚 Do you offer delivery?</button>
+            <button class="question-btn" onclick="showAnswer('payment')">💰 What payment methods accepted?</button>
+            <button class="question-btn" onclick="showAnswer('locations')">📍 Where are your branches?</button>
+            <button class="question-btn" onclick="showAnswer('special')">⭐ What's your signature dish?</button>
             <button class="question-btn" onclick="showAnswer('reservation')">📞 How do I make a reservation?</button>
+            <button class="question-btn" onclick="showAnswer('halal')">🕌 Is your food Halal?</button>
             <div id="answerContainer" class="chatbot-answer"></div>
         </div>
     </div>
 
-    <!-- Footer -->
+    <!-- ===== LIGHTBOX ===== -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <div class="lightbox-close" onclick="closeLightbox()"><i class="fas fa-times"></i></div>
+        <img src="" id="lightboxImg" alt="Gallery Image">
+    </div>
+
+    <!-- ===== FOOTER ===== -->
     <footer>
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h4>BAVA RESTAURANT</h4>
-                <p>Fresh taste of Kenya, served with love. Experience authentic Kenyan cuisine at its finest.</p>
+        <div class="footer-top">
+            <div>
+                <div class="footer-logo">BAVA <span>RESTAURANT</span></div>
+                <p class="footer-desc">Authentic East African cuisine crafted with love. From Kenya's Nyama Choma to Ethiopia's Doro Wat and Somalia's Suqaar — experience the true taste of Africa.</p>
                 <div class="social-icons">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
             <div class="footer-col">
                 <h4>CONTACT</h4>
-                <p><i class="fas fa-phone mr-2"></i> 0743 462086</p>
-                <p><i class="fas fa-envelope mr-2"></i> info@bavarestaurant.co.ke</p>
-                <p><i class="fas fa-map-marker-alt mr-2"></i> Thika, Nakuru, Bungoma</p>
+                <a href="tel:0743462086"><i class="fas fa-phone" style="margin-right: 8px; color: var(--secondary);"></i> 0743 462086</a>
+                <a href="mailto:info@bavarestaurant.co.ke"><i class="fas fa-envelope" style="margin-right: 8px; color: var(--secondary);"></i> info@bavarestaurant.co.ke</a>
+                <a href="#"><i class="fas fa-map-marker-alt" style="margin-right: 8px; color: var(--secondary);"></i> Thika, Nakuru, Bungoma</a>
             </div>
             <div class="footer-col">
-                <h4>HOURS</h4>
-                <p>Mon - Fri: 9am - 10pm</p>
-                <p>Sat - Sun: 10am - 9pm</p>
-                <p>Holidays: 11am - 8pm</p>
+                <h4>OPENING HOURS</h4>
+                <p>Mon – Fri: 9:00 AM – 10:00 PM</p>
+                <p>Saturday: 10:00 AM – 9:00 PM</p>
+                <p>Sunday: 10:00 AM – 9:00 PM</p>
+                <p>Public Holidays: 11:00 AM – 8:00 PM</p>
             </div>
             <div class="footer-col">
-                <h4>ORDER</h4>
-                <p><i class="fas fa-motorcycle mr-2"></i> Free Delivery</p>
-                <p><i class="fas fa-clock mr-2"></i> 30-45 min delivery</p>
-                <p><i class="fas fa-check-circle mr-2"></i> Order online</p>
+                <h4>QUICK LINKS</h4>
+                <a href="#menu">Our Menu</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#reservation">Reserve a Table</a>
+                <a href="#">Order Online</a>
+                <a href="#">Catering Services</a>
+                <a href="#">Careers</a>
             </div>
         </div>
-        <div class="copyright">
-            <p>&copy; 2026 Bava Restaurant. All rights reserved. | Fresh Taste of Kenya</p>
+        <div class="footer-bottom">
+            <p class="copyright">&copy; 2026 Bava Restaurant. All rights reserved. | Fresh Taste of East Africa</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Sitemap</a>
+            </div>
         </div>
     </footer>
 
     <script>
-        // Menu Items with CORRECT images
+        // ===== FALLBACK IMAGE =====
+        const fallbackImage = "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=500&h=350&fit=crop";
+
+        // ===== MENU ITEMS — FIXED IMAGES =====
         const menuItems = [
-            { id: 1, name: "Nyama Choma", price: 850, desc: "Grilled meat with kachumbari - Kenya's favorite", image: "https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=300&fit=crop" },
-            { id: 2, name: "Grilled Chicken", price: 650, desc: "Spicy grilled chicken with kachumbari", image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&h=300&fit=crop" },
-            { id: 3, name: "Kenyan Pilau", price: 450, desc: "Spiced rice with beef, Swahili style", image: "https://images.unsplash.com/photo-1551326844-4df70f78d0e9?w=400&h=300&fit=crop" },
-            { id: 4, name: "Ugali & Sukuma", price: 350, desc: "Traditional cornmeal with collard greens", image: "https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?w=400&h=300&fit=crop" },
-            { id: 5, name: "Mandazi", price: 50, desc: "Kenyan doughnuts, fluffy and perfect with chai", image: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?w=400&h=300&fit=crop" },
-            { id: 6, name: "Mahamri", price: 80, desc: "Coconut doughnuts, Swahili delicacy", image: "https://images.unsplash.com/photo-1623428454614-baf816f0b9f7?w=400&h=300&fit=crop" }
+            {
+                id: 1, name: "Nyama Choma", price: 850, rating: 4.8, category: "mains",
+                desc: "Grilled goat meat with kachumbari — Kenya's legendary BBQ dish, perfectly charred.",
+                image: "https://images.unsplash.com/photo-1544025162-d76694265947?w=500&h=350&fit=crop&q=80",
+                badge: "🔥 POPULAR"
+            },
+            {
+                id: 2, name: "Kenyan Pilau", price: 450, rating: 4.7, category: "mains",
+                desc: "Aromatic spiced rice with tender beef — a Swahili coastal classic full of warmth.",
+                image: "https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?w=500&h=350&fit=crop&q=80",
+                badge: ""
+            },
+            {
+                id: 3, name: "Somali Beef Suqaar", price: 720, rating: 4.9, category: "mains",
+                desc: "Tender beef cubes sautéed with peppers, cumin & fresh coriander — Somali perfection.",
+                image: "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=500&h=350&fit=crop&q=80",
+                badge: "⭐ BESTSELLER", badgeClass: "bestseller"
+            },
+            {
+                id: 4, name: "Ethiopian Doro Wat", price: 950, rating: 4.9, category: "mains",
+                desc: "Spicy chicken stew with berbere & hard-boiled egg, served on freshly-made injera.",
+                image: "https://images.unsplash.com/photo-1567364816519-cbc8c5b64c12?w=500&h=350&fit=crop&q=80",
+                badge: "👑 SIGNATURE", badgeClass: "signature"
+            },
+            {
+                id: 5, name: "Ugali & Sukuma Wiki", price: 350, rating: 4.5, category: "sides",
+                desc: "Traditional cornmeal with vitamin-rich collard greens sautéed with tomatoes & onions.",
+                image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=500&h=350&fit=crop&q=80",
+                badge: ""
+            },
+            {
+                id: 6, name: "Somali Sabaayad", price: 250, rating: 4.6, category: "sides",
+                desc: "Flaky layered flatbread, crispy outside and soft inside — perfect with any stew.",
+                image: "https://images.unsplash.com/photo-1574085733277-851d9d856a3a?w=500&h=350&fit=crop&q=80",
+                badge: ""
+            },
+            {
+                id: 7, name: "Mandazi", price: 50, rating: 4.8, category: "sides",
+                desc: "Kenyan fluffy doughnuts, lightly spiced with cardamom — perfect with masala chai.",
+                image: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=500&h=350&fit=crop&q=80",
+                badge: "🥇 BESTSELLER", badgeClass: "bestseller"
+            },
+            {
+                id: 8, name: "Mahamri", price: 80, rating: 4.7, category: "sides",
+                desc: "Coconut-infused Swahili doughnuts — irresistibly soft, aromatic, and satisfying.",
+                image: "https://images.unsplash.com/photo-1608198093002-ad4e005484ec?w=500&h=350&fit=crop&q=80",
+                badge: "🔥 POPULAR"
+            },
+            {
+                id: 9, name: "Ethiopian Kitfo", price: 890, rating: 4.8, category: "mains",
+                desc: "Minced raw/lightly cooked beef with mitmita & clarified butter — an authentic Ethiopian delicacy.",
+                image: "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=500&h=350&fit=crop&q=80",
+                badge: ""
+            },
+            {
+                id: 10, name: "Grilled Chicken", price: 650, rating: 4.6, category: "mains",
+                desc: "Perfectly marinated spicy grilled chicken with kachumbari — juicy and full of flavor.",
+                image: "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?w=500&h=350&fit=crop&q=80",
+                badge: ""
+            },
+            {
+                id: 11, name: "Masala Chai", price: 80, rating: 4.9, category: "drinks",
+                desc: "Authentic Kenyan spiced tea brewed with ginger, cardamom, cinnamon, and fresh milk.",
+                image: "https://images.unsplash.com/photo-1561336313-0bd5e0b27ec8?w=500&h=350&fit=crop&q=80",
+                badge: "☕ FAVORITE", badgeClass: "favorite"
+            },
+            {
+                id: 12, name: "Fresh Mango Juice", price: 200, rating: 4.8, category: "drinks",
+                desc: "100% pure Kenyan mango juice, freshly squeezed daily — naturally sweet and tropical.",
+                image: "https://images.unsplash.com/photo-1546173159-315724a31696?w=500&h=350&fit=crop&q=80",
+                badge: "🥭 REFRESHING", badgeClass: "drink"
+            },
+            {
+                id: 13, name: "Somali Shaah", price: 100, rating: 4.7, category: "drinks",
+                desc: "Traditional Somali spiced tea with cardamom, cloves and cinnamon — comforting and aromatic.",
+                image: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=500&h=350&fit=crop&q=80",
+                badge: ""
+            },
+            {
+                id: 14, name: "Fresh Passion Juice", price: 220, rating: 4.7, category: "drinks",
+                desc: "Tangy and sweet passion fruit juice, rich in vitamin C — perfectly refreshing.",
+                image: "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=500&h=350&fit=crop&q=80",
+                badge: ""
+            },
+            {
+                id: 15, name: "Ethiopian Coffee", price: 150, rating: 4.9, category: "drinks",
+                desc: "Authentic Ethiopian ceremony-style coffee — bold, rich, and deeply aromatic.",
+                image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=500&h=350&fit=crop&q=80",
+                badge: "⭐ MUST TRY", badgeClass: "bestseller"
+            }
         ];
 
-        // Render Food Grid
-        function renderFoodGrid() {
+        // ===== STAR RATING =====
+        function getStarRating(rating) {
+            const full = Math.floor(rating);
+            const half = rating % 1 >= 0.5;
+            let stars = '';
+            for (let i = 0; i < full; i++) stars += '<i class="fas fa-star" style="color:#f59e0b;font-size:0.72rem;"></i>';
+            if (half) stars += '<i class="fas fa-star-half-alt" style="color:#f59e0b;font-size:0.72rem;"></i>';
+            return `<div class="rating-wrapper"><span style="display:flex;align-items:center;gap:2px;">${stars}</span><span style="color:#64748b;font-size:0.72rem;font-weight:700;margin-left:4px;">${rating}/5</span></div>`;
+        }
+
+        // ===== RENDER FOOD GRID =====
+        let currentFilter = 'all';
+        let favorites = JSON.parse(localStorage.getItem('bavaFavs') || '[]');
+
+        function renderFoodGrid(filter = 'all') {
             const grid = document.getElementById('foodGrid');
-            if (grid) {
-                grid.innerHTML = menuItems.map(item => `
-                    <div class="food-card">
-                        <img src="${item.image}" class="food-image" alt="${item.name}">
+            if (!grid) return;
+            const items = filter === 'all' ? menuItems : menuItems.filter(i => i.category === filter);
+
+            grid.innerHTML = items.map(item => {
+                const badgeClass = item.badgeClass || '';
+                const isFav = favorites.includes(item.id);
+                return `
+                    <div class="food-card" data-category="${item.category}">
+                        <div class="card-img-container">
+                            ${item.badge ? `<div class="card-badge ${badgeClass}">${item.badge}</div>` : ''}
+                            <button class="card-fav-btn ${isFav ? 'liked' : ''}" onclick="toggleFavorite(${item.id}, this)" aria-label="Favorite">
+                                <i class="${isFav ? 'fas' : 'far'} fa-heart"></i>
+                            </button>
+                            <div class="skeleton-loader" id="skel-${item.id}"></div>
+                            <img
+                                src="${item.image}"
+                                class="food-image"
+                                alt="${item.name}"
+                                loading="lazy"
+                                onerror="this.src='${fallbackImage}';document.getElementById('skel-${item.id}').style.display='none';"
+                                onload="document.getElementById('skel-${item.id}') && (document.getElementById('skel-${item.id}').style.display='none');">
+                        </div>
                         <div class="food-info">
-                            <div class="food-header">
+                            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:6px;">
                                 <h3 class="food-name">${item.name}</h3>
-                                <span class="food-price">KES ${item.price}</span>
+                                <span class="food-price">KES ${item.price.toLocaleString()}</span>
                             </div>
+                            <div style="margin-bottom:8px;">${getStarRating(item.rating)}</div>
                             <p class="food-desc">${item.desc}</p>
-                            <button class="add-btn" onclick="addToCart('${item.name}', ${item.price})">
-                                <i class="fas fa-plus"></i> Add to Cart
+                            <button class="add-btn-premium" data-name="${item.name}" data-price="${item.price}" onclick="handleAddToCart(this)">
+                                <i class="fas fa-shopping-bag"></i> Add to Cart
                             </button>
                         </div>
                     </div>
-                `).join('');
-            }
+                `;
+            }).join('');
         }
-        
-        renderFoodGrid();
 
-        // Cart functionality
+        // ===== FILTER TABS =====
+        document.querySelectorAll('.filter-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                currentFilter = tab.dataset.filter;
+                renderFoodGrid(currentFilter);
+            });
+        });
+
+        // ===== FAVORITES =====
+        function toggleFavorite(id, btn) {
+            if (favorites.includes(id)) {
+                favorites = favorites.filter(f => f !== id);
+                btn.classList.remove('liked');
+                btn.querySelector('i').className = 'far fa-heart';
+            } else {
+                favorites.push(id);
+                btn.classList.add('liked');
+                btn.querySelector('i').className = 'fas fa-heart';
+                showToast('❤️ Added to favourites!', '#e76f51');
+            }
+            localStorage.setItem('bavaFavs', JSON.stringify(favorites));
+        }
+
+        // ===== CART =====
         let cart = JSON.parse(localStorage.getItem('bavaCart') || '[]');
-        
+
+        function handleAddToCart(btn) {
+            const name = btn.getAttribute('data-name');
+            const price = parseInt(btn.getAttribute('data-price'));
+            addToCart(name, price);
+            btn.style.transform = 'scale(0.95)';
+            setTimeout(() => { btn.style.transform = ''; }, 150);
+        }
+
         function addToCart(name, price) {
             const existing = cart.find(i => i.name === name);
             if (existing) {
@@ -818,104 +1854,207 @@
                 cart.push({ name, price, quantity: 1 });
             }
             localStorage.setItem('bavaCart', JSON.stringify(cart));
-            alert(`${name} added to cart!`);
+            updateCartUI();
+            showToast(`<i class="fas fa-check-circle"></i> ${name} added to cart!`);
         }
-        
-        // Initialize Swiper Carousel
+
+        function updateCartUI() {
+            const total = cart.reduce((sum, i) => sum + i.price * i.quantity, 0);
+            const count = cart.reduce((sum, i) => sum + i.quantity, 0);
+            document.getElementById('cartCount').textContent = count;
+            document.getElementById('cartTotal').textContent = `KES ${total.toLocaleString()}`;
+            const cartFloat = document.getElementById('cartFloat');
+            if (count > 0) {
+                cartFloat.classList.add('visible');
+            } else {
+                cartFloat.classList.remove('visible');
+            }
+        }
+
+        function openCart() {
+            if (cart.length === 0) return;
+            const total = cart.reduce((sum, i) => sum + i.price * i.quantity, 0);
+            const items = cart.map(i => `${i.name} x${i.quantity} — KES ${(i.price * i.quantity).toLocaleString()}`).join('\n');
+            alert(`🛒 Your Cart:\n\n${items}\n\n─────────────\nTotal: KES ${total.toLocaleString()}\n\nCall 0743 462086 to complete your order!`);
+        }
+
+        // ===== TOAST =====
+        function showToast(message, bg = '#0B6E4F') {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = message;
+            toast.style.background = bg;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transition = 'opacity 0.3s';
+                setTimeout(() => toast.remove(), 300);
+            }, 2200);
+        }
+
+        // ===== SWIPER HERO =====
         const heroSwiper = new Swiper('.hero-slider', {
             loop: true,
-            autoplay: {
-                delay: 5000,
-                disableOnInteraction: false,
-            },
+            autoplay: { delay: 5500, disableOnInteraction: false },
             effect: 'fade',
-            fadeEffect: {
-                crossFade: true
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
+            fadeEffect: { crossFade: true },
+            pagination: { el: '.swiper-pagination', clickable: true },
+            navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
         });
-        
-        // Navbar Scroll Effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
+
+        // ===== TESTIMONIALS SWIPER =====
+        const testimonialsSwiper = new Swiper('.testimonials-slider', {
+            loop: true,
+            autoplay: { delay: 4500, disableOnInteraction: false },
+            slidesPerView: 1,
+            spaceBetween: 24,
+            pagination: { el: '.testimonials-slider .swiper-pagination', clickable: true },
+            breakpoints: {
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 }
             }
         });
-        
-        // Mobile Menu
+
+        // ===== NAVBAR SCROLL =====
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // ===== MOBILE MENU =====
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobileMenu');
-        const closeMenu = document.getElementById('closeMenu');
-        
-        hamburger.addEventListener('click', () => {
-            mobileMenu.classList.add('active');
-        });
-        
-        closeMenu.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-        });
-        
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (mobileMenu.classList.contains('active') && 
-                !mobileMenu.contains(e.target) && 
-                !hamburger.contains(e.target)) {
+        const closeMenuBtn = document.getElementById('closeMenu');
+
+        hamburger.addEventListener('click', () => mobileMenu.classList.add('active'));
+        closeMenuBtn.addEventListener('click', () => mobileMenu.classList.remove('active'));
+        document.addEventListener('click', e => {
+            if (mobileMenu.classList.contains('active') && !mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
                 mobileMenu.classList.remove('active');
             }
         });
-        
-        // AI Chatbot
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.remove('active'));
+        });
+
+        // ===== CHATBOT =====
         const chatbotBtn = document.getElementById('chatbotBtn');
         const chatbotWindow = document.getElementById('chatbotWindow');
         const closeChatbot = document.getElementById('closeChatbot');
-        
-        chatbotBtn.addEventListener('click', () => {
-            chatbotWindow.classList.toggle('active');
-        });
-        
-        closeChatbot.addEventListener('click', () => {
-            chatbotWindow.classList.remove('active');
-        });
-        
-        function showAnswer(type) {
-            const answerDiv = document.getElementById('answerContainer');
-            const answers = {
-                hours: "🕐 Bava Restaurant is open daily:\n\n📅 Monday - Friday: 9:00 AM - 10:00 PM\n📅 Saturday - Sunday: 10:00 AM - 9:00 PM\n📅 Holidays: 11:00 AM - 8:00 PM",
-                delivery: "🚚 Yes! We offer free delivery within 5km of our branches.\n\n⏱️ Delivery time: 30-45 minutes\n📞 Call us to place delivery orders: 0743 462086",
-                payment: "💰 We accept:\n✅ Cash\n✅ M-Pesa (Paybill: 123456)\n✅ Credit/Debit Cards\n✅ Visa/Mastercard",
-                locations: "📍 We have 3 locations:\n\n1️⃣ Thika - Kenyatta Highway\n2️⃣ Nakuru - Kenyatta Avenue\n3️⃣ Bungoma - Moi Avenue\n\nClick on Locations page to see maps!",
-                special: "⭐ Our signature dish is Nyama Choma!\n\n🔥 Grilled to perfection with our secret spices\n🥗 Served with fresh kachumbari",
-                reservation: "📞 To make a reservation:\n\n📱 Call us: 0743 462086\n📧 Email: reservations@bavarestaurant.co.ke\n🏃 Or visit any of our branches directly!"
-            };
-            
-            answerDiv.innerHTML = answers[type] || "Sorry, please call us at 0743 462086 for assistance.";
-            answerDiv.classList.add('show');
-            
-            setTimeout(() => {
-                answerDiv.classList.remove('show');
-            }, 8000);
-        }
-        
-        // Close chatbot when clicking outside
-        document.addEventListener('click', (e) => {
-            if (chatbotWindow.classList.contains('active') && 
-                !chatbotWindow.contains(e.target) && 
-                !chatbotBtn.contains(e.target)) {
+
+        chatbotBtn.addEventListener('click', () => chatbotWindow.classList.toggle('active'));
+        closeChatbot.addEventListener('click', () => chatbotWindow.classList.remove('active'));
+        document.addEventListener('click', e => {
+            if (chatbotWindow.classList.contains('active') && !chatbotWindow.contains(e.target) && !chatbotBtn.contains(e.target)) {
                 chatbotWindow.classList.remove('active');
             }
         });
-        
+
+        function showAnswer(type) {
+            const answers = {
+                hours: "🕐 Our opening hours:\n\n📅 Mon – Fri: 9:00 AM – 10:00 PM\n📅 Sat – Sun: 10:00 AM – 9:00 PM\n📅 Public Holidays: 11:00 AM – 8:00 PM",
+                delivery: "🚚 Yes! We offer FREE delivery within 5km of each branch.\n\n⏱️ Delivery time: 30–45 minutes\n📞 Call to order: 0743 462086\n\nMinimum order: KES 300",
+                payment: "💰 We accept all major payments:\n\n✅ Cash\n✅ M-Pesa Paybill: 123456\n✅ Visa & Mastercard\n✅ Credit/Debit Cards",
+                locations: "📍 Our 3 branches:\n\n1️⃣ Thika — Kenyatta Highway\n2️⃣ Nakuru — Kenyatta Avenue\n3️⃣ Bungoma — Moi Avenue\n\nVisit the Locations page for maps!",
+                special: "⭐ Our top signature dishes:\n\n🔥 Nyama Choma (KES 850)\n🌟 Doro Wat (KES 950)\n👑 Somali Suqaar (KES 720)\n☕ Masala Chai + Mandazi\n\nAll made fresh daily!",
+                reservation: "📞 To reserve a table:\n\n📱 Call: 0743 462086\n📧 Email: reservations@bavarestaurant.co.ke\n🌐 Use our online form above\n🏃 Walk-ins always welcome!",
+                halal: "🕌 Yes! All our meats are 100% Halal certified.\n\nWe follow strict Halal preparation standards across all our branches. Our Somali and Ethiopian dishes are authentically prepared."
+            };
+            const answerDiv = document.getElementById('answerContainer');
+            answerDiv.textContent = answers[type] || "Please call us at 0743 462086 for more help!";
+            answerDiv.style.whiteSpace = 'pre-line';
+            answerDiv.classList.add('show');
+            setTimeout(() => answerDiv.classList.remove('show'), 9000);
+        }
+
+        // ===== GALLERY LIGHTBOX =====
+        function openLightbox(src) {
+            document.getElementById('lightboxImg').src = src;
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+        // ===== RESERVATION SUBMIT =====
+        function submitReservation() {
+            const name = document.getElementById('resName').value.trim();
+            const phone = document.getElementById('resPhone').value.trim();
+            const date = document.getElementById('resDate').value;
+            const time = document.getElementById('resTime').value;
+            const branch = document.getElementById('resBranch').value;
+
+            if (!name || !phone || !date || !time || !branch) {
+                showToast('⚠️ Please fill in all fields', '#e76f51');
+                return;
+            }
+            showToast(`✅ Reservation confirmed for ${name}! We'll call to confirm.`);
+            ['resName','resPhone','resDate','resTime'].forEach(id => document.getElementById(id).value = '');
+            document.getElementById('resBranch').value = '';
+        }
+
+        // ===== NEWSLETTER =====
+        function subscribeNewsletter() {
+            const email = document.getElementById('newsletterEmail').value.trim();
+            if (!email || !email.includes('@')) {
+                showToast('⚠️ Please enter a valid email', '#e76f51');
+                return;
+            }
+            showToast(`🎉 Subscribed! Welcome to the Bava family!`);
+            document.getElementById('newsletterEmail').value = '';
+        }
+
+        // ===== COUNTER ANIMATION =====
+        function animateCounters() {
+            document.querySelectorAll('.stat-number[data-target]').forEach(el => {
+                const target = parseFloat(el.dataset.target);
+                const isDecimal = target % 1 !== 0;
+                const duration = 1800;
+                const step = 16;
+                const increment = target / (duration / step);
+                let current = 0;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    el.textContent = isDecimal ? current.toFixed(1) : Math.floor(current) + (target >= 100 ? '+' : (target < 10 ? '' : '+'));
+                }, step);
+            });
+        }
+
+        // ===== SCROLL REVEAL =====
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    if (entry.target.classList.contains('stats-section')) {
+                        setTimeout(animateCounters, 200);
+                    }
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // ===== INIT =====
+        renderFoodGrid();
+        updateCartUI();
+
+        // Expose globals
         window.addToCart = addToCart;
+        window.showAnswer = showAnswer;
+        window.openLightbox = openLightbox;
+        window.closeLightbox = closeLightbox;
+        window.toggleFavorite = toggleFavorite;
+        window.submitReservation = submitReservation;
+        window.subscribeNewsletter = subscribeNewsletter;
+        window.openCart = openCart;
     </script>
 </body>
 </html>
