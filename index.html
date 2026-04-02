@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <meta name="google-site-verification" content="SjTvVDsy9ye1aNay9tveLBIvOqosZdFAaWcgyzswb6M" />
+    <meta name="theme-color" content="#0B6E4F">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Bava Restaurant">
+    <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiQmF2YSBSZXN0YXVyYW50Iiwic2hvcnRfbmFtZSI6IkJBVkEiLCJzdGFydF91cmwiOiIuIiwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiIzBGMTk3MyIsInRoZW1lX2NvbG9yIjoiIzBCNkU0RiIsImljb25zIjpbeyJzcmMiOiJodHRwczovL2ltYWdlcy51bnNwbGFzaC5jb20vcGhvdG8tMTU0NDAyNTE2Mi1kNzY2OTQyNjU5NDc/dz0xMjAwJmgtMTIwMCZmaXQ9Y3JvcCJ9XX0=">
     <title>Bava Restaurant | Premium East African Cuisine - Kenya, Somalia, Ethiopia</title>
 
     <!-- Tailwind CSS -->
@@ -497,6 +502,70 @@
             box-shadow: 0 8px 22px rgba(11,110,79,0.38);
         }
         .add-btn-premium:active { transform: scale(0.97); }
+
+        /* ===== SHAKE SHACK PREMIUM ANIMATIONS ===== */
+        .food-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        @keyframes cardShimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .food-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            transition: left 0.5s ease;
+            z-index: 10;
+            pointer-events: none;
+        }
+        .food-card:hover::after { left: 150%; }
+        .food-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 24px;
+            border: 2px solid transparent;
+            transition: border-color 0.4s;
+            z-index: 5;
+            pointer-events: none;
+        }
+        .food-card:hover::before { border-color: rgba(11,110,79,0.15); }
+
+        /* ===== FLOATING ORDER BUTTON (MOBILE) ===== */
+        .floating-order-btn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 14px 36px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            z-index: 998;
+            box-shadow: 0 8px 30px rgba(11,110,79,0.4);
+            animation: floatBounce 3s ease-in-out infinite;
+            cursor: pointer;
+            border: none;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        @keyframes floatBounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-6px); }
+        }
+        @media (max-width: 768px) {
+            .floating-order-btn { display: flex; }
+            .floating-order-btn.hidden { display: none; }
+        }
 
         /* ===== STATS SECTION ===== */
         .stats-section {
@@ -1147,6 +1216,283 @@
             to { opacity: 1; transform: translateX(0); }
         }
 
+        /* ===== MODAL ===== */
+        .modal-overlay {
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(6px);
+            z-index: 3000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-box {
+            background: white;
+            border-radius: 24px;
+            width: 100%; max-width: 440px;
+            overflow: hidden;
+            animation: modalPopIn 0.35s cubic-bezier(0.34,1.56,0.64,1);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        @keyframes modalPopIn {
+            from { opacity: 0; transform: scale(0.85) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            padding: 24px 28px;
+            color: white;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .modal-header h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 800; }
+        .modal-close {
+            width: 36px; height: 36px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: all 0.3s;
+            border: none; color: white; font-size: 1rem;
+        }
+        .modal-close:hover { background: rgba(255,255,255,0.3); }
+        .modal-body { padding: 28px; }
+        .form-field { margin-bottom: 16px; text-align: left; }
+        .form-field label { display: block; font-weight: 600; font-size: 0.82rem; color: #475569; margin-bottom: 6px; letter-spacing: 0.5px; }
+        .form-field input, .form-field select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 14px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.92rem;
+            transition: all 0.3s;
+            outline: none;
+        }
+        .form-field input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(11,110,79,0.1); }
+        .form-field input::placeholder { color: #94a3b8; }
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 6px 20px rgba(11,110,79,0.3);
+            margin-top: 8px;
+            letter-spacing: 0.5px;
+        }
+        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(11,110,79,0.4); }
+        .submit-btn:active { transform: scale(0.97); }
+        .modal-footer { text-align: center; padding: 16px 28px 24px; }
+        .modal-footer p { font-size: 0.85rem; color: #64748b; }
+        .modal-footer a { color: var(--primary); font-weight: 700; text-decoration: none; cursor: pointer; }
+        .modal-footer a:hover { text-decoration: underline; }
+        .social-login { display: flex; gap: 10px; margin-top: 16px; }
+        .social-btn {
+            flex: 1; padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 14px;
+            background: white;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            font-weight: 600; font-size: 0.88rem;
+            cursor: pointer; transition: all 0.3s;
+            font-family: 'DM Sans', sans-serif;
+        }
+        .social-btn:hover { background: #f8fafc; transform: translateY(-2px); }
+        .social-btn.google i { color: #ea4335; }
+        .social-btn.facebook i { color: #1877f2; }
+        .divider { display: flex; align-items: center; gap: 12px; margin: 18px 0; }
+        .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: #e2e8f0; }
+        .divider span { color: #94a3b8; font-size: 0.8rem; font-weight: 600; }
+
+        /* ===== MPESA MODAL ===== */
+        .mpesa-step { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 18px; }
+        .mpesa-step-num {
+            width: 32px; height: 32px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 0.85rem; flex-shrink: 0;
+        }
+        .mpesa-step-info h4 { font-weight: 700; font-size: 0.92rem; margin-bottom: 2px; }
+        .mpesa-step-info p { color: #64748b; font-size: 0.82rem; line-height: 1.5; }
+        .mpesa-number { background: #f0fdf4; border: 2px dashed var(--primary); border-radius: 14px; padding: 14px 18px; text-align: center; margin: 16px 0; }
+        .mpesa-number span { display: block; font-size: 1.4rem; font-weight: 800; color: var(--primary); letter-spacing: 2px; }
+        .mpesa-number small { font-size: 0.78rem; color: #64748b; }
+        .mpesa-status { display: none; text-align: center; padding: 20px; }
+        .mpesa-status.active { display: block; }
+        .mpesa-spinner {
+            width: 48px; height: 48px;
+            border: 4px solid rgba(11,110,79,0.15);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 14px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .mpesa-status h4 { font-weight: 700; font-size: 1rem; margin-bottom: 6px; }
+        .mpesa-status p { color: #64748b; font-size: 0.85rem; }
+
+        /* ===== CART PAGE ===== */
+        .cart-modal { max-width: 600px; }
+        .cart-items-list { max-height: 350px; overflow-y: auto; }
+        .cart-item-row {
+            display: flex; align-items: center; gap: 12px;
+            padding: 14px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .cart-item-img { width: 60px; height: 60px; border-radius: 12px; object-fit: cover; }
+        .cart-item-info { flex: 1; }
+        .cart-item-name { font-weight: 700; font-size: 0.95rem; }
+        .cart-item-price { color: var(--primary); font-weight: 700; font-size: 0.88rem; }
+        .qty-controls { display: flex; align-items: center; gap: 8px; }
+        .qty-btn {
+            width: 30px; height: 30px;
+            background: #f1f5f9; border: none; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; font-weight: 700; font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        .qty-btn:hover { background: var(--primary); color: white; }
+        .qty-num { font-weight: 700; min-width: 20px; text-align: center; }
+        .cart-item-remove { background: none; border: none; color: #ef4444; cursor: pointer; font-size: 0.85rem; padding: 4px; }
+        .cart-summary { background: #f8fafc; border-radius: 16px; padding: 18px; margin-top: 16px; }
+        .cart-summary-row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 0.9rem; }
+        .cart-summary-row.total { font-weight: 800; font-size: 1.1rem; border-top: 2px solid #e2e8f0; padding-top: 10px; margin-top: 6px; color: var(--primary); }
+        .cart-actions { display: flex; gap: 10px; margin-top: 16px; }
+        .cart-actions .submit-btn { flex: 1; font-size: 0.88rem; }
+        .cart-actions .submit-btn.checkout { background: linear-gradient(135deg, #25d366, #128c7e); }
+        .cart-empty { text-align: center; padding: 30px; color: #94a3b8; }
+        .cart-empty i { font-size: 3rem; margin-bottom: 12px; color: #e2e8f0; }
+
+        /* ===== ORDER HISTORY ===== */
+        .history-btn {
+            position: fixed;
+            top: 90px; left: 20px;
+            background: white;
+            border-radius: 16px;
+            padding: 12px 16px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            z-index: 999;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            border: 1px solid rgba(0,0,0,0.06);
+        }
+        .history-btn.visible { display: flex; }
+        .history-btn:hover { transform: scale(1.05); }
+        .history-btn i { color: var(--secondary); font-size: 1.2rem; }
+        .history-btn span { font-weight: 600; font-size: 0.85rem; color: var(--dark); }
+        .history-modal { max-width: 600px; }
+        .order-history-list { max-height: 400px; overflow-y: auto; }
+        .history-item {
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
+            transition: all 0.3s;
+        }
+        .history-item:hover { box-shadow: 0 4px 15px rgba(0,0,0,0.08); transform: translateY(-2px); }
+        .history-item-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .history-order-id { font-weight: 800; font-size: 0.88rem; color: var(--primary); }
+        .history-date { font-size: 0.78rem; color: #94a3b8; }
+        .history-status {
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .history-status.completed { background: #dcfce7; color: #16a34a; }
+        .history-status.pending { background: #fef9c3; color: #ca8a04; }
+        .history-status.delivered { background: #dbeafe; color: #2563eb; }
+        .history-items-preview { font-size: 0.82rem; color: #64748b; line-height: 1.5; }
+        .history-total { display: flex; justify-content: space-between; margin-top: 8px; padding-top: 8px; border-top: 1px dashed #e2e8f0; font-weight: 700; font-size: 0.88rem; }
+        .history-reorder {
+            margin-top: 10px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .history-reorder:hover { background: var(--primary-dark); }
+
+        /* ===== INSTALL APP PROMPT ===== */
+        .install-banner {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            background: linear-gradient(135deg, var(--dark) 0%, #1a2a3a 100%);
+            padding: 16px 20px;
+            z-index: 2999;
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            box-shadow: 0 -4px 24px rgba(0,0,0,0.2);
+            animation: slideUpBounce 0.5s cubic-bezier(0.34,1.56,0.64,1);
+        }
+        .install-banner.active { display: flex; }
+        @keyframes slideUpBounce {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .install-banner-text { color: white; display: flex; align-items: center; gap: 12px; }
+        .install-banner-text i { font-size: 1.8rem; color: var(--secondary); }
+        .install-banner-text h4 { font-weight: 700; font-size: 0.95rem; }
+        .install-banner-text p { font-size: 0.78rem; opacity: 0.7; }
+        .install-actions { display: flex; gap: 10px; }
+        .install-actions button {
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.82rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+        .install-actions .install-now { background: var(--secondary); color: var(--primary-dark); }
+        .install-actions .install-now:hover { background: #f0c020; transform: translateY(-2px); }
+        .install-actions .install-later { background: rgba(255,255,255,0.1); color: white; }
+        .install-actions .install-later:hover { background: rgba(255,255,255,0.2); }
+
+        /* ===== PAGE LOADER ===== */
+        .page-loader {
+            position: fixed; inset: 0;
+            background: var(--dark);
+            z-index: 9999;
+            display: flex; align-items: center; justify-content: center;
+            transition: opacity 0.5s;
+        }
+        .page-loader.hidden { opacity: 0; pointer-events: none; }
+        .loader-content { text-align: center; }
+        .loader-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem; font-weight: 800;
+            color: white; margin-bottom: 20px;
+            animation: loaderPulse 1.5s ease-in-out infinite;
+        }
+        .loader-logo span { color: var(--secondary); }
+        @keyframes loaderPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .loader-bar { width: 200px; height: 4px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; margin: 0 auto; }
+        .loader-progress { height: 100%; background: var(--secondary); border-radius: 10px; animation: loadProgress 1.5s ease forwards; }
+        @keyframes loadProgress { from { width: 0; } to { width: 100%; } }
+
         /* ===== SCROLL REVEAL ===== */
         .reveal {
             opacity: 0;
@@ -1161,17 +1507,197 @@
 </head>
 <body>
 
+    <!-- ===== PAGE LOADER ===== -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-content">
+            <div class="loader-logo">BAVA <span>RESTAURANT</span></div>
+            <div class="loader-bar"><div class="loader-progress"></div></div>
+        </div>
+    </div>
+
+    <!-- ===== LOGIN MODAL ===== -->
+    <div class="modal-overlay" id="loginModal" onclick="if(event.target===this)closeModal('loginModal')">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>Welcome Back</h3>
+                <button class="modal-close" onclick="closeModal('loginModal')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-field">
+                    <label>Email Address</label>
+                    <input type="email" id="loginEmail" placeholder="you@example.com">
+                </div>
+                <div class="form-field">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password">
+                </div>
+                <button class="submit-btn" onclick="handleLogin()">
+                    <i class="fas fa-sign-in-alt"></i> &nbsp;Sign In
+                </button>
+                <div class="divider"><span>or continue with</span></div>
+                <div class="social-login">
+                    <button class="social-btn google" onclick="showToast('Google Sign-In coming soon!','#ea4335')"><i class="fab fa-google"></i> Google</button>
+                    <button class="social-btn facebook" onclick="showToast('Facebook Sign-In coming soon!','#1877f2')"><i class="fab fa-facebook-f"></i> Facebook</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <p>Don't have an account? <a onclick="switchModal('loginModal','signupModal')">Sign Up</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== SIGNUP MODAL ===== -->
+    <div class="modal-overlay" id="signupModal" onclick="if(event.target===this)closeModal('signupModal')">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>Create Account</h3>
+                <button class="modal-close" onclick="closeModal('signupModal')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-field">
+                    <label>Full Name</label>
+                    <input type="text" id="signupName" placeholder="John Kamau">
+                </div>
+                <div class="form-field">
+                    <label>Email Address</label>
+                    <input type="email" id="signupEmail" placeholder="you@example.com">
+                </div>
+                <div class="form-field">
+                    <label>Phone Number</label>
+                    <input type="tel" id="signupPhone" placeholder="0712 345 678">
+                </div>
+                <div class="form-field">
+                    <label>Password</label>
+                    <input type="password" id="signupPassword" placeholder="Min. 8 characters">
+                </div>
+                <button class="submit-btn" onclick="handleSignup()">
+                    <i class="fas fa-user-plus"></i> &nbsp;Create Account
+                </button>
+                <div class="divider"><span>or continue with</span></div>
+                <div class="social-login">
+                    <button class="social-btn google" onclick="showToast('Google Sign-In coming soon!','#ea4335')"><i class="fab fa-google"></i> Google</button>
+                    <button class="social-btn facebook" onclick="showToast('Facebook Sign-In coming soon!','#1877f2')"><i class="fab fa-facebook-f"></i> Facebook</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <p>Already have an account? <a onclick="switchModal('signupModal','loginModal')">Sign In</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== CART MODAL ===== -->
+    <div class="modal-overlay" id="cartModal" onclick="if(event.target===this)closeModal('cartModal')">
+        <div class="modal-box cart-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-shopping-bag"></i> Your Cart</h3>
+                <button class="modal-close" onclick="closeModal('cartModal')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="cartModalBody"></div>
+        </div>
+    </div>
+
+    <!-- ===== MPESA CHECKOUT MODAL ===== -->
+    <div class="modal-overlay" id="mpesaModal" onclick="if(event.target===this)closeModal('mpesaModal')">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3><i class="fas fa-mobile-alt"></i> M-Pesa Payment</h3>
+                <button class="modal-close" onclick="closeModal('mpesaModal')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="mpesaModalBody">
+                <div id="mpesaForm">
+                    <div style="text-align:center; margin-bottom:20px;">
+                        <div style="font-size:0.85rem; color:#64748b; margin-bottom:6px;">Amount to Pay</div>
+                        <div style="font-size:2rem; font-weight:800; color:var(--primary);" id="mpesaAmount">KES 0</div>
+                    </div>
+                    <div class="mpesa-step">
+                        <div class="mpesa-step-num">1</div>
+                        <div class="mpesa-step-info">
+                            <h4>Enter Phone Number</h4>
+                            <p>Key in your M-Pesa registered number (07XX XXX XXX)</p>
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <label>Phone Number</label>
+                        <input type="tel" id="mpesaPhone" placeholder="0712 345 678" maxlength="10">
+                    </div>
+                    <div class="mpesa-step">
+                        <div class="mpesa-step-num">2</div>
+                        <div class="mpesa-step-info">
+                            <h4>Send Payment</h4>
+                            <p>Use Paybill Number below to complete payment</p>
+                        </div>
+                    </div>
+                    <div class="mpesa-number">
+                        <small>Paybill Number</small>
+                        <span>123456</span>
+                        <small>Account: Your Phone Number</small>
+                    </div>
+                    <div class="mpesa-step">
+                        <div class="mpesa-step-num">3</div>
+                        <div class="mpesa-step-info">
+                            <h4>Confirm on Phone</h4>
+                            <p>Enter your M-Pesa PIN on your phone when prompted</p>
+                        </div>
+                    </div>
+                    <button class="submit-btn checkout" style="background:linear-gradient(135deg,#25d366,#128c7e);" onclick="initiateMpesa()">
+                        <i class="fas fa-paper-plane"></i> &nbsp;Confirm M-Pesa Payment
+                    </button>
+                </div>
+                <div class="mpesa-status" id="mpesaStatus">
+                    <div class="mpesa-spinner"></div>
+                    <h4>Processing Payment...</h4>
+                    <p>Please wait while we confirm your M-Pesa transaction.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== ORDER HISTORY MODAL ===== -->
+    <div class="modal-overlay" id="historyModal" onclick="if(event.target===this)closeModal('historyModal')">
+        <div class="modal-box history-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-history"></i> Order History</h3>
+                <button class="modal-close" onclick="closeModal('historyModal')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="historyModalBody"></div>
+        </div>
+    </div>
+
+    <!-- ===== INSTALL BANNER ===== -->
+    <div class="install-banner" id="installBanner">
+        <div class="install-banner-text">
+            <i class="fas fa-mobile-alt"></i>
+            <div>
+                <h4>Get the Bava App</h4>
+                <p>Order faster, track orders, and get exclusive mobile deals</p>
+            </div>
+        </div>
+        <div class="install-actions">
+            <button class="install-now" onclick="installApp()">Install</button>
+            <button class="install-later" onclick="dismissInstall()">Not Now</button>
+        </div>
+    </div>
+
+    <!-- ===== HISTORY BUTTON ===== -->
+    <div class="history-btn" id="historyBtn" onclick="openModal('historyModal')">
+        <i class="fas fa-history"></i>
+        <span>My Orders</span>
+    </div>
+
     <!-- ===== NAVBAR ===== -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="logo-text">BAVA <span>RESTAURANT</span></div>
             <div class="nav-links">
                 <a href="#" class="nav-link">HOME</a>
+            <a href="#" class="nav-link" onclick="openModal('loginModal'); return false;">LOGIN</a>
+                <a href="#" class="nav-link" onclick="openModal('signupModal'); return false;">SIGN UP</a>
                 <a href="#menu" class="nav-link">MENU</a>
                 <a href="#experience" class="nav-link">ABOUT</a>
                 <a href="#gallery" class="nav-link">GALLERY</a>
                 <a href="#reservation" class="nav-link">RESERVE</a>
-                <a href="#" class="order-btn"><i class="fas fa-motorcycle"></i> &nbsp;ORDER NOW</a>
+                <a href="#" class="order-btn" id="installAppBtn" style="display:none;"><i class="fas fa-download"></i> &nbsp;GET APP</a>
+                <a href="#" class="order-btn" onclick="openCart(); return false;"><i class="fas fa-shopping-bag"></i> &nbsp;ORDER NOW</a>
             </div>
             <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
         </div>
@@ -1180,12 +1706,14 @@
     <!-- ===== MOBILE MENU ===== -->
     <div class="mobile-menu" id="mobileMenu">
         <div class="close-menu" id="closeMenu"><i class="fas fa-times"></i></div>
-        <a href="#">HOME</a>
-        <a href="#menu">MENU</a>
-        <a href="#experience">ABOUT</a>
-        <a href="#gallery">GALLERY</a>
-        <a href="#reservation">RESERVE A TABLE</a>
-        <a href="#" style="color: var(--primary);">ORDER NOW</a>
+        <a href="#" onclick="openModal('loginModal'); return false;">LOGIN</a>
+        <a href="#" onclick="openModal('signupModal'); return false;">SIGN UP</a>
+        <a href="#menu" onclick="closeMobileMenu()">MENU</a>
+        <a href="#experience" onclick="closeMobileMenu()">ABOUT</a>
+        <a href="#gallery" onclick="closeMobileMenu()">GALLERY</a>
+        <a href="#reservation" onclick="closeMobileMenu()">RESERVE A TABLE</a>
+        <a href="#" onclick="openCart(); return false;" style="color: var(--primary);">ORDER NOW</a>
+        <a href="#" onclick="openModal('historyModal'); return false;" id="mobileHistoryLink" style="display:none; color: var(--secondary);">MY ORDERS</a>
     </div>
 
     <!-- ===== HERO CAROUSEL ===== -->
@@ -1610,6 +2138,11 @@
         <div class="lightbox-close" onclick="closeLightbox()"><i class="fas fa-times"></i></div>
         <img src="" id="lightboxImg" alt="Gallery Image">
     </div>
+
+    <!-- ===== FLOATING ORDER BUTTON ===== -->
+    <a href="#" class="floating-order-btn" id="floatingOrderBtn" onclick="openCart(); return false;">
+        <i class="fas fa-shopping-bag"></i> Order Now
+    </a>
 
     <!-- ===== FOOTER ===== -->
     <footer>
@@ -2042,9 +2575,317 @@
 
         document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
+        // ===== USER AUTH =====
+        let currentUser = JSON.parse(localStorage.getItem('bavaUser') || 'null');
+
+        function handleLogin() {
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            if (!email || !password) { showToast('Please fill in all fields', '#e76f51'); return; }
+            // Simulate login
+            const user = { name: email.split('@')[0], email, phone: '0712345678' };
+            localStorage.setItem('bavaUser', JSON.stringify(user));
+            currentUser = user;
+            closeModal('loginModal');
+            updateAuthUI();
+            showToast('Welcome back, ' + user.name + '! 🎉');
+        }
+
+        function handleSignup() {
+            const name = document.getElementById('signupName').value.trim();
+            const email = document.getElementById('signupEmail').value.trim();
+            const phone = document.getElementById('signupPhone').value.trim();
+            const password = document.getElementById('signupPassword').value;
+            if (!name || !email || !phone || !password) { showToast('Please fill in all fields', '#e76f51'); return; }
+            if (password.length < 8) { showToast('Password must be at least 8 characters', '#e76f51'); return; }
+            const user = { name, email, phone };
+            localStorage.setItem('bavaUser', JSON.stringify(user));
+            currentUser = user;
+            closeModal('signupModal');
+            updateAuthUI();
+            showToast('Account created! Welcome to Bava, ' + name + '! 🎉');
+        }
+
+        function handleLogout() {
+            localStorage.removeItem('bavaUser');
+            currentUser = null;
+            updateAuthUI();
+            showToast('You have been signed out');
+        }
+
+        function updateAuthUI() {
+            const navLinks = document.querySelector('.nav-container .nav-links');
+            const mobileHistoryLink = document.getElementById('mobileHistoryLink');
+            if (!navLinks) return;
+            // Remove existing auth elements
+            const existing = navLinks.querySelectorAll('.auth-link, .user-greeting');
+            existing.forEach(el => el.remove());
+            if (currentUser) {
+                const greeting = document.createElement('a');
+                greeting.className = 'nav-link user-greeting';
+                greeting.href = '#';
+                greeting.style.cssText = 'color: var(--secondary); font-weight: 700; cursor: pointer;';
+                greeting.innerHTML = '<i class="fas fa-user-circle"></i> ' + currentUser.name;
+                greeting.onclick = (e) => { e.preventDefault(); openModal('historyModal'); };
+                const logoutBtn = document.createElement('a');
+                logoutBtn.className = 'nav-link auth-link';
+                logoutBtn.href = '#';
+                logoutBtn.style.cssText = 'color: #ef4444;';
+                logoutBtn.innerHTML = '<i class="fas fa-sign-out-alt"></i> Logout';
+                logoutBtn.onclick = (e) => { e.preventDefault(); handleLogout(); };
+                navLinks.insertBefore(greeting, navLinks.querySelector('.nav-link[href="#menu"]'));
+                navLinks.insertBefore(logoutBtn, navLinks.querySelector('.nav-link[href="#menu"]'));
+                document.getElementById('historyBtn').classList.add('visible');
+                if (mobileHistoryLink) mobileHistoryLink.style.display = 'block';
+            } else {
+                document.getElementById('historyBtn').classList.remove('visible');
+                if (mobileHistoryLink) mobileHistoryLink.style.display = 'none';
+            }
+        }
+
+        function closeMobileMenu() {
+            document.getElementById('mobileMenu').classList.remove('active');
+        }
+
+        // ===== MODAL SYSTEM =====
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+        function switchModal(from, to) {
+            closeModal(from);
+            setTimeout(() => openModal(to), 200);
+        }
+        document.querySelectorAll('.modal-overlay').forEach(modal => {
+            modal.addEventListener('click', e => {
+                if (e.target === modal) closeModal(modal.id);
+            });
+        });
+
+        // ===== CART =====
+        function openCart() {
+            if (cart.length === 0) {
+                document.getElementById('cartModalBody').innerHTML = '<div class="cart-empty"><i class="fas fa-shopping-basket"></i><p>Your cart is empty</p><p style="font-size:0.8rem;margin-top:6px;">Browse our menu and add some delicious items!</p><button class="submit-btn" onclick="closeModal(\'cartModal\')" style="margin-top:16px;">Browse Menu</button></div>';
+            } else {
+                renderCartModal();
+            }
+            openModal('cartModal');
+        }
+
+        function renderCartModal() {
+            const total = cart.reduce((sum, i) => sum + i.price * i.quantity, 0);
+            const delivery = total >= 1000 ? 0 : 150;
+            const grand = total + delivery;
+            document.getElementById('cartModalBody').innerHTML = `
+                <div class="cart-items-list">
+                    ${cart.map(item => {
+                        const menuItem = menuItems.find(m => m.name === item.name);
+                        const img = menuItem ? menuItem.image : fallbackImage;
+                        return `<div class="cart-item-row">
+                            <img src="${img}" class="cart-item-img" alt="${item.name}" onerror="this.src='${fallbackImage}'">
+                            <div class="cart-item-info">
+                                <div class="cart-item-name">${item.name}</div>
+                                <div class="cart-item-price">KES ${item.price.toLocaleString()}</div>
+                            </div>
+                            <div class="qty-controls">
+                                <button class="qty-btn" onclick="changeQty('${item.name}', -1)">-</button>
+                                <span class="qty-num">${item.quantity}</span>
+                                <button class="qty-btn" onclick="changeQty('${item.name}', 1)">+</button>
+                            </div>
+                            <button class="cart-item-remove" onclick="removeFromCart('${item.name}')"><i class="fas fa-trash"></i></button>
+                        </div>`;
+                    }).join('')}
+                </div>
+                <div class="cart-summary">
+                    <div class="cart-summary-row"><span>Subtotal</span><span>KES ${total.toLocaleString()}</span></div>
+                    <div class="cart-summary-row"><span>Delivery</span><span>${delivery === 0 ? 'FREE' : 'KES ' + delivery}</span></div>
+                    <div class="cart-summary-row total"><span>Total</span><span>KES ${grand.toLocaleString()}</span></div>
+                </div>
+                <div class="cart-actions">
+                    <button class="submit-btn" onclick="closeModal('cartModal')" style="background:#64748b;">Continue Shopping</button>
+                    <button class="submit-btn checkout" onclick="proceedToCheckout()"><i class="fas fa-lock"></i> Checkout</button>
+                </div>
+            `;
+        }
+
+        function changeQty(name, delta) {
+            const item = cart.find(i => i.name === name);
+            if (item) {
+                item.quantity += delta;
+                if (item.quantity <= 0) {
+                    cart = cart.filter(i => i.name !== name);
+                }
+                localStorage.setItem('bavaCart', JSON.stringify(cart));
+                updateCartUI();
+                renderCartModal();
+            }
+        }
+
+        function removeFromCart(name) {
+            cart = cart.filter(i => i.name !== name);
+            localStorage.setItem('bavaCart', JSON.stringify(cart));
+            updateCartUI();
+            renderCartModal();
+            if (cart.length === 0) {
+                document.getElementById('cartModalBody').innerHTML = '<div class="cart-empty"><i class="fas fa-shopping-basket"></i><p>Your cart is empty</p><button class="submit-btn" onclick="closeModal(\'cartModal\')" style="margin-top:16px;">Browse Menu</button></div>';
+            }
+        }
+
+        function proceedToCheckout() {
+            closeModal('cartModal');
+            const total = cart.reduce((sum, i) => sum + i.price * i.quantity, 0);
+            const delivery = total >= 1000 ? 0 : 150;
+            const grand = total + delivery;
+            document.getElementById('mpesaAmount').textContent = 'KES ' + grand.toLocaleString();
+            document.getElementById('mpesaForm').style.display = 'block';
+            document.getElementById('mpesaStatus').classList.remove('active');
+            openModal('mpesaModal');
+        }
+
+        // ===== MPESA =====
+        function initiateMpesa() {
+            const phone = document.getElementById('mpesaPhone').value.trim();
+            if (!phone || phone.length < 9) { showToast('Please enter a valid phone number', '#e76f51'); return; }
+            document.getElementById('mpesaForm').style.display = 'none';
+            document.getElementById('mpesaStatus').classList.add('active');
+            // Simulate M-PESA processing
+            setTimeout(() => {
+                const total = cart.reduce((sum, i) => sum + i.price * i.quantity, 0);
+                const delivery = total >= 1000 ? 0 : 150;
+                const grand = total + delivery;
+                // Save to order history
+                const orders = JSON.parse(localStorage.getItem('bavaOrders') || '[]');
+                const orderId = 'BV' + Date.now().toString().slice(-6);
+                const newOrder = {
+                    id: orderId,
+                    date: new Date().toLocaleString('en-KE'),
+                    items: [...cart],
+                    total: grand,
+                    status: 'pending',
+                    payment: 'M-PESA'
+                };
+                orders.unshift(newOrder);
+                localStorage.setItem('bavaOrders', JSON.stringify(orders));
+                // Clear cart
+                cart = [];
+                localStorage.setItem('bavaCart', JSON.stringify(cart));
+                updateCartUI();
+                closeModal('mpesaModal');
+                showToast('Payment sent! Check your phone to complete M-PESA. Order ID: ' + orderId, '#25d366');
+                document.getElementById('mpesaPhone').value = '';
+            }, 2500);
+        }
+
+        // ===== ORDER HISTORY =====
+        function renderHistory() {
+            const orders = JSON.parse(localStorage.getItem('bavaOrders') || '[]');
+            const body = document.getElementById('historyModalBody');
+            if (orders.length === 0) {
+                body.innerHTML = '<div class="cart-empty"><i class="fas fa-receipt"></i><p>No orders yet</p><p style="font-size:0.8rem;margin-top:6px;">Your order history will appear here after you checkout.</p><button class="submit-btn" onclick="closeModal(\'historyModal\')" style="margin-top:16px;">Start Ordering</button></div>';
+                return;
+            }
+            body.innerHTML = '<div class="order-history-list">' + orders.map(order => {
+                const itemsPreview = order.items.map(i => i.name + ' x' + i.quantity).join(', ');
+                return `<div class="history-item">
+                    <div class="history-item-header">
+                        <div>
+                            <div class="history-order-id">#${order.id}</div>
+                            <div class="history-date">${order.date}</div>
+                        </div>
+                        <div style="display:flex;align-items:center;gap:8px;">
+                            <span class="history-status ${order.status}">${order.status.toUpperCase()}</span>
+                            <span style="font-size:0.75rem;color:#94a3b8;">${order.payment}</span>
+                        </div>
+                    </div>
+                    <div class="history-items-preview">${itemsPreview}</div>
+                    <div class="history-total">
+                        <span>Total Paid</span>
+                        <span>KES ${order.total.toLocaleString()}</span>
+                    </div>
+                    ${order.status === 'pending' ? '<button class="history-reorder" onclick="reorder(\'' + order.id + '\')"><i class="fas fa-redo"></i> Reorder Same Items</button>' : ''}
+                </div>`;
+            }).join('') + '</div>';
+        }
+
+        function reorder(orderId) {
+            const orders = JSON.parse(localStorage.getItem('bavaOrders') || '[]');
+            const order = orders.find(o => o.id === orderId);
+            if (order) {
+                order.items.forEach(item => {
+                    const existing = cart.find(c => c.name === item.name);
+                    if (existing) {
+                        existing.quantity += item.quantity;
+                    } else {
+                        cart.push({ name: item.name, price: item.price, quantity: item.quantity });
+                    }
+                });
+                localStorage.setItem('bavaCart', JSON.stringify(cart));
+                updateCartUI();
+                closeModal('historyModal');
+                showToast('Items added to cart! Ready to reorder.');
+                openCart();
+            }
+        }
+
+        // ===== PWA INSTALL =====
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            document.getElementById('installBanner').classList.add('active');
+            document.getElementById('installAppBtn').style.display = 'inline-flex';
+        });
+
+        function installApp() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choice) => {
+                    if (choice.outcome === 'accepted') {
+                        showToast('App installed successfully! 🎉');
+                    }
+                    deferredPrompt = null;
+                    document.getElementById('installBanner').classList.remove('active');
+                });
+            } else {
+                showToast('To install: use your browser\'s menu > Add to Home Screen', '#e76f51');
+            }
+        }
+
+        function dismissInstall() {
+            document.getElementById('installBanner').classList.remove('active');
+            localStorage.setItem('installDismissed', Date.now().toString());
+        }
+
+        // ===== PAGE LOADER =====
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const loader = document.getElementById('pageLoader');
+                if (loader) loader.classList.add('hidden');
+                setTimeout(() => { if (loader) loader.style.display = 'none'; }, 500);
+            }, 1200);
+        });
+
         // ===== INIT =====
         renderFoodGrid();
         updateCartUI();
+        updateAuthUI();
+        renderHistory();
+
+        // Check if install banner was dismissed recently
+        const dismissed = localStorage.getItem('installDismissed');
+        if (dismissed && Date.now() - parseInt(dismissed) < 7 * 24 * 60 * 60 * 1000) {
+            // Hide for 7 days
+        }
 
         // Expose globals
         window.addToCart = addToCart;
@@ -2055,6 +2896,19 @@
         window.submitReservation = submitReservation;
         window.subscribeNewsletter = subscribeNewsletter;
         window.openCart = openCart;
+        window.openModal = openModal;
+        window.closeModal = closeModal;
+        window.switchModal = switchModal;
+        window.handleLogin = handleLogin;
+        window.handleSignup = handleSignup;
+        window.initiateMpesa = initiateMpesa;
+        window.proceedToCheckout = proceedToCheckout;
+        window.changeQty = changeQty;
+        window.removeFromCart = removeFromCart;
+        window.renderHistory = renderHistory;
+        window.reorder = reorder;
+        window.installApp = installApp;
+        window.dismissInstall = dismissInstall;
     </script>
 </body>
 </html>
